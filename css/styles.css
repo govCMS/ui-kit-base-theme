@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*
 
-UI-Kit version: 1.9.0
+UI-Kit version: 1.10.3
 
 */
 /*
@@ -70,7 +70,7 @@ Lighter and darker versions are percentage variations of the original colours (S
   <div class="guide-colour">
     <div class="swatch bg-lighter-aqua"></div>
     <p class="text"><strong>Lighter-aqua</strong><br/>
-      <small>$lighter-aqua<br/> #5BCBE3</small></p>
+      <small>$lighter-aqua<br/> #DEF4F9</small></p>
   </div>
 
   <div class="guide-colour">
@@ -259,7 +259,7 @@ Usage:
   background-image: url("../latest/img/icons/arrow-right--white.svg");
 }
 
-main > article .see-more::after, footer[role='contentinfo'] .see-more::after, .list-horizontal .tags .see-more::after, .list-vertical .tags .see-more::after, .list-vertical--thirds .tags .see-more::after, .list-vertical--fourths .tags .see-more::after, footer[role='contentinfo'] .footer-top nav .tags .see-more::after, .list-small .tags .see-more::after, .list-highlighted .tags .see-more::after, .primary-nav ul .see-more::after,
+header[role='banner'] .see-more::after, body > main .see-more::after, footer[role='contentinfo'] .see-more::after, .list-horizontal .tags .see-more::after, .list-vertical .tags .see-more::after, .list-vertical--thirds .tags .see-more::after, .list-vertical--fourths .tags .see-more::after, footer[role='contentinfo'] .footer-top nav .tags .see-more::after, .list-small .tags .see-more::after, .list-highlighted .tags .see-more::after, .primary-nav ul .see-more::after,
 .local-nav ul .see-more::after, [class^='breadcrumbs'] .see-more::after, [class^='breadcrumbs'][class$='--inverted'] .see-more::after, .skip-to .see-more::after, [class^='controls'] .see-more::after, .govau--header .see-more::after, .prerelease-govau--header .see-more::after, .hero .see-more::after,
 .hero-sml .see-more::after,
 .hero-med .see-more::after {
@@ -279,7 +279,7 @@ summary::before, .accordion--controls summary::before, .nav-toggle::before {
   background-image: url("../latest/img/icons/chevron-down--navy.svg");
 }
 
-main > article a[rel~='external']::after, footer[role='contentinfo'] a[rel~='external']::after, .list-horizontal .tags a[rel~='external']::after, .list-vertical .tags a[rel~='external']::after, .list-vertical--thirds .tags a[rel~='external']::after, .list-vertical--fourths .tags a[rel~='external']::after, footer[role='contentinfo'] .footer-top nav .tags a[rel~='external']::after, .list-small .tags a[rel~='external']::after, .list-highlighted .tags a[rel~='external']::after, .primary-nav ul a[rel~='external']::after,
+header[role='banner'] a[rel~='external']::after, body > main a[rel~='external']::after, footer[role='contentinfo'] a[rel~='external']::after, .list-horizontal .tags a[rel~='external']::after, .list-vertical .tags a[rel~='external']::after, .list-vertical--thirds .tags a[rel~='external']::after, .list-vertical--fourths .tags a[rel~='external']::after, footer[role='contentinfo'] .footer-top nav .tags a[rel~='external']::after, .list-small .tags a[rel~='external']::after, .list-highlighted .tags a[rel~='external']::after, .primary-nav ul a[rel~='external']::after,
 .local-nav ul a[rel~='external']::after, [class^='breadcrumbs'] a[rel~='external']::after, [class^='breadcrumbs'][class$='--inverted'] a[rel~='external']::after, .skip-to a[rel~='external']::after, [class^='controls'] a[rel~='external']::after, .govau--header a[rel~='external']::after, .prerelease-govau--header a[rel~='external']::after, .hero a[rel~='external']::after,
 .hero-sml a[rel~='external']::after,
 .hero-med a[rel~='external']::after {
@@ -1969,7 +1969,7 @@ Markup: templates/basic-links.html
 
 Style guide: Link styles.1 Hover links
 */
-main > article a[rel~='external']::after, footer[role='contentinfo'] a[rel~='external']::after, .list-horizontal .tags a[rel~='external']::after, .list-vertical .tags a[rel~='external']::after, .list-vertical--thirds .tags a[rel~='external']::after, .list-vertical--fourths .tags a[rel~='external']::after, footer[role='contentinfo'] .footer-top nav .tags a[rel~='external']::after, .list-small .tags a[rel~='external']::after, .list-highlighted .tags a[rel~='external']::after, .primary-nav ul a[rel~='external']::after,
+header[role='banner'] a[rel~='external']::after, body > main a[rel~='external']::after, footer[role='contentinfo'] a[rel~='external']::after, .list-horizontal .tags a[rel~='external']::after, .list-vertical .tags a[rel~='external']::after, .list-vertical--thirds .tags a[rel~='external']::after, .list-vertical--fourths .tags a[rel~='external']::after, footer[role='contentinfo'] .footer-top nav .tags a[rel~='external']::after, .list-small .tags a[rel~='external']::after, .list-highlighted .tags a[rel~='external']::after, .primary-nav ul a[rel~='external']::after,
 .local-nav ul a[rel~='external']::after, [class^='breadcrumbs'] a[rel~='external']::after, [class^='breadcrumbs'][class$='--inverted'] a[rel~='external']::after, .skip-to a[rel~='external']::after, [class^='controls'] a[rel~='external']::after, .govau--header a[rel~='external']::after, .prerelease-govau--header a[rel~='external']::after, .hero a[rel~='external']::after,
 .hero-sml a[rel~='external']::after,
 .hero-med a[rel~='external']::after {
@@ -1995,7 +1995,7 @@ main > article a[rel~='external']::after, footer[role='contentinfo'] a[rel~='ext
   padding-left: 2.4em;
 }
 
-main > article {
+header[role='banner'] {
   color: #313131;
   /*
   See more link
@@ -2053,7 +2053,7 @@ main > article {
   Style guide: Link styles.3 Placeholder links
   */
 }
-main > article a {
+header[role='banner'] a {
   color: #313131;
   text-decoration: none;
   outline: none;
@@ -2062,29 +2062,29 @@ main > article a {
   transition-duration: 0.1s;
   transition-property: background-color, border-color, color;
 }
-main > article a:hover, main > article a:focus {
+header[role='banner'] a:hover, header[role='banner'] a:focus {
   background-color: #5bcbe3;
   color: #313131;
 }
-main > article a[rel~='external'] {
+header[role='banner'] a[rel~='external'] {
   display: inline;
   position: relative;
   margin-right: 1.6em;
 }
-main > article a[rel~='external']:hover {
+header[role='banner'] a[rel~='external']:hover {
   border-color: transparent;
 }
-main > article a[rel~='external']::after {
+header[role='banner'] a[rel~='external']::after {
   background-size: 0.9em auto;
 }
-main > article .see-more {
+header[role='banner'] .see-more {
   display: inline-block;
   position: relative;
   margin-right: 1.6em;
   font-weight: 700;
   color: #18788d;
 }
-main > article .see-more::after {
+header[role='banner'] .see-more::after {
   content: '';
   position: absolute;
   top: 0;
@@ -2096,47 +2096,160 @@ main > article .see-more::after {
   background-position: right 0.4em;
   background-size: 0.64em auto;
 }
-main > article .see-more:hover, main > article .see-more:focus {
+header[role='banner'] .see-more:hover, header[role='banner'] .see-more:focus {
   color: #313131;
 }
-main > article span.placeholder-link {
+header[role='banner'] span.placeholder-link {
   color: rgba(49, 49, 49, 0.7);
   border-bottom: none;
   cursor: not-allowed;
 }
-main > article span.placeholder-link:hover {
+header[role='banner'] span.placeholder-link:hover {
   cursor: not-allowed;
 }
-main > article button,
-main > article .button,
-main > article [role='button'],
-main > article [type='submit'],
-main > article [type='reset'],
-main > article [type='button'] {
+
+body > main {
+  color: #313131;
+  /*
+  See more link
+
+  Use see more links at the end of [lists](section-list-styles.html),
+  to take the user to a index page of all items.
+
+  Markup: templates/see-more-link.html
+
+  <details open data-label="placeholder-link-accessibility" aria-expanded="false">
+    <summary>Accessibility &amp; browser testing</summary>
+    <div class="accordion-panel">
+    <strong>Passed</strong>:
+      <ul>
+        <li>HTML5 validation (<a href="http://validator.github.io/validator/" rel="external">Nu Html Checker</a>)</li>
+        <li>WCAG:AA automated (<a href="http://squizlabs.github.io/HTML_CodeSniffer/Standards/WCAG2/" rel="external">HTML_CodeSniffer</a>)</li>
+      </ul>
+    <strong>Untested</strong>:
+      <ul>
+        <li>WCAG:AA manual</li>
+        <li>Browser support &mdash; automated and manual</li>
+      </ul>
+    </div>
+  </details>
+
+  Style guide: Link styles.2 See more link
+  */
+  /*
+  Placeholder links (prototyping)
+
+  Use placeholder links (greyed out links) to show actions that users can't currently take.
+
+  Your content should explain why the action isn't available and when it will be.
+
+  <p class="callout">Placeholders only work in `<span>` tags; not `<a>`.</p>
+
+  Markup: templates/placeholder-link.html
+
+  <details open data-label="placeholder-links-accessibility" aria-expanded="false">
+    <summary>Accessibility &amp; browser testing</summary>
+    <div class="accordion-panel">
+    <strong>Passed</strong>:
+      <ul>
+        <li>HTML5 validation (<a href="http://validator.github.io/validator/" rel="external">Nu Html Checker</a>)</li>
+        <li>WCAG:AA automated (<a href="http://squizlabs.github.io/HTML_CodeSniffer/Standards/WCAG2/" rel="external">HTML_CodeSniffer</a>)</li>
+      </ul>
+    <strong>Untested</strong>:
+      <ul>
+        <li>WCAG:AA manual</li>
+        <li>Browser support &mdash; automated and manual</li>
+      </ul>
+    </div>
+  </details>
+
+  Style guide: Link styles.3 Placeholder links
+  */
+}
+body > main a {
+  color: #313131;
+  text-decoration: none;
+  outline: none;
+  border-bottom: solid 1px #5bcbe3;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.1s;
+  transition-property: background-color, border-color, color;
+}
+body > main a:hover, body > main a:focus {
+  background-color: #5bcbe3;
+  color: #313131;
+}
+body > main a[rel~='external'] {
+  display: inline;
+  position: relative;
+  margin-right: 1.6em;
+}
+body > main a[rel~='external']:hover {
+  border-color: transparent;
+}
+body > main a[rel~='external']::after {
+  background-size: 0.9em auto;
+}
+body > main .see-more {
+  display: inline-block;
+  position: relative;
+  margin-right: 1.6em;
+  font-weight: 700;
+  color: #18788d;
+}
+body > main .see-more::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -1.2em;
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+  background-repeat: no-repeat;
+  background-position: right 0.4em;
+  background-size: 0.64em auto;
+}
+body > main .see-more:hover, body > main .see-more:focus {
+  color: #313131;
+}
+body > main span.placeholder-link {
+  color: rgba(49, 49, 49, 0.7);
+  border-bottom: none;
+  cursor: not-allowed;
+}
+body > main span.placeholder-link:hover {
+  cursor: not-allowed;
+}
+body > main button,
+body > main .button,
+body > main [role='button'],
+body > main [type='submit'],
+body > main [type='reset'],
+body > main [type='button'] {
   background-color: #18788d;
   color: #fff;
   border-color: #115361;
 }
-main > article button:hover, main > article button:focus,
-main > article .button:hover,
-main > article .button:focus,
-main > article [role='button']:hover,
-main > article [role='button']:focus,
-main > article [type='submit']:hover,
-main > article [type='submit']:focus,
-main > article [type='reset']:hover,
-main > article [type='reset']:focus,
-main > article [type='button']:hover,
-main > article [type='button']:focus {
+body > main button:hover, body > main button:focus,
+body > main .button:hover,
+body > main .button:focus,
+body > main [role='button']:hover,
+body > main [role='button']:focus,
+body > main [type='submit']:hover,
+body > main [type='submit']:focus,
+body > main [type='reset']:hover,
+body > main [type='reset']:focus,
+body > main [type='button']:hover,
+body > main [type='button']:focus {
   background-color: #115361;
   color: #fff;
 }
-main > article button:active,
-main > article .button:active,
-main > article [role='button']:active,
-main > article [type='submit']:active,
-main > article [type='reset']:active,
-main > article [type='button']:active {
+body > main button:active,
+body > main .button:active,
+body > main [role='button']:active,
+body > main [type='submit']:active,
+body > main [type='reset']:active,
+body > main [type='button']:active {
   background-color: #146577;
 }
 
@@ -2660,7 +2773,7 @@ footer[role='contentinfo'] .footer-top nav h6,
   */
 }
 .list-vertical > li, .list-vertical--thirds > li, .list-vertical--fourths > li, footer[role='contentinfo'] .footer-top nav > li {
-  border-top: 6px solid #5bcbe3;
+  border-top: 6px solid #18788d;
   border-bottom: none;
 }
 .list-vertical > li article, .list-vertical--thirds > li article, .list-vertical--fourths > li article, footer[role='contentinfo'] .footer-top nav > li article {
@@ -2852,7 +2965,7 @@ footer[role='contentinfo'] .footer-top nav > li article p {
 /*
 Navigation
 
-Ensure users understand where they are in the service, where they have been and where they can go.
+Make sure users understand where they are in the service, where they have been and where they can go.
 
 ***
 
@@ -2863,7 +2976,9 @@ Style guide: Navigation
 /*
 Global navigation
 
-The global navigation panel is collapsed (hidden) by default.
+The global navigation provides an additional navigation level above the [site navigation](#guide-navigation-02-site-navigation).
+
+The panel is collapsed (hidden) by default.
 
 Older browsers (IE8 and lower) and those without JavaScript will get an expanded menu without a hamburger button.
 
@@ -2885,12 +3000,12 @@ Markup: templates/global-navigation.html
   </div>
 </details>
 
-Style guide: Navigation.1 Global navigation
+Style guide: Navigation.01 Global navigation
 */
 /*
 Local navigation
 
-Use local navigation to help the user go straight to the specific content that meets their needs.
+Use local navigation to help the user to navigate within the current section.
 
 The framework provides a vertical navigation menu. The home page title is always at top, followed by up to 3 levels of navigation.
 
@@ -2918,7 +3033,7 @@ Markup: templates/local-navigation.html
   </div>
 </details>
 
-Style guide: Navigation.2 Local navigation
+Style guide: Navigation.03 Local navigation
 */
 /*
 Breadcrumbs
@@ -2945,12 +3060,12 @@ Markup: templates/breadcrumbs.html
   </div>
 </details>
 
-Style guide: Navigation.3 Breadcrumbs
+Style guide: Navigation.07 Breadcrumbs
 */
 /*
 Contents links
 
-Contents links (index links) help users understand the page structure.
+Table of contents links (index links) help users navigate to the specific content on the page that meet their needs.
 
 A heading is optional &mdash; use the correct header level for the page structure.
 
@@ -2974,7 +3089,7 @@ Markup: templates/index-links.html
   </div>
 </details>
 
-Style guide: Navigation.4 Contents links
+Style guide: Navigation.04 Contents links
 */
 /*
 Inline links block
@@ -2999,7 +3114,7 @@ Markup: templates/inline-links.html
   </div>
 </details>
 
-Style guide: Navigation.5 Inline links
+Style guide: Navigation.08 Inline links
 */
 /*
 Footer navigation
@@ -3030,7 +3145,7 @@ Markup: templates/footer-navigation.html
   </div>
 </details>
 
-Style guide: Navigation.6 Footer navigation
+Style guide: Navigation.09 Footer navigation
 */
 .govau--header .nav-toggle {
   position: relative;
@@ -3374,6 +3489,7 @@ Style guide: Navigation.6 Footer navigation
 .primary-nav ul a.is-active,
 .local-nav ul a.is-active {
   font-weight: 700;
+  background-color: #f0f3f5;
 }
 .primary-nav ul a.is-current,
 .local-nav ul a.is-current {
@@ -3715,7 +3831,7 @@ Markup: templates/skip-link.html
   </div>
 </details>
 
-Style guide: Navigation.7 Skip links
+Style guide: Navigation.10 Skip links
 */
 .skip-to {
   color: #313131;
@@ -3927,7 +4043,7 @@ Markup: templates/groups-links.html
   </div>
 </details>
 
-Style guide: Navigation.8 Group of links
+Style guide: Navigation.11 Group of links
 */
 .links-group {
   max-width: 75em;
@@ -3954,7 +4070,7 @@ Style guide: Navigation.8 Group of links
 .links-group ul li:last-child {
   margin-right: 0;
 }
-@media screen and (min-width: 420px) and (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .links-group ul li {
     float: left;
     display: block;
@@ -4019,7 +4135,7 @@ Set current location using `class="is-current"`.
 
 Markup: templates/tab-style-nav.html
 
-Style guide: Navigation.07 Tab navigation
+Style guide: Navigation.06 Tab navigation
 */
 .inline-tab-nav {
   border-bottom: solid 1px #6e6e6e;
@@ -4110,14 +4226,21 @@ Accessibility
 - Test with users to ensure the navigation hierarchy is not too long or too deep.
 - Use the [correct colour contrast](section-colours.html#guide-colours-3-colour-contrast) for breadcrumbs and inline links.
 
-Style guide: Navigation.10 Accessibility
+Style guide: Navigation.05 Accessibility
 */
 footer[role='contentinfo'] {
-  padding: 3.2em 0;
+  padding: 1.6em 0;
   background-color: #f0f3f5;
   border-top: 6px solid #043751;
 }
+footer[role='contentinfo']:after {
+  content: '';
+  display: table;
+  clear: both;
+  height: 0;
+}
 footer[role='contentinfo'] ul {
+  margin-bottom: 2.4em;
   padding: 0;
 }
 footer[role='contentinfo'] li {
@@ -4139,6 +4262,9 @@ footer[role='contentinfo'] .button--feedback {
   max-width: 30em;
   background-color: transparent;
 }
+footer[role='contentinfo'] .footer-logo {
+  margin-bottom: 3.2em;
+}
 @media screen and (min-width: 768px) {
   footer[role='contentinfo'] .footer-logo {
     float: left;
@@ -4152,6 +4278,17 @@ footer[role='contentinfo'] .button--feedback {
 }
 footer[role='contentinfo'] .footer-logo img {
   max-height: 7em;
+  display: block;
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  footer[role='contentinfo'] .footer-logo img {
+    margin: 0;
+  }
+}
+footer[role='contentinfo'] .footer-links {
+  text-align: center;
+  margin: 0 auto;
 }
 @media screen and (min-width: 768px) {
   footer[role='contentinfo'] .footer-links {
@@ -4159,6 +4296,8 @@ footer[role='contentinfo'] .footer-logo img {
     display: block;
     margin-right: 2.74614%;
     width: 74.31347%;
+    margin: 0;
+    text-align: left;
   }
   footer[role='contentinfo'] .footer-links:last-child {
     margin-right: 0;
@@ -4503,6 +4642,49 @@ footer[role='contentinfo'] .footer-top nav li h4 {
 [class^='controls'][class$='--contrast'] [role='button']:hover,
 [class^='controls'][class$='--contrast'] [role='button']:focus {
   color: #880e48;
+}
+
+/*
+Page header
+
+Use clear and consistent page headers to help users know where they are.
+
+The header should help the user navigate to the main sections of the site.
+
+Style guide: Page header
+*/
+/*
+Header contents
+
+Use 1 header at the top of the page containing:
+
+- branding
+- [site navigation](section-navigation.html#guide-navigation-02-site-navigation)
+
+Markup: templates/page-header.html
+
+Style guide: Page header.01 Header
+*/
+.page-header {
+  background-color: #f0f3f5;
+  background-image: -webkit-linear-gradient(bottom, #f0f3f5, #fff);
+  background-image: linear-gradient(to top,#f0f3f5, #fff);
+  padding-top: 1.6em;
+  box-shadow: 0 -6px #bbbbbb inset;
+}
+
+.page-header__logo {
+  padding: 0.8em 0;
+}
+.page-header__logo a {
+  border-bottom: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+@media screen and (min-width: 768px) {
+  .page-header__logo a {
+    font-size: 1.625rem;
+  }
 }
 
 .govau--header .links-group,
@@ -5192,6 +5374,112 @@ footer[role='contentinfo'] .footer-top nav li h4 {
 }
 .brandbar.dawn .b2 {
   background-color: #fbc515;
+}
+
+/*
+Site navigation
+
+Markup: templates/site-navigation.html
+
+Use the site navigation to help the user to navigate between main sections.
+
+The menu will collapse by default on small screens.
+
+Older browsers (IE8 and lower) and those without JavaScript will get an expanded menu.
+
+Style guide: Navigation.02 Site navigation
+*/
+.site-nav .nav-toggle {
+  margin-left: 60%;
+  width: 40%;
+  background-color: transparent;
+  border-bottom: none;
+}
+.site-nav .nav-toggle:hover {
+  background-color: #bbbbbb;
+}
+
+.site-nav__wrapper {
+  margin-bottom: 0.4em;
+}
+@media screen and (min-width: 768px) {
+  .site-nav__wrapper {
+    margin-bottom: 0;
+  }
+}
+.site-nav__wrapper ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid #bbbbbb;
+}
+@media screen and (min-width: 768px) {
+  .site-nav__wrapper ul {
+    border-top: none;
+  }
+  .site-nav__wrapper ul::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+.site-nav__wrapper.nav-collapse li {
+  width: auto !important;
+}
+.site-nav__wrapper li {
+  margin: 0;
+}
+@media screen and (max-width: 767px) {
+  .site-nav__wrapper li:last-child a {
+    border-bottom: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  .site-nav__wrapper li {
+    float: left;
+    text-align: center;
+  }
+}
+@media screen and (min-width: 75em) {
+  .site-nav__wrapper li {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+}
+.site-nav__wrapper li:first-child {
+  padding-left: 0;
+}
+.site-nav__wrapper li:last-child {
+  padding-right: 0;
+}
+.site-nav__wrapper li a {
+  display: block;
+  border-color: #bbbbbb;
+  border-width: 2px;
+  padding: 1.2em 0;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.site-nav__wrapper li a:hover, .site-nav__wrapper li a.is-active {
+  border-color: #18788d;
+  color: #313131;
+}
+@media screen and (min-width: 420px) {
+  .site-nav__wrapper li a {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
+@media screen and (min-width: 768px) {
+  .site-nav__wrapper li a {
+    border-bottom: 6px solid transparent;
+    padding: 1.2em 0.4em;
+  }
+  .site-nav__wrapper li a:hover {
+    background-color: transparent;
+    border-color: #18788d;
+    color: #313131;
+  }
 }
 
 /*
@@ -6036,21 +6324,25 @@ strong.very-bold {
   font-weight: 700;
 }
 
-.abstract {
+.abstract,
+.lede {
   margin: 1.2em 0 2em;
   border-bottom: 1px solid #bbbbbb;
 }
-.abstract p {
+.abstract p,
+.lede p {
   font-size: 1.1875rem;
   font-weight: 400;
 }
 @media screen and (min-width: 768px) {
-  .abstract p {
+  .abstract p,
+  .lede p {
     font-size: 1.3125rem;
   }
 }
 @media screen and (min-width: 75em) {
-  .abstract p {
+  .abstract p,
+  .lede p {
     font-size: 1.5rem;
   }
 }
