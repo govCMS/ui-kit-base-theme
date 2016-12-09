@@ -1,0 +1,50 @@
+{
+  "name": "health-govcms-theme",
+  "version": "1.0.0",
+  "description": "This is a theme that applies Australian Digital Transformation Agency UI design kit to Drupal for health.gov.au.",
+  "main": "index.js",
+  "scripts": {
+    "serve": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/healthgovau/govcms-theme.git"
+  },
+  "keywords": [
+    "govcms",
+    "health.gov.au",
+    "drupal",
+    "theme",
+    "prototype"
+  ],
+  "author": "Australian Government Department of Health",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/healthgovau/govcms-theme/issues"
+  },
+  "homepage": "https://github.com/healthgovau/govcms-theme#readme",
+  "devDependencies": {
+    "browser-sync": "^2.12.3",
+    "del": "^2.2.0",
+    "eslint": "^2.9.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-compile-handlebars": "^0.6.1",
+    "gulp-eslint": "^2.0.0",
+    "gulp-if": "^2.0.0",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-load-plugins": "^1.2.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "2.3.2",
+    "gulp-sass-lint": "^1.1.1",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-uglify": "^2.0.0",
+    "kss": "^3.0.0-beta.14",
+    "node-sass-import-once": "^1.2.0",
+    "path": "^0.12.7",
+    "sass-lint": "^1.7.0",
+    "support-for": "^1.0.6"
+  }
+}
