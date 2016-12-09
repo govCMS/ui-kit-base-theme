@@ -68,6 +68,7 @@ function uikit_base_breadcrumb($variables) {
     }
     $breadcrumb_list .= '</ul>';
 
+    // Add UI KIT tag and style to breadcrumb.
     $output .= '<nav class="breadcrumbs" aria-label="breadcrumb"><div class="wrapper">' . $breadcrumb_list . '</div></nav>';
     return $output;
   }
@@ -87,18 +88,30 @@ function uikit_base_preprocess_region(&$variables) {
  * Implements THEME_preprocess_node().
  */
 function uikit_base_preprocess_node(&$variables) {
+  // Apply the UI KIT list horizontal style to single node display by default.
+  $variables['classes_array'][] = 'list-horizontal';
+
+  // Add UI KIT class to author and date information.
+  $variables['submitted'] = '<div class="meta">' . $variables['submitted'] . '</div>';
+
   // Add UI KIT class to readmore link in teaser view mode.
   if (!empty($variables['content']['links']['node']['#links']['node-readmore'])) {
     $variables['content']['links']['node']['#links']['node-readmore']['attributes']['class'] = 'see-more';
   }
 }
 
+function uikit_base_preprocess_field(&$variables) {
+  if ($variables['element']['#field_name'] == 'field_tags') {
+    $variables['classes_array'][] = 'tags';
+  }
+}
+
 /**
  * Implements THEME_preprocess_views_view_table().
  */
-function uikit_base_preprocess_views_view_table(&$variables) {
+function uikit_base_preprocess_views_view_table(&$vars) {
   // Add UI KIT table class to views table.
-  $variables['classes_array'][] = 'content-table';
+  $vars['classes_array'][] = 'content-table';
 }
 
 /**

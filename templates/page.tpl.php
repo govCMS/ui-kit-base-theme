@@ -100,7 +100,11 @@
 <footer role="contentinfo">
   <section class="page-footer">
     <div class="wrapper">
-      <?php print render($page['footer']); ?>
+      <section class="footer-top">
+        <nav>
+          <?php print render($page['footer']); ?>
+        </nav>
+      </section>
     </div>
   </section>
   <section class="page-bottom">
