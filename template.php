@@ -36,21 +36,6 @@ function uikit_base_menu_local_tasks(&$variables) {
 }
 
 /**
- * Helper function to add is-current class to the active link. 
- * 
- * @param $children
- *   The origin link html.
- *  
- * @return mixed
- *   The processed link html. 
- */
-function _uikit_base_process_local_tasks($children) {
-  $output = str_replace('class="active"', 'class="active is-current"', $children);
-
-  return $output;
-}
-
-/**
  * Implements THEME_breadcrumb().
  */
 function uikit_base_breadcrumb($variables) {
@@ -79,7 +64,7 @@ function uikit_base_breadcrumb($variables) {
  */
 function uikit_base_preprocess_region(&$variables) {
   if ($variables['region'] == 'sidebar') {
-    // Add UI KIT nav menu classe.
+    // Add UI KIT nav menu class.
     $variables['classes_array'][] = 'local-nav';
   }
 }
@@ -92,7 +77,7 @@ function uikit_base_preprocess_node(&$variables) {
   $variables['classes_array'][] = 'list-horizontal';
 
   // Add UI KIT class to author and date information.
-  $variables['submitted'] = '<div class="meta">' . $variables['submitted'] . '</div>';
+  $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on !date', array('!date' => '<time>' . $variables['date'] .'</time>', '!author' => $variables['name']));
 
   // Add UI KIT class to readmore link in teaser view mode.
   if (!empty($variables['content']['links']['node']['#links']['node-readmore'])) {
@@ -100,6 +85,9 @@ function uikit_base_preprocess_node(&$variables) {
   }
 }
 
+/**
+ * Implements THEME_preprocess_field().
+ */
 function uikit_base_preprocess_field(&$variables) {
   if ($variables['element']['#field_name'] == 'field_tags') {
     $variables['classes_array'][] = 'tags';
@@ -265,5 +253,20 @@ function uikit_base_status_messages($variables) {
     }
     $output .= "</div>\n";
   }
+  return $output;
+}
+
+/**
+ * Helper function to add is-current class to the active link. 
+ * 
+ * @param $children
+ *   The origin link html.
+ *  
+ * @return mixed
+ *   The processed link html. 
+ */
+function _uikit_base_process_local_tasks($children) {
+  $output = str_replace('class="active"', 'class="active is-current"', $children);
+
   return $output;
 }
