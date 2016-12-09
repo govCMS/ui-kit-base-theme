@@ -41,6 +41,7 @@
   </section>
 </header>
 
+<?php print $breadcrumb; ?>
 
 <main id="page" role="main">
 
@@ -69,8 +70,6 @@
   <?php endif; ?>
 
   <article id="content" class="content-main">
-
-    <?php print $breadcrumb; ?>
 
     <div id="main">
 
