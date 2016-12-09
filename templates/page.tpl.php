@@ -9,7 +9,7 @@
 ?>
 
 <header class="header" id="header" role="banner">
-  <section class="govau--header">
+  <section class="page-header">
     <div class="wrapper">
 
       <div class="page-header__logo">
@@ -21,7 +21,7 @@
 
 
       <?php print render($page['header']); ?>
-
+      
       <?php
       // Render the navigation to see if there's anything in them.
       $navigation  = render($page['navigation']);
@@ -36,10 +36,11 @@
           </div>
         </div>
       <?php endif; ?>
-</header>
 
     </div>
- </section>
+  </section>
+</header>
+
 
 <main id="page" role="main">
 
