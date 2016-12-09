@@ -65,7 +65,7 @@ Lighter and darker versions are percentage variations of the original colours (S
   <div class="guide-colour">
     <div class="swatch bg-lighter-aqua"></div>
     <p class="text"><strong>Lighter-aqua</strong><br/>
-      <small>$lighter-aqua<br/> #5BCBE3</small></p>
+      <small>$lighter-aqua<br/> #DEF4F9</small></p>
   </div>
 
   <div class="guide-colour">
@@ -232,6 +232,7 @@ $background-secondary-colour:   $non-white;
 
 $link-colour:                   $non-black;
 $link-colour--hover:            $light-aqua;
+$nav-menu-toggle--hover:       $light-grey;
 
 $link-inverted-colour:          $white;
 $link-inverted-colour--hover:   $white;
@@ -257,7 +258,7 @@ $callout-bg-light-colour:       $lighter-aqua;
 $border-colour:                 $light-grey;
 $border-soft-colour:            rgba($light-grey, 0.5);
 $border-contrast-colour:        $navy;
-$border-highlight-colour:       $light-aqua;
+$border-highlight-colour:       $aqua;
 
 $box-shadow-colour:             rgba($non-black, 0.5);
 
