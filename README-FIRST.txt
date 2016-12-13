@@ -50,11 +50,11 @@ LOCAL BUILD INSTALLATION
 
  3. The UI-kit will be installed locally as a dependency to the node_modules folder. To copy it to both prototype build and theme locations, run: 
 
-      npm ui-kit
+      gulp ui-kit.install
 
  4. Finally, compile the UI-kit for both the prototype and theme via:
 
-      npm build
+      gulp build
 
  The package is now prototype development and govCMS-ready.
 
