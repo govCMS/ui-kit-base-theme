@@ -9,7 +9,7 @@
 ?>
 
 <header class="header" id="header" role="banner">
-  <section class="govau--header">
+  <section class="page-header">
     <div class="wrapper">
 
       <div class="page-header__logo">
@@ -21,7 +21,7 @@
 
 
       <?php print render($page['header']); ?>
-
+      
       <?php
       // Render the navigation to see if there's anything in them.
       $navigation  = render($page['navigation']);
@@ -36,10 +36,12 @@
           </div>
         </div>
       <?php endif; ?>
-</header>
 
     </div>
- </section>
+  </section>
+</header>
+
+<?php print $breadcrumb; ?>
 
 <main id="page" role="main">
 
@@ -68,8 +70,6 @@
   <?php endif; ?>
 
   <article id="content" class="content-main">
-
-    <?php print $breadcrumb; ?>
 
     <div id="main">
 
@@ -100,7 +100,11 @@
 <footer role="contentinfo">
   <section class="page-footer">
     <div class="wrapper">
-      <?php print render($page['footer']); ?>
+      <section class="footer-top">
+        <nav>
+          <?php print render($page['footer']); ?>
+        </nav>
+      </section>
     </div>
   </section>
   <section class="page-bottom">
