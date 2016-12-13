@@ -60,6 +60,22 @@ function uikit_base_breadcrumb($variables) {
 }
 
 /**
+ * Implements THEME_preprocess_page().
+ */
+function uikit_base_preprocess_page(&$variables) {
+  // Get the sidebar settings. 
+  $sidebar_position = theme_get_setting('sidebar_position');
+  
+  // Add sidebar position to variables.
+  if ($sidebar_position == 'left') {
+    $variables['sidebar_position_class'] = 'sidebar-has-controls';
+  }
+  else {
+    $variables['sidebar_position_class'] = '';
+  }
+}
+
+/**
  * Implements THEME_preprocess_region().
  */
 function uikit_base_preprocess_region(&$variables) {

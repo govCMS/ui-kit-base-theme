@@ -41,23 +41,24 @@
   </section>
 </header>
 
+<?php
+// Render the hero to see if there's anything in them.
+$hero  = render($page['hero']);
+?>
+
+<?php if ($hero): ?>
+  <section class="hero">
+    <div class="wrapper">
+      <?php print render($page['hero']); ?>
+    </div>
+  </section>
+<?php endif; ?>
+
+
 <?php print $breadcrumb; ?>
 
-<main id="page" role="main">
+<main id="page" role="main" class="main <?php print $sidebar_position_class; ?>">
 
-  <?php
-  // Render the hero to see if there's anything in them.
-  $hero  = render($page['hero']);
-  ?>
-
-  <?php if ($hero): ?>
-    <section class="hero">
-      <div class="wrapper">
-        <?php print render($page['hero']); ?>
-      </div>
-    </section>
-  <?php endif; ?>
-  
   <?php
   // Render the sidebars to see if there's anything in them.
   $sidebar  = render($page['sidebar']);
