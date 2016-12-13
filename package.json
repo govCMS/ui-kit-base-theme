@@ -25,7 +25,7 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "ui-kit": "ui-kit.install",
+    "ui-kit": "gulp ui-kit.install",
     "build": "gulp",
     "serve": "gulp watch"
   },
