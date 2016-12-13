@@ -5574,7 +5574,8 @@ Markup: templates/callouts-examples.html
 
 Style guide: Typography.7 Callouts & warnings
 */
-.callout, .callout--warning, .callout--calendar-event {
+.callout, .callout--warning, .callout--calendar-event, [class^='callout--'],
+[class*=' callout--'] {
   margin: 1.6em 0.8em;
   padding: 1.2em 1.2em 1.2em 1.6em;
   border-radius: 1px;
@@ -5802,3 +5803,71 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
       height: 100%;
       width: 100%;
       border: none; }
+
+/*
+Callouts & warnings
+
+There are 7 classes for drawing the user's attention:
+
+- `.callout`
+- `.callout--warning` for warnings
+- `.callout--error` for errors
+- `.callout--info` for information
+- `.callout--success` for success
+- `.callout-status` for status
+
+- `.callout--calendar-event` for dates.
+
+You can use these on paragraphs (`<p>`), or on a wrapping element, like a `<div>` or an `<aside>`.
+
+Markup: templates/callouts-examples.html
+
+<details open data-label="callouts-accessibility" aria-expanded="false">
+  <summary>Accessibility &amp; browser testing</summary>
+  <div class="accordion-panel">
+  <strong>Passed</strong>:
+    <ul>
+      <li>HTML5 validation (<a href="http://validator.github.io/validator/" rel="external">Nu Html Checker</a>)</li>
+      <li>WCAG:AA automated (<a href="http://squizlabs.github.io/HTML_CodeSniffer/Standards/WCAG2/" rel="external">HTML_CodeSniffer</a>)</li>
+    </ul>
+  <strong>Untested</strong>:
+    <ul>
+      <li>WCAG:AA manual</li>
+      <li>Browser support &mdash; automated and manual</li>
+    </ul>
+  </div>
+</details>
+
+Style guide: Typography.7 Callouts & warnings
+*/
+.callout, .callout--warning, .callout--calendar-event, [class^='callout--'],
+[class*=' callout--'] {
+  margin: 1.6em 0.8em;
+  padding: 1.2em 1.2em 1.2em 1.6em;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 0 8px #bbbbbb;
+          box-shadow: 0 0 8px #bbbbbb; }
+
+[class^='callout--'],
+[class*=' callout--'] {
+  padding-left: 1.2em; }
+
+.callout--warning {
+  border-left: 0.4em solid #f9c642; }
+
+.callout--info {
+  border-left: 0.4em solid #00bfe9; }
+
+.callout--error {
+  border-left: 0.4em solid #c00; }
+
+.callout--success,
+.callout--status {
+  border-left: 0.4em solid #007554; }
+
+.callout--calendar-event {
+  margin-left: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding-bottom: 0.8em;
+  background-color: #def4f9; }

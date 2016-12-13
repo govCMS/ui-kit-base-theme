@@ -31,7 +31,7 @@ function uikit_base_menu_local_tasks(&$variables) {
 
   // Process tabs.
   $output = _uikit_base_process_local_tasks($output);
-  
+
   return $output;
 }
 
@@ -40,7 +40,7 @@ function uikit_base_menu_local_tasks(&$variables) {
  */
 function uikit_base_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
-  
+
   if (!empty($breadcrumb)) {
     // Provide a navigational heading to give context for breadcrumb links to
     // screen-reader users. Make the heading invisible with .element-invisible.
@@ -214,7 +214,7 @@ function uikit_base_pager($variables) {
         'data' => $li_last,
       );
     }
-    
+
     // Swap the core pager class with UI KIT inline-links class.
     return '<h2 class="element-invisible">' . t('Pages') . '</h2>' . theme('item_list', array(
       'items' => $items,
@@ -237,7 +237,7 @@ function uikit_base_status_messages($variables) {
   );
   foreach (drupal_get_messages($display) as $type => $messages) {
     // Add UI KIT index-link class to the message div.
-    $output .= "<div class=\"messages index-links $type\">\n";
+    $output .= "<div class=\"callout--$type messages index-links $type\">\n";
     if (!empty($status_heading[$type])) {
       $output .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
     }
@@ -257,13 +257,13 @@ function uikit_base_status_messages($variables) {
 }
 
 /**
- * Helper function to add is-current class to the active link. 
- * 
+ * Helper function to add is-current class to the active link.
+ *
  * @param $children
  *   The origin link html.
- *  
+ *
  * @return mixed
- *   The processed link html. 
+ *   The processed link html.
  */
 function _uikit_base_process_local_tasks($children) {
   $output = str_replace('class="active"', 'class="active is-current"', $children);

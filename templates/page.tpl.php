@@ -21,7 +21,7 @@
 
 
       <?php print render($page['header']); ?>
-      
+
       <?php
       // Render the navigation to see if there's anything in them.
       $navigation  = render($page['navigation']);
@@ -57,7 +57,7 @@
       </div>
     </section>
   <?php endif; ?>
-  
+
   <?php
   // Render the sidebars to see if there's anything in them.
   $sidebar  = render($page['sidebar']);
