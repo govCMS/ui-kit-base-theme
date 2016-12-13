@@ -11,7 +11,7 @@ stylesheets[all][] = system.theme.css
 stylesheets[all][] = css/styles.css
 
 ; Add DTA UI kit.
-scripts[] = build/js/ui-kit.min.js
+scripts[] = js/ui-kit.min.js
 
 regions[header]         = Header
 regions[navigation]     = Navigation bar
