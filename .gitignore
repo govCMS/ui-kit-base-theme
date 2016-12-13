@@ -2,8 +2,8 @@
 ui-kit/ui-kit-ie6.scss
 ui-kit/ui-kit-ie7.scss
 ui-kit/ui-kit-ie8.scss
-sass/*.css
 README.txt
+build/dist
 
 # node_modules folder
 node_modules

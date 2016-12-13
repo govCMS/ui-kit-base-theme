@@ -1,145 +1,195 @@
 // Define requirements
-var importOnce = require('node-sass-import-once');
-var path = require('path');
-
-// Gulp and related plugins
-var gulp      = require('gulp'),
-  $           = require('gulp-load-plugins')(),
-  browserSync = require('browser-sync').create(),
-  del         = require('del'),
+var importOnce = require('node-sass-import-once'),
+  gulp         = require('gulp'),
+  $            = require('gulp-load-plugins')(),
+  browserSync  = require('browser-sync').create(),
   // gulp-load-plugins will report "undefined" error unless you load gulp-sass manually.
-  sass        = require('gulp-sass'),
-  kss         = require('kss');
-  rename      = require('gulp-rename');
-
-var imagemin = require('gulp-imagemin');
-var autoprefixer = require('gulp-autoprefixer');
-var handlebars = require('gulp-compile-handlebars');
+  sass         = require('gulp-sass'),
+  rename       = require('gulp-rename'),
+  path         = require('path'),
+  imagemin     = require('gulp-imagemin'),
+  autoprefixer = require('gulp-autoprefixer'),
+  handlebars   = require('gulp-compile-handlebars'),
+  uglify       = require('gulp-uglify'),
+  sourcemaps   = require('gulp-sourcemaps'),
+  webpack      = require('webpack-stream'),
+  svg2png      = require('gulp-svg2png');
+  // Add later
+  //del         = require('del'),
+  //kss         = require('kss');
 
 // Options
+var paths = {};
+var rootPath = {};
 var options = {};
 
-options.rootPath = {
-	theme   	  : __dirname + '/',	
-	proto   : __dirname + '/build/',
-	styleGuide  : __dirname + '/build/styleguide/'
-};
+rootPath = {
+  theme       : __dirname + '/',  
+  protoSrc    : __dirname + '/build/src/',
+  protoDist   : __dirname + '/build/dist/',
+  styleGuide  : __dirname + '/build/styleguide/'
+}
 
-options.theme = {
-  root  : options.rootPath.theme,
-  css   : options.rootPath.theme + 'css/',
-  js    : options.rootPath.theme + 'js/',
-  images: options.rootPath.theme + 'images/'
-};
+paths = {
+  proto: {
+    imagesSrc: rootPath.protoSrc + 'img',
+    sassSrc: rootPath.protoSrc + 'sass',
+    jsSrc: rootPath.protoSrc + 'js',
+    pagesSrc: rootPath.protoSrc,
+    uikit: rootPath.protoSrc + 'ui-kit',
 
-options.proto = {
-  root  : options.rootPath.proto,
-  css   : options.rootPath.proto + 'css/',  
-  sass  : options.rootPath.proto + 'sass/',
-  js    : options.rootPath.proto + 'js/',
-  images: options.rootPath.proto + 'images/',
-  hbs   : options.rootPath.proto + 'hbs/'
-};
+    imagesDist: rootPath.protoDist + 'img',
+    cssDist: rootPath.protoDist + 'css',
+    jsDist: rootPath.protoDist + 'js',
+    pagesDist: rootPath.protoDist
+  },
+  theme: {
+    images: rootPath.theme + 'images',
+    sass: rootPath.theme + 'sass',
+    css: rootPath.theme + 'css',
+    js: rootPath.theme + 'js',
+    uikit: rootPath.theme + 'ui-kit'
+  }
+}
 
-options.autoprefixer = {
-  browsers: ['last 2 versions', 'ie 7-10', 'iOS >= 4']
-};
-
-options.handlebars = {
-  batch : [options.proto.hbs + 'partials']
-};
-
-options.sass = {
-	importer: importOnce,
-  errLogToConsole: true
-  //sourcemap: false,
-  //includePaths: options.proto.sass + 'style.scss'
-};
-
-options.imagemin = {
-  optimizationLevel: 3,
-  progressive: true,
-  interlaced: true
-};
-
-options.eslint = {
-  files  : [options.proto.js + '**/*.js']
-};
+options = {
+  autoprefixer: {
+      browsers: ['last 2 versions', 'ie 7-10', 'iOS >= 4']
+  },
+  imagemin: {
+    optimizationLevel: 3,
+    progressive: true,
+    interlaced: true
+  },
+  handlebars: {
+    batch : [paths.proto.pagesSrc + 'partials']
+  },
+  sass: {
+    importer: importOnce,
+    errLogToConsole: true,
+    sourcemap: true
+  },
+  webpack: {
+    output: {
+      filename: 'ui-kit.js'
+    },
+  }
+}
 
 // #########################
-// Tasks
+// High-level tasks
 // #########################
 
-// #########################
-// Build the prototype
-// #########################
-gulp.task("default", ["build"]);
+gulp.task('default', ['build']);
+gulp.task('build', ['build:proto','build:theme']);
+gulp.task('build:proto', ['html', 'ui-kit.styles:proto', 'ui-kit.js:proto', 'ui-kit.images:proto']);
+gulp.task('build:theme', ['ui-kit.styles:theme', 'ui-kit.js:theme', 'ui-kit.images:theme']);
 
-gulp.task("build", ["html", "styles"]);
-//gulp.task("build", ["html", "styles", "images", "js"]);
+// #########################
+// Prototype only tasks
+// #########################
 
 gulp.task('html', function () {
-	return gulp.src(options.proto.hbs + '*.hbs')
+	return gulp.src(paths.proto.pagesSrc + '*.hbs')
     .pipe(handlebars({}, options.handlebars))
     .pipe(rename({
       extname: '.html'
     }))
-    .pipe(gulp.dest(options.proto.root))
+    .pipe(gulp.dest(paths.proto.pagesDist))
     .pipe(browserSync.reload({stream: true}));
-});
-
-var sassFiles = [options.proto.sass + 'styles.scss'];
-
-gulp.task("styles", function() {
-	return gulp.src(sassFiles)
-    .pipe($.sourcemaps.init())
-    .pipe(sass(options.sass).on('error', sass.logError))
-    .pipe($.autoprefixer(options.autoprefixer))
-    .pipe($.size({showFiles: true}))
-    .pipe($.sourcemaps.write(options.proto.css))
-    .pipe(gulp.dest(options.proto.css))
-    //.pipe(gulp.dest(options.theme.css))
-    .pipe(browserSync.reload({stream: true}));
-});
-
-gulp.task("images", function () {
-	return gulp.src(options.proto.images + '**/*')
-    .pipe(imagemin(options.imagemin))
-    .pipe(gulp.dest(options.theme.images))
-});
-
-gulp.task("js", function () {
-	// No task currently
-});
-
-// #########################
-// Lint Sass and JavaScript.
-// #########################
-gulp.task('lint', ['lint:sass', 'lint:js']);
-
-// Lint JavaScript.
-gulp.task('lint:js', function() {
-  return gulp.src(options.eslint.files)
-    .pipe($.eslint())
-    .pipe($.eslint.format());
-});
-
-// Lint Sass.
-gulp.task('lint:sass', function() {
-  return gulp.src(options.proto.sass + '**/*.scss')
-    .pipe($.sassLint())
-    .pipe($.sassLint.format());
 });
 
 // Spin up a server and live reload anytime a file changes
 gulp.task("watch", function() {
   browserSync.init({
       server: {
-          baseDir: options.proto.root
+          baseDir: paths.proto.pagesDist
       }
   });
-	gulp.watch(options.proto.js + "*");
-	gulp.watch(options.proto.sass + "**/*.scss", ["styles"]);
-	gulp.watch(options.proto.hbs + "**/*.hbs", ["html"]);
-	gulp.watch(options.proto.root + "*.html").on("change", browserSync.reload);
+	gulp.watch(paths.proto.imagesSrc, ['ui-kit.images:proto']);
+	gulp.watch(paths.proto.sassSrc + '/**/*.scss', ['ui-kit.styles:proto']);
+  gulp.watch(paths.proto.jsSrc + '/**/*.js', ['ui-kit.js:proto']);
+	gulp.watch(paths.proto.pagesSrc + '**/*.hbs', ['html']);
+	gulp.watch(paths.proto.pagesDist + '*.html').on('change', browserSync.reload);
+});
+
+// #########################
+// UI Kit tasks
+// #########################
+
+// Sass/CSS
+gulp.task('ui-kit.styles', ['ui-kit.styles:proto', 'ui-kit.styles:theme']);
+
+gulp.task('ui-kit.styles:proto', function() {
+  return gulp.src(paths.proto.sassSrc + '/ui-kit.scss')
+    .pipe(sass(options.sass).on('error', sass.logError))
+    .pipe($.autoprefixer(options.autoprefixer))
+    .pipe(gulp.dest(paths.proto.cssDist))
+    .pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task('ui-kit.styles:theme', function() {
+  return gulp.src(paths.theme.sass + '/ui-kit.scss')
+    .pipe(sass(options.sass).on('error', sass.logError))
+    .pipe($.autoprefixer(options.autoprefixer))
+    .pipe(gulp.dest(paths.theme.css));
+});
+// Still to add compilation and copy of IE6,7,8 SCSS
+
+
+// JS
+gulp.task('ui-kit.js', ['ui-kit.js:proto','ui-kit.js:theme']);
+
+gulp.task('ui-kit.js:proto', function () {
+  return gulp.src(paths.proto.uikit + '/assets/js/ui-kit.js')
+    .pipe(webpack(options.webpack))
+    .pipe(uglify())
+    .pipe(rename({
+        suffix: '.min'
+    }))
+    .pipe(gulp.dest(paths.proto.jsDist));
+});
+
+gulp.task('ui-kit.js:theme', function () {
+  return gulp.src(paths.theme.uikit + '/assets/js/ui-kit.js')
+    .pipe(webpack(options.webpack))
+    .pipe(uglify())
+    .pipe(rename({
+        suffix: '.min'
+    }))
+    .pipe(gulp.dest(paths.theme.js));
+});
+
+// Images
+gulp.task('ui-kit.images', ['ui-kit.images:proto','ui-kit.images:theme']);
+
+gulp.task('ui-kit.images:proto', function () {
+  return gulp.src(paths.proto.uikit + '/assets/img/**/*')
+    // SUB-THEME - add inclusion of theme images
+    .pipe(imagemin())
+    .pipe(gulp.dest(paths.proto.imagesDist));
+});
+
+gulp.task('ui-kit.images:theme', function () {
+  return gulp.src(paths.theme.uikit + '/assets/img/**/*')
+    // SUB-THEME - add inclusion of theme images
+    .pipe(imagemin())
+    .pipe(gulp.dest(paths.theme.images));
+});
+
+// Copy the UI kit from mode_modules to workable locations
+var DIR_NPM = path.join(__dirname, 'node_modules');
+
+gulp.task('ui-kit.install', ['ui-kit.install:proto','ui-kit.install:theme']);
+
+// Copy whole UI kit to prototype
+gulp.task('ui-kit.install:proto', function() {
+  return gulp.src(path.join(DIR_NPM, 'gov-au-ui-kit/**/*'))
+    .pipe(gulp.dest(paths.proto.uikit));
+});
+
+// Copy UI kit to selected locations
+gulp.task('ui-kit.install:theme', function() {
+  return gulp.src(path.join(DIR_NPM, 'gov-au-ui-kit/**/*'))
+    .pipe(gulp.dest(paths.theme.uikit));
 });
