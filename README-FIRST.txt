@@ -42,7 +42,7 @@ THEME INSTALLATION
 LOCAL BUILD INSTALLATION
 ------------
 
- 1. Install the system dependency Node.js v5.0.0+ (http://node.js/)
+ 1. Install the system dependency Node.js v6.0.0+ (http://node.js/)
 
  2. Then install the prototype package via:
 
@@ -57,6 +57,8 @@ LOCAL BUILD INSTALLATION
       gulp build
 
  The package is now prototype development and govCMS-ready.
+
+ When building a theme for govCMS, it is necessary to clear cache to view changes. 
 
 
 SUB-THEME DEVELOPMENT

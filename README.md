@@ -19,7 +19,7 @@ Download or clone this repo to your govCMS installation under sites/all/themes.
 
 Download or clone this repo and install the system dependencies:
 
-* Node.js v5.0.0+
+* Node.js v6.0.0+
 
 Then install the theme/prototype package via:
 ```
@@ -39,6 +39,8 @@ gulp build
 ```
 
 The package is now prototype development and govCMS-ready.
+
+When building a theme for govCMS, it is necessary to clear cache to view changes. 
 
 ### Enable the theme in govCMS
 
