@@ -1,9 +1,7 @@
 .sass-cache/*
-ui-kit/ui-kit-ie6.scss
-ui-kit/ui-kit-ie7.scss
-ui-kit/ui-kit-ie8.scss
 README.txt
 build/dist
-
+ui-kit
+build/src/ui-kit
 # node_modules folder
 node_modules
