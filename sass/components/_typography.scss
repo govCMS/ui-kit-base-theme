@@ -54,23 +54,24 @@ Style guide: Typography.7 Callouts & warnings
   @extend %base-callout;
 
   padding-left: $base-spacing - $tiny-spacing;
+  border-left-width: $tiny-spacing;
+  border-left-style: solid;
 }
 
 .callout--warning {
-  border-left: $tiny-spacing solid $warning-colour;
+  border-left-color: $warning-colour;
 }
 
 .callout--info {
-  border-left: $tiny-spacing solid $info-colour;
+  border-left-color: $info-colour;
 }
 
 .callout--error {
-  border-left: $tiny-spacing solid $error-colour;
+  border-left-color:  $error-colour;
 }
 
-.callout--success,
-.callout--status {
-  border-left: $tiny-spacing solid $success-colour;
+.callout--success {
+  border-left-color: $success-colour;
 }
 
 .callout--calendar-event {
@@ -78,4 +79,5 @@ Style guide: Typography.7 Callouts & warnings
   box-shadow: none;
   padding-bottom: $small-spacing;
   background-color: $callout-bg-light-colour;
+  border-left: none;
 }

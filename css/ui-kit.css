@@ -5850,24 +5850,26 @@ Style guide: Typography.7 Callouts & warnings
 
 [class^='callout--'],
 [class*=' callout--'] {
-  padding-left: 1.2em; }
+  padding-left: 1.2em;
+  border-left-width: 0.4em;
+  border-left-style: solid; }
 
 .callout--warning {
-  border-left: 0.4em solid #f9c642; }
+  border-left-color: #f9c642; }
 
 .callout--info {
-  border-left: 0.4em solid #00bfe9; }
+  border-left-color: #00bfe9; }
 
 .callout--error {
-  border-left: 0.4em solid #c00; }
+  border-left-color: #c00; }
 
-.callout--success,
-.callout--status {
-  border-left: 0.4em solid #007554; }
+.callout--success {
+  border-left-color: #007554; }
 
 .callout--calendar-event {
   margin-left: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
   padding-bottom: 0.8em;
-  background-color: #def4f9; }
+  background-color: #def4f9;
+  border-left: none; }

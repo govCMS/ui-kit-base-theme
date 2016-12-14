@@ -235,9 +235,18 @@ function uikit_base_status_messages($variables) {
     'error' => t('Error message'),
     'warning' => t('Warning message'),
   );
+
+  // Map the UI Kit classes to drupal
+  $ui_kit_statuses = array(
+    'status' => 'callout--success',
+    'error' => 'callout--error',
+    'warning' => 'callout--warning',
+  );
+
   foreach (drupal_get_messages($display) as $type => $messages) {
     // Add UI KIT index-link class to the message div.
-    $output .= "<div class=\"callout--$type messages index-links $type\">\n";
+    $ui_kit_class = $ui_kit_statuses[$type];
+    $output .= "<div class=\"messages $ui_kit_class index-links\">\n";
     if (!empty($status_heading[$type])) {
       $output .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
     }
