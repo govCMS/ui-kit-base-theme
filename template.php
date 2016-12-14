@@ -60,6 +60,17 @@ function uikit_base_breadcrumb($variables) {
 }
 
 /**
+ * Implements THEME_preprocess_page().
+ */
+function uikit_base_preprocess_page(&$variables) {  
+  // Position sidebar based on theme settings
+  $variables['sidebar_position_class'] = '';
+  if (theme_get_setting('sidebar_position') == 'left') {
+    $variables['sidebar_position_class'] = 'sidebar-has-controls';
+  }
+}
+
+/**
  * Implements THEME_preprocess_region().
  */
 function uikit_base_preprocess_region(&$variables) {
