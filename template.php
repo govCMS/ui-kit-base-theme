@@ -67,11 +67,9 @@ function uikit_base_preprocess_page(&$variables) {
   $sidebar_position = theme_get_setting('sidebar_position');
   
   // Add sidebar position to variables.
+  $variables['sidebar_position_class'] = '';
   if ($sidebar_position == 'left') {
     $variables['sidebar_position_class'] = 'sidebar-has-controls';
-  }
-  else {
-    $variables['sidebar_position_class'] = '';
   }
 }
 

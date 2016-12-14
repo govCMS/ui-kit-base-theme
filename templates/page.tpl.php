@@ -6,6 +6,11 @@
  * Complete documentation for this file is available online.
  * @see https://drupal.org/node/1728148
  */
+
+// Render region if there's content in theme.
+$navigation  = render($page['navigation']);
+$hero  = render($page['hero']);
+$sidebar  = render($page['sidebar']);
 ?>
 
 <header class="header" id="header" role="banner">
@@ -22,11 +27,6 @@
 
       <?php print render($page['header']); ?>
       
-      <?php
-      // Render the navigation to see if there's anything in them.
-      $navigation  = render($page['navigation']);
-      ?>
-
       <?php if ($navigation): ?>
         <div class="site-nav">
           <div class="wrapper">
@@ -41,11 +41,6 @@
   </section>
 </header>
 
-<?php
-// Render the hero to see if there's anything in them.
-$hero  = render($page['hero']);
-?>
-
 <?php if ($hero): ?>
   <section class="hero">
     <div class="wrapper">
@@ -58,11 +53,6 @@ $hero  = render($page['hero']);
 <?php print $breadcrumb; ?>
 
 <main id="page" role="main" class="main <?php print $sidebar_position_class; ?>">
-
-  <?php
-  // Render the sidebars to see if there's anything in them.
-  $sidebar  = render($page['sidebar']);
-  ?>
 
   <?php if ($sidebar): ?>
     <aside class="sidebars sidebar" role="complementary">
