@@ -245,8 +245,7 @@ function uikit_base_status_messages($variables) {
 
   foreach (drupal_get_messages($display) as $type => $messages) {
     // Add UI KIT index-link class to the message div.
-    $ui_kit_class = $ui_kit_statuses[$type];
-    $output .= "<div class=\"messages $ui_kit_class index-links\">\n";
+    $output .= "<div class=\"messages $ui_kit_statuses[$type] index-links\">\n";
     if (!empty($status_heading[$type])) {
       $output .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
     }
