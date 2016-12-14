@@ -48,7 +48,7 @@ function uikit_base_breadcrumb($variables) {
 
     // Process breadcrumb for UI KIT format.
     $breadcrumb_list = '<ul>';
-    foreach($breadcrumb as $link) {
+    foreach ($breadcrumb as $link) {
       $breadcrumb_list .= '<li>' . $link . '</li>';
     }
     $breadcrumb_list .= '</ul>';
@@ -62,7 +62,7 @@ function uikit_base_breadcrumb($variables) {
 /**
  * Implements THEME_preprocess_page().
  */
-function uikit_base_preprocess_page(&$variables) {  
+function uikit_base_preprocess_page(&$variables) {
   // Get classes for <main> together
   $variables['main_classes'] = array('main');
   // Position sidebar based on theme settings
@@ -90,7 +90,10 @@ function uikit_base_preprocess_node(&$variables) {
   $variables['classes_array'][] = 'list-horizontal';
 
   // Add UI KIT class to author and date information.
-  $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on !date', array('!date' => '<time>' . $variables['date'] .'</time>', '!author' => $variables['name']));
+  $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on !date', array(
+      '!date' => '<time>' . $variables['date'] . '</time>',
+      '!author' => $variables['name']
+    ));
 
   // Add UI KIT class to readmore link in teaser view mode.
   if (!empty($variables['content']['links']['node']['#links']['node-readmore'])) {
@@ -120,6 +123,35 @@ function uikit_base_preprocess_views_view_table(&$vars) {
  */
 function uikit_base_preprocess_form_element(&$variables) {
   $variables['element']['#children'] = str_replace('required error', 'required error invalid', $variables['element']['#children']);
+}
+
+/**
+ * Implements THEME_link().
+ */
+function uikit_base_link($variables) {
+  // Check link classes.
+  if (isset($variables['options']['attributes']['class'])) {
+    $classes = $variables['options']['attributes']['class'];
+
+    // Compose the class array if single string given.
+    if (!is_array($classes)) {
+      $classes = array($classes);
+    }
+
+    // The class pairs we need to add.
+    $class_pairs = array(
+      'active' => 'is-current',
+      'active-trail' => 'is-active',
+    );
+
+    // Add additional UI KIT classes.
+    $variables['options']['attributes']['class'] = _uikit_base_active_link($class_pairs, $classes);
+  }
+
+  // Default theme_link() function.
+  return '<a href="' . check_plain(url($variables['path'], $variables['options'])) . '"' .
+  drupal_attributes($variables['options']['attributes']) . '>' . ($variables['options']['html'] ?
+    $variables['text'] : check_plain($variables['text'])) . '</a>';
 }
 
 /**
@@ -159,10 +191,28 @@ function uikit_base_pager($variables) {
   }
   // End of generation loop preparation.
 
-  $li_first = theme('pager_first', array('text' => (isset($tags[0]) ? $tags[0] : t('« first')), 'element' => $element, 'parameters' => $parameters));
-  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('‹ previous')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('next ›')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('last »')), 'element' => $element, 'parameters' => $parameters));
+  $li_first = theme('pager_first', array(
+    'text' => (isset($tags[0]) ? $tags[0] : t('« first')),
+    'element' => $element,
+    'parameters' => $parameters
+  ));
+  $li_previous = theme('pager_previous', array(
+    'text' => (isset($tags[1]) ? $tags[1] : t('‹ previous')),
+    'element' => $element,
+    'interval' => 1,
+    'parameters' => $parameters
+  ));
+  $li_next = theme('pager_next', array(
+    'text' => (isset($tags[3]) ? $tags[3] : t('next ›')),
+    'element' => $element,
+    'interval' => 1,
+    'parameters' => $parameters
+  ));
+  $li_last = theme('pager_last', array(
+    'text' => (isset($tags[4]) ? $tags[4] : t('last »')),
+    'element' => $element,
+    'parameters' => $parameters
+  ));
 
   if ($pager_total[$element] > 1) {
     if ($li_first) {
@@ -191,7 +241,12 @@ function uikit_base_pager($variables) {
         if ($i < $pager_current) {
           $items[] = array(
             'class' => array('pager-item'),
-            'data' => theme('pager_previous', array('text' => $i, 'element' => $element, 'interval' => ($pager_current - $i), 'parameters' => $parameters)),
+            'data' => theme('pager_previous', array(
+              'text' => $i,
+              'element' => $element,
+              'interval' => ($pager_current - $i),
+              'parameters' => $parameters
+            )),
           );
         }
         if ($i == $pager_current) {
@@ -203,7 +258,12 @@ function uikit_base_pager($variables) {
         if ($i > $pager_current) {
           $items[] = array(
             'class' => array('pager-item'),
-            'data' => theme('pager_next', array('text' => $i, 'element' => $element, 'interval' => ($i - $pager_current), 'parameters' => $parameters)),
+            'data' => theme('pager_next', array(
+              'text' => $i,
+              'element' => $element,
+              'interval' => ($i - $pager_current),
+              'parameters' => $parameters
+            )),
           );
         }
       }
@@ -290,4 +350,26 @@ function _uikit_base_process_local_tasks($children) {
   $output = str_replace('class="active"', 'class="active is-current"', $children);
 
   return $output;
+}
+
+/**
+ * Helper function to add UI KIT link class to link.
+ * 
+ * @param $class_pairs
+ *   The pairs of Drupal class and UI KIT class.
+ *   
+ * @param $classes
+ *   Origin class array from Drupal.
+ * 
+ * @return array
+ *   Class array.
+ */
+function _uikit_base_active_link($class_pairs, $classes) {
+  foreach ($class_pairs as $needle => $additional_class) {
+    if (in_array($needle, $classes)) {
+      $classes[] = $additional_class;
+    }
+  }
+  
+  return $classes;
 }
