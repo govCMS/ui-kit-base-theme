@@ -63,11 +63,13 @@ function uikit_base_breadcrumb($variables) {
  * Implements THEME_preprocess_page().
  */
 function uikit_base_preprocess_page(&$variables) {  
+  // Get classes for <main> together
+  $variables['main_classes'] = array('main');
   // Position sidebar based on theme settings
-  $variables['sidebar_position_class'] = '';
   if (theme_get_setting('sidebar_position') == 'left') {
-    $variables['sidebar_position_class'] = 'sidebar-has-controls';
+    $variables['main_classes'][] = 'sidebar-has-controls';
   }
+  $variables['main_classes'] = implode(' ', $variables['main_classes']);
 }
 
 /**
