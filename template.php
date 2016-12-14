@@ -62,13 +62,10 @@ function uikit_base_breadcrumb($variables) {
 /**
  * Implements THEME_preprocess_page().
  */
-function uikit_base_preprocess_page(&$variables) {
-  // Get the sidebar settings. 
-  $sidebar_position = theme_get_setting('sidebar_position');
-  
-  // Add sidebar position to variables.
+function uikit_base_preprocess_page(&$variables) {  
+  // Position sidebar based on theme settings
   $variables['sidebar_position_class'] = '';
-  if ($sidebar_position == 'left') {
+  if (theme_get_setting('sidebar_position') == 'left') {
     $variables['sidebar_position_class'] = 'sidebar-has-controls';
   }
 }
