@@ -26,7 +26,7 @@ $sidebar  = render($page['sidebar']);
 
 
       <?php print render($page['header']); ?>
-      
+
       <?php if ($navigation): ?>
         <div class="site-nav">
           <div class="wrapper">
