@@ -31,6 +31,6 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
       'right' => t('Right'),
     ),
     '#default_value' => is_null(theme_get_setting('sidebar_position')) ? 'right' : theme_get_setting('sidebar_position'),
-    '#description' => t('Indicating the position of the sidebar.'),
+    '#description' => t('A single sidebar is available, it can be positioned to the left or right of the content area.'),
   );
 }
