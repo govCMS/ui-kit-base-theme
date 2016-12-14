@@ -52,7 +52,7 @@ $sidebar  = render($page['sidebar']);
 
 <?php print $breadcrumb; ?>
 
-<main id="page" role="main" class="main <?php print $sidebar_position_class; ?>">
+<main id="page" role="main" class="<?php print $main_classes; ?>">
 
   <?php if ($sidebar): ?>
     <aside class="sidebars sidebar" role="complementary">
