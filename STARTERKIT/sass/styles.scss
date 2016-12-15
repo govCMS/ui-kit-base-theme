@@ -1,0 +1,8 @@
+// This file should be processed using a SASS compiler, and will compile to /dist/css/styles.css
+
+// This file exists to permit override of UI kit-specific vars, such as paths to images
+@import "_ui-kit-override-vars";
+@import "../../uikit_base/ui-kit/assets/sass/ui-kit.scss";
+
+// Sub-theme prototype customisation
+@import "sub-theme";

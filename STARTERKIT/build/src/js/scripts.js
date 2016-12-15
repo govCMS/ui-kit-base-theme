@@ -1,4 +1,4 @@
 // Custom scripts for prototype
 (function (document) {
-	console.log("script.js loaded...");
+	console.log("scripts.js loaded...");
 })(document);

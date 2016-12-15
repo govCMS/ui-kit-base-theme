@@ -9,12 +9,10 @@ stylesheets[all][] = system.messages.css
 stylesheets[all][] = system.theme.css
 
 ; Josh to confirm CSS array based on inheritance
-stylesheets[all][] = css/ui-kit.css
 stylesheets[all][] = css/styles.css
 
 ; Josh to confirm JS array based on inheritance
 ; Add DTA UI kit.
-scripts[] = js/ui-kit.min.js
 scripts[] = js/scripts.js
 
 regions[header]         = Header

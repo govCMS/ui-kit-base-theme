@@ -24,7 +24,7 @@ var rootPath = {};
 var options = {};
 
 rootPath = {
-  theme       : __dirname + '/',  
+  theme       : __dirname + '/',
   protoSrc    : __dirname + '/build/src/',
   protoDist   : __dirname + '/build/dist/',
   styleGuide  : __dirname + '/build/styleguide/'
@@ -36,7 +36,6 @@ paths = {
     sassSrc: rootPath.protoSrc + 'sass',
     jsSrc: rootPath.protoSrc + 'js',
     pagesSrc: rootPath.protoSrc,
-    uikit: rootPath.protoSrc + 'ui-kit',
 
     imagesDist: rootPath.protoDist + 'img',
     cssDist: rootPath.protoDist + 'css',
@@ -141,12 +140,12 @@ gulp.task('ui-kit.styles:theme', function() {
 gulp.task('ui-kit.js', ['ui-kit.js:proto','ui-kit.js:theme']);
 
 gulp.task('ui-kit.js:proto', function () {
-  return gulp.src(paths.proto.uikit + '/assets/js/ui-kit.js')
+  return gulp.src(paths.theme.uikit + '/assets/js/ui-kit.js')
     .pipe(webpack(options.webpack))
-    .pipe(uglify())
-    .pipe(rename({
-        suffix: '.min'
-    }))
+    //.pipe(uglify())
+    //.pipe(rename({
+    //    suffix: '.min'
+    //}))
     .pipe(gulp.dest(paths.proto.jsDist));
 });
 
@@ -164,7 +163,7 @@ gulp.task('ui-kit.js:theme', function () {
 gulp.task('ui-kit.images', ['ui-kit.images:proto','ui-kit.images:theme']);
 
 gulp.task('ui-kit.images:proto', function () {
-  return gulp.src(paths.proto.uikit + '/assets/img/**/*')
+  return gulp.src(paths.theme.uikit + '/assets/img/**/*')
     // SUB-THEME - add inclusion of theme images
     .pipe(imagemin())
     .pipe(gulp.dest(paths.proto.imagesDist));
@@ -180,16 +179,8 @@ gulp.task('ui-kit.images:theme', function () {
 // Copy the UI kit from mode_modules to workable locations
 var DIR_NPM = path.join(__dirname, 'node_modules');
 
-gulp.task('ui-kit.install', ['ui-kit.install:proto','ui-kit.install:theme']);
-
-// Copy whole UI kit to prototype
-gulp.task('ui-kit.install:proto', function() {
-  return gulp.src(path.join(DIR_NPM, 'gov-au-ui-kit/**/*'))
-    .pipe(gulp.dest(paths.proto.uikit));
-});
-
 // Copy UI kit to selected locations
-gulp.task('ui-kit.install:theme', function() {
+gulp.task('ui-kit.install', function() {
   return gulp.src(path.join(DIR_NPM, 'gov-au-ui-kit/**/*'))
     .pipe(gulp.dest(paths.theme.uikit));
 });
