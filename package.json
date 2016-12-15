@@ -22,7 +22,7 @@
     "url": "https://github.com/govCMS/ui-kit-base-theme/issues"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "ui-kit": "gulp ui-kit.install",

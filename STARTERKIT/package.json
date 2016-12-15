@@ -1,11 +1,7 @@
 {
-  "name": "ui-kit-base-theme",
+  "name": "ui-kit-sub-theme",
   "version": "1.0.0",
-  "description": "govCMS base theme using the DTA UI Kit",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/govCMS/ui-kit-base-theme.git"
-  },
+  "description": "govCMS sub-theme using the DTA UI Kit",
   "keywords": [
     "ui",
     "govcms",
@@ -22,17 +18,15 @@
     "url": "https://github.com/govCMS/ui-kit-base-theme/issues"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "scripts": {
-    "ui-kit": "gulp ui-kit.install",
     "build": "gulp",
     "serve": "gulp watch"
   },
   "homepage": "https://github.com/govCMS/ui-kit-base-theme#readme",
   "devDependencies": {
     "browser-sync": "^2.18.5",
-    "gov-au-ui-kit": "git+https://github.com/AusDTO/gov-au-ui-kit.git",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-compile-handlebars": "^0.6.1",
