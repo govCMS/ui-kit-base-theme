@@ -5810,6 +5810,12 @@ header[role='banner'] a.header__logo {
     border-bottom: none;
     background-color: inherit; }
 
+.page-header__logo {
+  background: url("../logo.svg") 100% 100% no-repeat;
+  width: 100px;
+  height: 100px;
+  text-indent: -9999px; }
+
 /*
 Callouts & warnings
 

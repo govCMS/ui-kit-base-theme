@@ -7,3 +7,10 @@ header[role='banner'] a.header__logo  {
     background-color: inherit;
   }
 }
+
+.page-header__logo {
+  background: url('../logo.svg') 100% 100% no-repeat;
+  height: 100px;
+  width: 100px;
+  text-indent: -9999px;
+}

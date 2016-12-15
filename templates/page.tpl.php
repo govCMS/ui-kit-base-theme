@@ -17,13 +17,11 @@ $sidebar  = render($page['sidebar']);
   <section class="page-header">
     <div class="wrapper">
 
-      <div class="page-header__logo">
-        <?php if ($logo): ?>
-          <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo logo" id="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="header__logo-image" /></a>
-        <?php endif; ?>
-        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo logo" id="logo"><?php print $site_name; ?></a>
-      </div>
-
+      <a href="<?php print url('<front>'); ?>" class="logo">
+        <div class="page-header__logo">
+          <?php print $site_name; ?>
+        </div>
+      </a>
 
       <?php print render($page['header']); ?>
 

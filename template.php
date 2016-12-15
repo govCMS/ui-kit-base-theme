@@ -70,7 +70,6 @@ function uikit_base_preprocess_page(&$variables) {
     $variables['main_classes'][] = 'sidebar-has-controls';
   }
   $variables['main_classes'] = implode(' ', $variables['main_classes']);
-  $variables['logo'] = base_path() . path_to_theme() . '/logo.svg';
 }
 
 /**
