@@ -13,6 +13,7 @@ stylesheets[all][] = css/styles.css
 
 ; Josh to confirm JS array based on inheritance
 ; Add DTA UI kit.
+scripts[] = ../uikit_base/js/ui-kit.min.js
 scripts[] = js/scripts.js
 
 regions[header]         = Header

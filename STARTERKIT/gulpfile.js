@@ -88,7 +88,7 @@ options = {
 gulp.task('default', ['build']);
 gulp.task('build', ['build:proto','build:theme']);
 gulp.task('build:proto', ['html', 'images', 'styles:proto', 'js:proto']);
-gulp.task('build:theme', ['styles:theme', 'js:theme']);
+gulp.task('build:theme', ['styles:theme']);
 
 // #########################
 // Prototype only tasks
@@ -155,15 +155,15 @@ gulp.task('js:proto', function () {
     .pipe(gulp.dest(paths.proto.jsDist));
 });
 
-gulp.task('js:theme', function () {
-  return gulp.src(paths.uikit.jsSrc + '/ui-kit.js')
+//gulp.task('js:theme', function () {
+//  return gulp.src(paths.uikit.jsSrc + '/ui-kit.js')
     .pipe(webpack(options.webpack))
     //.pipe(uglify())
     //.pipe(rename({
     //    suffix: '.min'
     //}))
-    .pipe(gulp.dest(paths.theme.js));
-});
+//    .pipe(gulp.dest(paths.theme.js));
+//});
 
 // Images
 gulp.task('images', ['images:proto', 'images:ui-kit']);
