@@ -5575,7 +5575,7 @@ Markup: templates/callouts-examples.html
 Style guide: Typography.7 Callouts & warnings
 */
 .callout, .callout--warning, .callout--calendar-event, [class^='callout--'],
-[class*=' callout--'] {
+[class*=' callout--'], div.workbench-info-block {
   margin: 1.6em 0.8em;
   padding: 1.2em 1.2em 1.2em 1.6em;
   border-radius: 1px;
@@ -5841,7 +5841,7 @@ Markup: templates/callouts-examples.html
 Style guide: Typography.7 Callouts & warnings
 */
 .callout, .callout--warning, .callout--calendar-event, [class^='callout--'],
-[class*=' callout--'] {
+[class*=' callout--'], div.workbench-info-block {
   margin: 1.6em 0.8em;
   padding: 1.2em 1.2em 1.2em 1.6em;
   border-radius: 1px;
@@ -5873,3 +5873,10 @@ Style guide: Typography.7 Callouts & warnings
   padding-bottom: 0.8em;
   background-color: #def4f9;
   border-left: none; }
+
+div.workbench-info-block {
+  padding-left: 1.2em;
+  border-left-width: 0.4em;
+  border-left-style: solid;
+  background-color: #fff;
+  border-left-color: #00bfe9; }
