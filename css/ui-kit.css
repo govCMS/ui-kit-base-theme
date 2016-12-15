@@ -5804,6 +5804,12 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
       width: 100%;
       border: none; }
 
+header[role='banner'] a.header__logo {
+  border-bottom: none; }
+  header[role='banner'] a.header__logo:hover, header[role='banner'] a.header__logo:focus {
+    border-bottom: none;
+    background-color: inherit; }
+
 /*
 Callouts & warnings
 

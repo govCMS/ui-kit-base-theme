@@ -1,0 +1,9 @@
+header[role='banner'] a.header__logo  {
+  border-bottom: none;
+
+  &:hover,
+  &:focus {
+    border-bottom: none;
+    background-color: inherit;
+  }
+}

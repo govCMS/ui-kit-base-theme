@@ -62,7 +62,7 @@ function uikit_base_breadcrumb($variables) {
 /**
  * Implements THEME_preprocess_page().
  */
-function uikit_base_preprocess_page(&$variables) {  
+function uikit_base_preprocess_page(&$variables) {
   // Get classes for <main> together
   $variables['main_classes'] = array('main');
   // Position sidebar based on theme settings
@@ -70,6 +70,7 @@ function uikit_base_preprocess_page(&$variables) {
     $variables['main_classes'][] = 'sidebar-has-controls';
   }
   $variables['main_classes'] = implode(' ', $variables['main_classes']);
+  $variables['logo'] = base_path() . path_to_theme() . '/logo.svg';
 }
 
 /**
