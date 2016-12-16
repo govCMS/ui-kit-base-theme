@@ -1,0 +1,22 @@
+.footer-top {
+
+  nav {
+
+    .footer-block {
+      @include media($tablet) {
+        @include span-columns(6 of 12);
+        @include omega(2n);
+      }
+
+      @include media($desktop) {
+        @include omega-reset(2n);
+        @include span-columns(3 of 12);
+        @include omega(5n);
+
+        @include ie-lte(8) {
+          width: 21%;
+        }
+      }
+    }
+  }
+}

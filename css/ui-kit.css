@@ -5874,6 +5874,36 @@ Style guide: Typography.7 Callouts & warnings
   background-color: #def4f9;
   border-left: none; }
 
+@media screen and (min-width: 768px) {
+  .footer-top nav .footer-block {
+    float: left;
+    display: block;
+    margin-right: 2.74614%;
+    width: 48.62693%; }
+    .footer-top nav .footer-block:last-child {
+      margin-right: 0; }
+    .footer-top nav .footer-block:nth-child(2n) {
+      margin-right: 0; }
+    .footer-top nav .footer-block:nth-child(2n+1) {
+      clear: left; } }
+
+@media screen and (min-width: 75em) {
+  .footer-top nav .footer-block {
+    float: left;
+    display: block;
+    margin-right: 2.74614%;
+    width: 22.9404%; }
+    .footer-top nav .footer-block:nth-child(2n) {
+      margin-right: 2.74614%; }
+    .footer-top nav .footer-block:nth-child(2n+1) {
+      clear: none; }
+    .footer-top nav .footer-block:last-child {
+      margin-right: 0; }
+    .footer-top nav .footer-block:nth-child(5n) {
+      margin-right: 0; }
+    .footer-top nav .footer-block:nth-child(5n+1) {
+      clear: left; } }
+
 div.workbench-info-block {
   padding-left: 1.2em;
   border-left-width: 0.4em;
