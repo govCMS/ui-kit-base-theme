@@ -7,55 +7,38 @@
  * @see https://drupal.org/node/1728096
  */
 
+
+/** Core pre-process functions ************************************************/
+
 /**
- * Implements THEME_menu_local_tasks().
+ * Implements THEME_preprocess_field().
  */
-function uikit_base_menu_local_tasks(&$variables) {
-  $output = '';
-
-  // Add UI KIT class to the tabs.
-  if (!empty($variables['primary'])) {
-    $variables['primary']['#prefix'] = '<h2 class="element-invisible">' . t('Primary tabs') . '</h2>';
-    $variables['primary']['#prefix'] .= '<nav class="inline-tab-nav"><ul class="tabs primary">';
-    $variables['primary']['#suffix'] = '</ul></nav>';
-
-    $output .= drupal_render($variables['primary']);
-
+function uikit_base_preprocess_field(&$variables) {
+  if ($variables['element']['#field_name'] == 'field_tags') {
+    $variables['classes_array'][] = 'tags';
   }
-  if (!empty($variables['secondary'])) {
-    $variables['secondary']['#prefix'] = '<h2 class="element-invisible">' . t('Secondary tabs') . '</h2>';
-    $variables['secondary']['#prefix'] .= '<nav class="inline-tab-nav"><ul class="tabs secondary">';
-    $variables['secondary']['#suffix'] = '</ul></nav>';
-    $output .= drupal_render($variables['secondary']);
-  }
-
-  // Process tabs.
-  $output = _uikit_base_process_local_tasks($output);
-
-  return $output;
 }
 
 /**
- * Implements THEME_breadcrumb().
+ * Implements THEME_preprocess_form_element().
  */
-function uikit_base_breadcrumb($variables) {
-  $breadcrumb = $variables['breadcrumb'];
+function uikit_base_preprocess_form_element(&$variables) {
+  $variables['element']['#children'] = str_replace('required error', 'required error invalid', $variables['element']['#children']);
+}
 
-  if (!empty($breadcrumb)) {
-    // Provide a navigational heading to give context for breadcrumb links to
-    // screen-reader users. Make the heading invisible with .element-invisible.
-    $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
+/**
+ * Implements THEME_preprocess_node().
+ */
+function uikit_base_preprocess_node(&$variables) {
+  // Apply the UI KIT list horizontal style to single node display by default.
+  $variables['classes_array'][] = 'list-horizontal';
 
-    // Process breadcrumb for UI KIT format.
-    $breadcrumb_list = '<ul>';
-    foreach ($breadcrumb as $link) {
-      $breadcrumb_list .= '<li>' . $link . '</li>';
-    }
-    $breadcrumb_list .= '</ul>';
+  // Add UI KIT class to author and date information.
+  $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on !date', array('!date' => '<time>' . $variables['date'] .'</time>', '!author' => $variables['name']));
 
-    // Add UI KIT tag and style to breadcrumb.
-    $output .= '<nav class="breadcrumbs" aria-label="breadcrumb"><div class="wrapper">' . $breadcrumb_list . '</div></nav>';
-    return $output;
+  // Add UI KIT class to readmore link in teaser view mode.
+  if (!empty($variables['content']['links']['node']['#links']['node-readmore'])) {
+    $variables['content']['links']['node']['#links']['node-readmore']['attributes']['class'] = 'see-more';
   }
 }
 
@@ -82,33 +65,8 @@ function uikit_base_preprocess_region(&$variables) {
   }
 }
 
-/**
- * Implements THEME_preprocess_node().
- */
-function uikit_base_preprocess_node(&$variables) {
-  // Apply the UI KIT list horizontal style to single node display by default.
-  $variables['classes_array'][] = 'list-horizontal';
 
-  // Add UI KIT class to author and date information.
-  $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on !date', array(
-      '!date' => '<time>' . $variables['date'] . '</time>',
-      '!author' => $variables['name']
-    ));
-
-  // Add UI KIT class to readmore link in teaser view mode.
-  if (!empty($variables['content']['links']['node']['#links']['node-readmore'])) {
-    $variables['content']['links']['node']['#links']['node-readmore']['attributes']['class'] = 'see-more';
-  }
-}
-
-/**
- * Implements THEME_preprocess_field().
- */
-function uikit_base_preprocess_field(&$variables) {
-  if ($variables['element']['#field_name'] == 'field_tags') {
-    $variables['classes_array'][] = 'tags';
-  }
-}
+/** Contrib pre-process functions *********************************************/
 
 /**
  * Implements THEME_preprocess_views_view_table().
@@ -118,11 +76,59 @@ function uikit_base_preprocess_views_view_table(&$vars) {
   $vars['classes_array'][] = 'content-table';
 }
 
+
+/** Theme functions ***********************************************************/
+
 /**
- * Implements THEME_preprocess_form_element().
+ * Implements THEME_breadcrumb().
  */
-function uikit_base_preprocess_form_element(&$variables) {
-  $variables['element']['#children'] = str_replace('required error', 'required error invalid', $variables['element']['#children']);
+function uikit_base_breadcrumb($variables) {
+  $breadcrumb = $variables['breadcrumb'];
+
+  if (!empty($breadcrumb)) {
+    // Provide a navigational heading to give context for breadcrumb links to
+    // screen-reader users. Make the heading invisible with .element-invisible.
+    $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
+
+    // Process breadcrumb for UI KIT format.
+    $breadcrumb_list = '<ul>';
+    foreach($breadcrumb as $link) {
+      $breadcrumb_list .= '<li>' . $link . '</li>';
+    }
+    $breadcrumb_list .= '</ul>';
+
+    // Add UI KIT tag and style to breadcrumb.
+    $output .= '<nav class="breadcrumbs" aria-label="breadcrumb"><div class="wrapper">' . $breadcrumb_list . '</div></nav>';
+    return $output;
+  }
+}
+
+/**
+ * Implements THEME_menu_local_tasks().
+ */
+function uikit_base_menu_local_tasks(&$variables) {
+  $output = '';
+
+  // Add UI KIT class to the tabs.
+  if (!empty($variables['primary'])) {
+    $variables['primary']['#prefix'] = '<h2 class="element-invisible">' . t('Primary tabs') . '</h2>';
+    $variables['primary']['#prefix'] .= '<nav class="inline-tab-nav"><ul class="tabs primary">';
+    $variables['primary']['#suffix'] = '</ul></nav>';
+
+    $output .= drupal_render($variables['primary']);
+
+  }
+  if (!empty($variables['secondary'])) {
+    $variables['secondary']['#prefix'] = '<h2 class="element-invisible">' . t('Secondary tabs') . '</h2>';
+    $variables['secondary']['#prefix'] .= '<nav class="inline-tab-nav"><ul class="tabs secondary">';
+    $variables['secondary']['#suffix'] = '</ul></nav>';
+    $output .= drupal_render($variables['secondary']);
+  }
+
+  // Process tabs.
+  $output = _uikit_base_process_local_tasks($output);
+
+  return $output;
 }
 
 /**
@@ -336,6 +342,9 @@ function uikit_base_status_messages($variables) {
   }
   return $output;
 }
+
+
+/** Helper functions **********************************************************/
 
 /**
  * Helper function to add is-current class to the active link.
