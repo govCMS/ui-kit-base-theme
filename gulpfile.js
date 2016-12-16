@@ -13,7 +13,8 @@ var importOnce = require('node-sass-import-once'),
   uglify       = require('gulp-uglify'),
   sourcemaps   = require('gulp-sourcemaps'),
   webpack      = require('webpack-stream'),
-  svg2png      = require('gulp-svg2png');
+  svg2png      = require('gulp-svg2png'),
+  sassGlob     = require('gulp-sass-glob');
   // Add later
   //del         = require('del'),
   //kss         = require('kss');
@@ -129,6 +130,7 @@ gulp.task('ui-kit.styles:proto', function() {
 
 gulp.task('ui-kit.styles:theme', function() {
   return gulp.src(paths.theme.sass + '/ui-kit.scss')
+    .pipe(sassGlob())
     .pipe(sass(options.sass).on('error', sass.logError))
     .pipe($.autoprefixer(options.autoprefixer))
     .pipe(gulp.dest(paths.theme.css));
