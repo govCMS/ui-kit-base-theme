@@ -1,0 +1,9 @@
+div.workbench-info-block {
+  @extend %base-callout;
+
+  padding-left: $base-spacing - $tiny-spacing;
+  border-left-width: $tiny-spacing;
+  border-left-style: solid;
+  background-color: #fff;
+  border-left-color: $info-colour;
+}

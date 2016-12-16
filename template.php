@@ -7,33 +7,82 @@
  * @see https://drupal.org/node/1728096
  */
 
+
+/** Core pre-process functions ************************************************/
+
 /**
- * Implements THEME_menu_local_tasks().
+ * Implements THEME_preprocess_field().
  */
-function uikit_base_menu_local_tasks(&$variables) {
-  $output = '';
-
-  // Add UI KIT class to the tabs.
-  if (!empty($variables['primary'])) {
-    $variables['primary']['#prefix'] = '<h2 class="element-invisible">' . t('Primary tabs') . '</h2>';
-    $variables['primary']['#prefix'] .= '<nav class="inline-tab-nav"><ul class="tabs primary">';
-    $variables['primary']['#suffix'] = '</ul></nav>';
-
-    $output .= drupal_render($variables['primary']);
-
+function uikit_base_preprocess_field(&$variables) {
+  if ($variables['element']['#field_name'] == 'field_tags') {
+    $variables['classes_array'][] = 'tags';
   }
-  if (!empty($variables['secondary'])) {
-    $variables['secondary']['#prefix'] = '<h2 class="element-invisible">' . t('Secondary tabs') . '</h2>';
-    $variables['secondary']['#prefix'] .= '<nav class="inline-tab-nav"><ul class="tabs secondary">';
-    $variables['secondary']['#suffix'] = '</ul></nav>';
-    $output .= drupal_render($variables['secondary']);
-  }
-
-  // Process tabs.
-  $output = _uikit_base_process_local_tasks($output);
-
-  return $output;
 }
+
+/**
+ * Implements THEME_preprocess_form_element().
+ */
+function uikit_base_preprocess_form_element(&$variables) {
+  $variables['element']['#children'] = str_replace('required error', 'required error invalid', $variables['element']['#children']);
+}
+
+/**
+ * Implements THEME_preprocess_node().
+ */
+function uikit_base_preprocess_node(&$variables) {
+  // Apply the UI KIT list horizontal style to single node display by default.
+  $variables['classes_array'][] = 'list-horizontal';
+
+  // Add UI KIT class to author and date information.
+  $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on !date', array('!date' => '<time>' . $variables['date'] .'</time>', '!author' => $variables['name']));
+
+  // Add UI KIT class to readmore link in teaser view mode.
+  if (!empty($variables['content']['links']['node']['#links']['node-readmore'])) {
+    $variables['content']['links']['node']['#links']['node-readmore']['attributes']['class'] = 'see-more';
+  }
+}
+
+/**
+ * Implements THEME_preprocess_page().
+ */
+function uikit_base_preprocess_page(&$variables) {
+
+  // Get classes for <main> together
+  $variables['main_classes'] = array('main');
+  // Position sidebar based on theme settings
+  if (theme_get_setting('sidebar_position') == 'left') {
+    $variables['main_classes'][] = 'sidebar-has-controls';
+  }
+  $variables['main_classes'] = implode(' ', $variables['main_classes']);
+
+  // Pre-process the header logo
+  _uikit_base_preprocess_page_logo($variables);
+
+}
+
+/**
+ * Implements THEME_preprocess_region().
+ */
+function uikit_base_preprocess_region(&$variables) {
+  if ($variables['region'] == 'sidebar') {
+    // Add UI KIT nav menu class.
+    $variables['classes_array'][] = 'local-nav';
+  }
+}
+
+
+/** Contrib pre-process functions *********************************************/
+
+/**
+ * Implements THEME_preprocess_views_view_table().
+ */
+function uikit_base_preprocess_views_view_table(&$vars) {
+  // Add UI KIT table class to views table.
+  $vars['classes_array'][] = 'content-table';
+}
+
+
+/** Theme functions ***********************************************************/
 
 /**
  * Implements THEME_breadcrumb().
@@ -60,105 +109,31 @@ function uikit_base_breadcrumb($variables) {
 }
 
 /**
- * Implements THEME_preprocess_page().
+ * Implements THEME_menu_local_tasks().
  */
-function uikit_base_preprocess_page(&$variables) {
+function uikit_base_menu_local_tasks(&$variables) {
+  $output = '';
 
-  // Get classes for <main> together
-  $variables['main_classes'] = array('main');
-  // Position sidebar based on theme settings
-  if (theme_get_setting('sidebar_position') == 'left') {
-    $variables['main_classes'][] = 'sidebar-has-controls';
+  // Add UI KIT class to the tabs.
+  if (!empty($variables['primary'])) {
+    $variables['primary']['#prefix'] = '<h2 class="element-invisible">' . t('Primary tabs') . '</h2>';
+    $variables['primary']['#prefix'] .= '<nav class="inline-tab-nav"><ul class="tabs primary">';
+    $variables['primary']['#suffix'] = '</ul></nav>';
+
+    $output .= drupal_render($variables['primary']);
+
   }
-  $variables['main_classes'] = implode(' ', $variables['main_classes']);
-
-  /**
-   * Turn the logo from a URL into an image within a link, and also scale it so
-   * that it's no taller than specified in the theme settings.
-   *
-   * This may be useful to users who do not have the ability to adjust the image
-   * size. It also allows the use of svg images where the ability set the image
-   * size to a maximum height is useful.
-   *
-   * This can be overridden in CSS at various breakpoints if required for those
-   * users who want to customise the theme.
-   */
-  $max_height = theme_get_setting('logo_max_height');
-  list($width, $height) = getimagesize($variables['logo']);
-
-  // If we're dealing with an SVG, the width and height will be null, so we set
-  // a height and get the browser to pick up the width.
-  if (is_null($width) && is_null($height)) {
-    $height = $max_height;
+  if (!empty($variables['secondary'])) {
+    $variables['secondary']['#prefix'] = '<h2 class="element-invisible">' . t('Secondary tabs') . '</h2>';
+    $variables['secondary']['#prefix'] .= '<nav class="inline-tab-nav"><ul class="tabs secondary">';
+    $variables['secondary']['#suffix'] = '</ul></nav>';
+    $output .= drupal_render($variables['secondary']);
   }
 
-  // BPM images will give us values
-  elseif ($height > $max_height) {
-    $ratio  = $width / $height;
-    $height = $max_height;
-    $width  = round($height * $ratio);
-  }
+  // Process tabs.
+  $output = _uikit_base_process_local_tasks($output);
 
-  $logo = theme('image', array(
-    'path'   => $variables['logo'],
-    'alt'    => t('@site_name logo', array('@site_name' => $variables['site_name'])),
-    'title'  => filter_xss($variables['site_name']),
-    'width'  => $width,
-    'height' => $height,
-  ));
-
-  $variables['logo'] = l($logo, '<front>', array('html' => TRUE));
-
-}
-
-/**
- * Implements THEME_preprocess_region().
- */
-function uikit_base_preprocess_region(&$variables) {
-  if ($variables['region'] == 'sidebar') {
-    // Add UI KIT nav menu class.
-    $variables['classes_array'][] = 'local-nav';
-  }
-}
-
-/**
- * Implements THEME_preprocess_node().
- */
-function uikit_base_preprocess_node(&$variables) {
-  // Apply the UI KIT list horizontal style to single node display by default.
-  $variables['classes_array'][] = 'list-horizontal';
-
-  // Add UI KIT class to author and date information.
-  $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on !date', array('!date' => '<time>' . $variables['date'] .'</time>', '!author' => $variables['name']));
-
-  // Add UI KIT class to readmore link in teaser view mode.
-  if (!empty($variables['content']['links']['node']['#links']['node-readmore'])) {
-    $variables['content']['links']['node']['#links']['node-readmore']['attributes']['class'] = 'see-more';
-  }
-}
-
-/**
- * Implements THEME_preprocess_field().
- */
-function uikit_base_preprocess_field(&$variables) {
-  if ($variables['element']['#field_name'] == 'field_tags') {
-    $variables['classes_array'][] = 'tags';
-  }
-}
-
-/**
- * Implements THEME_preprocess_views_view_table().
- */
-function uikit_base_preprocess_views_view_table(&$vars) {
-  // Add UI KIT table class to views table.
-  $vars['classes_array'][] = 'content-table';
-}
-
-/**
- * Implements THEME_preprocess_form_element().
- */
-function uikit_base_preprocess_form_element(&$variables) {
-  $variables['element']['#children'] = str_replace('required error', 'required error invalid', $variables['element']['#children']);
+  return $output;
 }
 
 /**
@@ -316,6 +291,9 @@ function uikit_base_status_messages($variables) {
   return $output;
 }
 
+
+/** Helper functions **********************************************************/
+
 /**
  * Helper function to add is-current class to the active link.
  *
@@ -329,4 +307,54 @@ function _uikit_base_process_local_tasks($children) {
   $output = str_replace('class="active"', 'class="active is-current"', $children);
 
   return $output;
+}
+
+/**
+ * Pre-process the logo for uikit_base_preprocess_page().
+ *
+ * Turn the logo from a URL into an image within a link, and also scale it so
+ * that it's no taller than specified in the theme settings.
+ *
+ * This may be useful to users who do not have the ability to adjust the image
+ * size. It also allows the use of svg images where the ability set the image
+ * size to a maximum height is useful.
+ *
+ * This can be overridden in CSS at various breakpoints if required for those
+ * users who want to customise the theme.
+ *
+ * @param array $variables
+ *
+ * @see uikit_base_preprocess_page().
+ */
+function _uikit_base_preprocess_page_logo(&$variables) {
+
+  // Attempt to get the width and height of the logo
+  $max_height = theme_get_setting('logo_max_height');
+  list($width, $height) = getimagesize($variables['logo']);
+
+  // If we're dealing with an SVG, the width and height will be null, so we set
+  // a height and get the browser to pick up the width.
+  if (is_null($width) && is_null($height)) {
+    $height = $max_height;
+  }
+
+  // Bitmap images will give us values
+  elseif ($height > $max_height) {
+    $ratio  = $width / $height;
+    $height = $max_height;
+    $width  = round($height * $ratio);
+  }
+
+  // Create the image using theme_image().
+  $logo = theme('image', array(
+    'path'   => $variables['logo'],
+    'alt'    => t('@site_name logo', array('@site_name' => $variables['site_name'])),
+    'title'  => filter_xss($variables['site_name']),
+    'width'  => $width,
+    'height' => $height,
+  ));
+
+  // Wrap the logo in a link.
+  $variables['logo'] = l($logo, '<front>', array('html' => TRUE));
+
 }
