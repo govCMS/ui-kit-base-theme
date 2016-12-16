@@ -48,7 +48,6 @@ features[] = secondary_menu
 
 
 ; Set the default values of settings on the theme-settings.php form.
-
-
-; To make this sub-theme an admin theme with shortcut links next to titles,
-; uncomment the line below.
+settings[logo_max_height] = 150
+settings[logo_path] = sites/all/themes/uikit_base/logo.svg
+settings[default_logo] = 0

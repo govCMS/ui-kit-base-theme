@@ -1,5 +1,6 @@
-header[role='banner'] a.header__logo  {
+header[role='banner'] .page-header__logo a {
   border-bottom: none;
+  display: block;
 
   &:hover,
   &:focus {
@@ -9,8 +10,15 @@ header[role='banner'] a.header__logo  {
 }
 
 .page-header__logo {
-  background: url('../logo.svg') 100% 100% no-repeat;
-  height: 100px;
-  width: 100px;
-  text-indent: -9999px;
+  float: left;
+  max-width: 45%;
+}
+
+.region-header {
+  float: right;
+  max-width: 40%;
+}
+
+.page-header .site-nav {
+  clear: both;
 }

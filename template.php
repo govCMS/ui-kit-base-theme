@@ -63,6 +63,7 @@ function uikit_base_breadcrumb($variables) {
  * Implements THEME_preprocess_page().
  */
 function uikit_base_preprocess_page(&$variables) {
+
   // Get classes for <main> together
   $variables['main_classes'] = array('main');
   // Position sidebar based on theme settings
@@ -70,6 +71,44 @@ function uikit_base_preprocess_page(&$variables) {
     $variables['main_classes'][] = 'sidebar-has-controls';
   }
   $variables['main_classes'] = implode(' ', $variables['main_classes']);
+
+  /**
+   * Turn the logo from a URL into an image within a link, and also scale it so
+   * that it's no taller than specified in the theme settings.
+   *
+   * This may be useful to users who do not have the ability to adjust the image
+   * size. It also allows the use of svg images where the ability set the image
+   * size to a maximum height is useful.
+   *
+   * This can be overridden in CSS at various breakpoints if required for those
+   * users who want to customise the theme.
+   */
+  $max_height = theme_get_setting('logo_max_height');
+  list($width, $height) = getimagesize($variables['logo']);
+
+  // If we're dealing with an SVG, the width and height will be null, so we set
+  // a height and get the browser to pick up the width.
+  if (is_null($width) && is_null($height)) {
+    $height = $max_height;
+  }
+
+  // BPM images will give us values
+  elseif ($height > $max_height) {
+    $ratio  = $width / $height;
+    $height = $max_height;
+    $width  = round($height * $ratio);
+  }
+
+  $logo = theme('image', array(
+    'path'   => $variables['logo'],
+    'alt'    => t('@site_name logo', array('@site_name' => $variables['site_name'])),
+    'title'  => filter_xss($variables['site_name']),
+    'width'  => $width,
+    'height' => $height,
+  ));
+
+  $variables['logo'] = l($logo, '<front>', array('html' => TRUE));
+
 }
 
 /**

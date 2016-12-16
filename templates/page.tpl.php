@@ -17,11 +17,9 @@ $sidebar  = render($page['sidebar']);
   <section class="page-header">
     <div class="wrapper">
 
-      <a href="<?php print url('<front>'); ?>" class="logo">
-        <div class="page-header__logo">
-          <?php print $site_name; ?>
-        </div>
-      </a>
+      <div class="page-header__logo">
+        <?php print $logo; ?>
+      </div>
 
       <?php print render($page['header']); ?>
 
