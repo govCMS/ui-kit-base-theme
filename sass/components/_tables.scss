@@ -1,5 +1,3 @@
-// @TODO - this is shifting the .content-type selector onto the <table> element. We need to create a PR to get this implemented upstream
-
 table {
   @extend .content-table;
 }
