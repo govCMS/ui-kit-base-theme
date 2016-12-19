@@ -4907,22 +4907,22 @@ Style guide: Tables.1 Basic tables
 table {
   margin-bottom: 1.6em; }
 
-.content-table {
+.content-table, table {
   width: 100%;
   border-collapse: collapse; }
-  .content-table tr:nth-child(even) {
+  .content-table tr:nth-child(even), table tr:nth-child(even) {
     background-color: #f0f3f5; }
-  .content-table td,
-  .content-table th {
+  .content-table td, table td,
+  .content-table th, table th {
     border-bottom: solid 1px #bbbbbb;
     padding: 0.4em;
     text-align: left; }
     @media screen and (min-width: 768px) {
-      .content-table td,
-      .content-table th {
+      .content-table td, table td,
+      .content-table th, table th {
         padding: 0.8em;
         font-size: initial; } }
-  .content-table thead {
+  .content-table thead, table thead {
     border-bottom: solid 2px #6e6e6e; }
 
 /*
