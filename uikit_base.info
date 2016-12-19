@@ -51,3 +51,4 @@ features[] = secondary_menu
 settings[logo_max_height] = 150
 settings[logo_path] = sites/all/themes/uikit_base/logo.svg
 settings[default_logo] = 0
+settings[sidebar_position] = right
