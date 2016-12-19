@@ -1,0 +1,26 @@
+// @TODO - this is shifting the .content-type selector onto the <table> element. We need to create a PR to get this implemented upstream
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tr:nth-child(even) {
+    background-color: $non-white;
+  }
+
+  td,
+  th {
+    border-bottom: solid 1px $light-grey;
+    padding: $tiny-spacing;
+    text-align: left;
+
+    @include media($tablet) {
+      padding: $small-spacing;
+      font-size: initial;
+    }
+  }
+
+  thead {
+    border-bottom: solid 2px $grey;
+  }
+}
