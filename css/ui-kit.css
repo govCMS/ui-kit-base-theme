@@ -5874,6 +5874,73 @@ Style guide: Typography.7 Callouts & warnings
   background-color: #def4f9;
   border-left: none; }
 
+/**
+ * @file
+ * Stylesheet for the Contextual module.
+ */
+/**
+ * Contextual links regions.
+ */
+.js .nav-collapse {
+  overflow: visible; }
+
+html.js footer[role='contentinfo'] div.contextual-links-wrapper,
+html.js header[role='banner'] div.contextual-links-wrapper,
+html.js main div.contextual-links-wrapper {
+  display: block; }
+
+footer[role='contentinfo'] a.contextual-links-trigger,
+header[role='banner'] a.contextual-links-trigger,
+main a.contextual-links-trigger {
+  background: transparent url(/modules/contextual/images/gear-select.png) no-repeat 2px 0; }
+
+footer[role='contentinfo'] div.contextual-links-wrapper ul.contextual-links,
+header[role='banner'] div.contextual-links-wrapper ul.contextual-links,
+main div.contextual-links-wrapper ul.contextual-links {
+  width: auto;
+  height: auto; }
+
+footer[role='contentinfo'] a.contextual-links-trigger-active,
+footer[role='contentinfo'] div.contextual-links-active a.contextual-links-trigger,
+footer[role='contentinfo'] div.contextual-links-active ul.contextual-links,
+header[role='banner'] a.contextual-links-trigger-active,
+header[role='banner'] div.contextual-links-active a.contextual-links-trigger,
+header[role='banner'] div.contextual-links-active ul.contextual-links,
+main a.contextual-links-trigger-active,
+main div.contextual-links-active a.contextual-links-trigger,
+main div.contextual-links-active ul.contextual-links {
+  display: block; }
+
+@media screen and (min-width: 768px) {
+  footer[role='contentinfo'] .site-nav__wrapper li a,
+  header[role='banner'] .site-nav__wrapper li a,
+  main .site-nav__wrapper li a {
+    border-bottom: none; } }
+
+footer[role='contentinfo'] .site-nav__wrapper .contextual-links li a,
+footer[role='contentinfo'] ul.contextual-links li a,
+header[role='banner'] .site-nav__wrapper .contextual-links li a,
+header[role='banner'] ul.contextual-links li a,
+main .site-nav__wrapper .contextual-links li a,
+main ul.contextual-links li a {
+  font-size: 87.5% !important;
+  font-weight: normal !important;
+  border: none !important;
+  color: #333 !important;
+  border-bottom: solid 1px #5bcbe3 !important; }
+  footer[role='contentinfo'] .site-nav__wrapper .contextual-links li a:hover, footer[role='contentinfo'] .site-nav__wrapper .contextual-links li a:focus,
+  footer[role='contentinfo'] ul.contextual-links li a:hover,
+  footer[role='contentinfo'] ul.contextual-links li a:focus,
+  header[role='banner'] .site-nav__wrapper .contextual-links li a:hover,
+  header[role='banner'] .site-nav__wrapper .contextual-links li a:focus,
+  header[role='banner'] ul.contextual-links li a:hover,
+  header[role='banner'] ul.contextual-links li a:focus,
+  main .site-nav__wrapper .contextual-links li a:hover,
+  main .site-nav__wrapper .contextual-links li a:focus,
+  main ul.contextual-links li a:hover,
+  main ul.contextual-links li a:focus {
+    background-color: #bfdcee !important; }
+
 span.ext {
   display: none; }
 
