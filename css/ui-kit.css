@@ -5891,6 +5891,12 @@ span.ext {
   -webkit-box-sizing: inherit;
           box-sizing: inherit; }
 
+div.toc-filter-content {
+  border: none;
+  background-color: inherit;
+  margin: 0px;
+  padding: 0px; }
+
 div.workbench-info-block {
   padding-left: 1.2em;
   border-left-width: 0.4em;
