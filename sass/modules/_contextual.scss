@@ -16,11 +16,12 @@
 html.js footer[role='contentinfo'],
 html.js header[role='banner'],
 html.js main {
+
   div.contextual-links-wrapper {
     display: block;
   }
 
- }
+}
 
  footer[role='contentinfo'],
  header[role='banner'],
@@ -41,11 +42,26 @@ html.js main {
     display: block;
   }
 
-  .site-nav__wrapper div.contextual-links-wrapper,
-  .site-nav__wrapper div.contextual-links-wrapper li a,
-  div.contextual-links-wrapper ul.contextual-links {
-      font-size: $small-font-size;
-      font-weight: normal;
+  @media screen and (min-width: 768px) {
+    .site-nav__wrapper li a {
+      border-bottom: none;
+    }
+
+  }
+
+  .site-nav__wrapper .contextual-links li a,
+  ul.contextual-links li a {
+    font-size: $small-font-size !important;
+    font-weight: normal !important;
+    border: none !important;
+    color: #333 !important;
+    border-bottom: solid 1px #5bcbe3 !important;
+
+    &:hover,
+    &:focus {
+      background-color: #bfdcee !important;
+    }
+
   }
 
 }
