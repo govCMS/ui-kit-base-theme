@@ -5874,6 +5874,149 @@ Style guide: Typography.7 Callouts & warnings
   background-color: #def4f9;
   border-left: none; }
 
+/**
+ * @file
+ * Stylesheet for the Contextual module.
+ */
+/**
+ * Contextual links regions.
+ */
+.js .nav-collapse {
+  overflow: visible; }
+
+html.js footer[role='contentinfo'] div.contextual-links-wrapper,
+html.js header[role='banner'] div.contextual-links-wrapper,
+html.js main div.contextual-links-wrapper {
+  display: block; }
+
+footer[role='contentinfo'],
+header[role='banner'],
+main {
+  /**
+   * Contextual links.
+   */ }
+  footer[role='contentinfo'] .contextual-links-region,
+  header[role='banner'] .contextual-links-region,
+  main .contextual-links-region {
+    outline: none;
+    position: relative; }
+  footer[role='contentinfo'] .contextual-links-region-active,
+  header[role='banner'] .contextual-links-region-active,
+  main .contextual-links-region-active {
+    outline: #999 dashed 1px; }
+  footer[role='contentinfo'] div.contextual-links-wrapper,
+  header[role='banner'] div.contextual-links-wrapper,
+  main div.contextual-links-wrapper {
+    display: none;
+    position: absolute;
+    right: 5px;
+    /* LTR */
+    top: 2px;
+    z-index: 999; }
+  footer[role='contentinfo'] a.contextual-links-trigger,
+  header[role='banner'] a.contextual-links-trigger,
+  main a.contextual-links-trigger {
+    background: transparent url(../images/gear-select.png) no-repeat 2px 0;
+    border: 1px solid transparent;
+    display: none;
+    height: 18px;
+    margin: 0;
+    padding: 0 2px;
+    outline: none;
+    overflow: hidden;
+    text-indent: 34px;
+    /* LTR */
+    width: 28px;
+    border-radius: 4px; }
+  footer[role='contentinfo'] a.contextual-links-trigger:hover,
+  footer[role='contentinfo'] div.contextual-links-active a.contextual-links-trigger,
+  header[role='banner'] a.contextual-links-trigger:hover,
+  header[role='banner'] div.contextual-links-active a.contextual-links-trigger,
+  main a.contextual-links-trigger:hover,
+  main div.contextual-links-active a.contextual-links-trigger {
+    background-position: 2px -18px; }
+  footer[role='contentinfo'] div.contextual-links-active a.contextual-links-trigger,
+  header[role='banner'] div.contextual-links-active a.contextual-links-trigger,
+  main div.contextual-links-active a.contextual-links-trigger {
+    background-color: #fff;
+    border-color: #ccc;
+    border-bottom: none;
+    position: relative;
+    z-index: 1;
+    -moz-border-radius: 4px 4px 0 0;
+    -webkit-border-bottom-left-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+    border-radius: 4px 4px 0 0; }
+  footer[role='contentinfo'] div.contextual-links-wrapper ul.contextual-links,
+  header[role='banner'] div.contextual-links-wrapper ul.contextual-links,
+  main div.contextual-links-wrapper ul.contextual-links {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    display: none;
+    margin: 0;
+    padding: 0.25em 0;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    top: 18px;
+    white-space: nowrap;
+    width: auto;
+    height: auto;
+    -moz-border-radius: 4px 0 4px 4px;
+    /* LTR */
+    -webkit-border-bottom-left-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -webkit-border-top-right-radius: 0;
+    /* LTR */
+    -webkit-border-top-left-radius: 4px;
+    /* LTR */
+    border-radius: 4px 0 4px 4px;
+    /* LTR */ }
+  footer[role='contentinfo'] a.contextual-links-trigger-active,
+  footer[role='contentinfo'] div.contextual-links-active a.contextual-links-trigger,
+  footer[role='contentinfo'] div.contextual-links-active ul.contextual-links,
+  header[role='banner'] a.contextual-links-trigger-active,
+  header[role='banner'] div.contextual-links-active a.contextual-links-trigger,
+  header[role='banner'] div.contextual-links-active ul.contextual-links,
+  main a.contextual-links-trigger-active,
+  main div.contextual-links-active a.contextual-links-trigger,
+  main div.contextual-links-active ul.contextual-links {
+    display: block; }
+  footer[role='contentinfo'] ul.contextual-links li,
+  header[role='banner'] ul.contextual-links li,
+  main ul.contextual-links li {
+    line-height: 100%;
+    list-style: none;
+    list-style-image: none;
+    margin: 0;
+    padding: 0; }
+  footer[role='contentinfo'] div.contextual-links-wrapper a,
+  header[role='banner'] div.contextual-links-wrapper a,
+  main div.contextual-links-wrapper a {
+    text-decoration: none; }
+  footer[role='contentinfo'] ul.contextual-links li a,
+  header[role='banner'] ul.contextual-links li a,
+  main ul.contextual-links li a {
+    color: #333 !important;
+    display: block;
+    margin: 0.25em 0;
+    padding: 0.25em 1em 0.25em 0.5em; }
+  footer[role='contentinfo'] .site-nav__wrapper div.contextual-links-wrapper,
+  footer[role='contentinfo'] .site-nav__wrapper div.contextual-links-wrapper li a,
+  footer[role='contentinfo'] div.contextual-links-wrapper ul.contextual-links,
+  header[role='banner'] .site-nav__wrapper div.contextual-links-wrapper,
+  header[role='banner'] .site-nav__wrapper div.contextual-links-wrapper li a,
+  header[role='banner'] div.contextual-links-wrapper ul.contextual-links,
+  main .site-nav__wrapper div.contextual-links-wrapper,
+  main .site-nav__wrapper div.contextual-links-wrapper li a,
+  main div.contextual-links-wrapper ul.contextual-links {
+    font-size: 87.5%;
+    font-weight: normal; }
+  footer[role='contentinfo'] ul.contextual-links li a:hover,
+  header[role='banner'] ul.contextual-links li a:hover,
+  main ul.contextual-links li a:hover {
+    background-color: #bfdcee; }
+
 span.ext {
   display: none; }
 
