@@ -5889,6 +5889,10 @@ html.js header[role='banner'] div.contextual-links-wrapper,
 html.js main div.contextual-links-wrapper {
   display: block; }
 
+@media screen and (min-width: 75em) {
+  footer[role='contentinfo'] .footer-top nav div.contextual-links-wrapper ul.contextual-links {
+    display: none; } }
+
 footer[role='contentinfo'] a.contextual-links-trigger,
 header[role='banner'] a.contextual-links-trigger,
 main a.contextual-links-trigger {

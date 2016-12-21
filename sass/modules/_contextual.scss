@@ -23,6 +23,12 @@ html.js main {
 
 }
 
+@media screen and (min-width: 75em) {
+  footer[role='contentinfo'] .footer-top nav div.contextual-links-wrapper ul.contextual-links {
+    display: none;
+  }
+}
+
  footer[role='contentinfo'],
  header[role='banner'],
  main {
@@ -43,6 +49,7 @@ html.js main {
   }
 
   @media screen and (min-width: 768px) {
+
     .site-nav__wrapper li a {
       border-bottom: none;
     }
