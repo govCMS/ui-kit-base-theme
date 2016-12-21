@@ -5916,9 +5916,9 @@ main div.contextual-links-active ul.contextual-links {
   display: block; }
 
 @media screen and (min-width: 768px) {
-  footer[role='contentinfo'] .site-nav__wrapper li a,
-  header[role='banner'] .site-nav__wrapper li a,
-  main .site-nav__wrapper li a {
+  footer[role='contentinfo'] .site-nav__wrapper .contextual-links li a,
+  header[role='banner'] .site-nav__wrapper .contextual-links li a,
+  main .site-nav__wrapper .contextual-links li a {
     border-bottom: none; } }
 
 footer[role='contentinfo'] .site-nav__wrapper .contextual-links li a,
