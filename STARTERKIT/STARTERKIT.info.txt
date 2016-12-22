@@ -12,7 +12,6 @@ stylesheets[all][] = system.theme.css
 
 stylesheets[all][] = css/styles.css
 
-scripts[] = ../uikit_base/js/ui-kit.min.js
 scripts[] = js/scripts.js
 
 regions[header]         = Header
