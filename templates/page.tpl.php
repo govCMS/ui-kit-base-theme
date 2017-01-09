@@ -18,7 +18,7 @@ $sidebar  = render($page['sidebar']);
     <div class="wrapper">
 
       <div class="page-header__logo">
-        <?php print $logo; ?>
+        <?php print $site_branding; ?>
       </div>
 
       <?php print render($page['header']); ?>

@@ -55,8 +55,8 @@ function uikit_base_preprocess_page(&$variables) {
   }
   $variables['main_classes'] = implode(' ', $variables['main_classes']);
 
-  // Pre-process the header logo
-  _uikit_base_preprocess_page_logo($variables);
+  // Pre-process the header logo and site name
+  _uikit_base_preprocess_page_site_branding($variables);
 
 }
 
@@ -326,35 +326,56 @@ function _uikit_base_process_local_tasks($children) {
  *
  * @see uikit_base_preprocess_page().
  */
-function _uikit_base_preprocess_page_logo(&$variables) {
+function _uikit_base_preprocess_page_site_branding(&$variables) {
 
-  // Attempt to get the width and height of the logo
-  $max_height = theme_get_setting('logo_max_height');
-  list($width, $height) = getimagesize($variables['logo']);
+  $site_branding = '';
 
-  // If we're dealing with an SVG, the width and height will be null, so we set
-  // a height and get the browser to pick up the width.
-  if (is_null($width) && is_null($height)) {
-    $height = $max_height;
+  // Do we want to show a logo?
+  if (theme_get_setting('toggle_logo')) {
+
+    // Attempt to get the width and height of the logo
+    $max_height = theme_get_setting('logo_max_height');
+    list($width, $height) = getimagesize($variables['logo']);
+
+    // If we're dealing with an SVG, the width and height will be null, so we set
+    // a height and get the browser to pick up the width.
+    if (is_null($width) && is_null($height)) {
+      $height = $max_height;
+    }
+
+    // Bitmap images will give us values
+    elseif ($height > $max_height) {
+      $ratio  = $width / $height;
+      $height = $max_height;
+      $width  = round($height * $ratio);
+    }
+
+    // Create the image using theme_image().
+    $logo = theme('image', array(
+      'path'   => $variables['logo'],
+      'alt'    => t('@site_name logo', array('@site_name' => $variables['site_name'])),
+      'title'  => filter_xss($variables['site_name']),
+      'width'  => $width,
+      'height' => $height,
+    ));
+
+    $site_branding .= $logo;
+
   }
 
-  // Bitmap images will give us values
-  elseif ($height > $max_height) {
-    $ratio  = $width / $height;
-    $height = $max_height;
-    $width  = round($height * $ratio);
+  $site_branding .= '<div class="page-header__site-info">';
+
+  // Do we want to show a site name?
+  if (theme_get_setting('toggle_name')) {
+    $site_branding .= '<h1>' . filter_xss($variables['site_name']) . '</h1>';
+  }
+  // Do we want to show a site slogan?
+  if (theme_get_setting('toggle_slogan')) {
+    $site_branding .= '<h2>' . filter_xss($variables['site_slogan']) . '</h2>';
   }
 
-  // Create the image using theme_image().
-  $logo = theme('image', array(
-    'path'   => $variables['logo'],
-    'alt'    => t('@site_name logo', array('@site_name' => $variables['site_name'])),
-    'title'  => filter_xss($variables['site_name']),
-    'width'  => $width,
-    'height' => $height,
-  ));
+  $site_branding .= '</div>';
 
-  // Wrap the logo in a link.
-  $variables['logo'] = l($logo, '<front>', array('html' => TRUE));
+  $variables['site_branding'] = l($site_branding, '<front>', array('html' => TRUE));
 
 }
