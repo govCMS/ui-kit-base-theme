@@ -363,18 +363,25 @@ function _uikit_base_preprocess_page_site_branding(&$variables) {
 
   }
 
-  $site_branding .= '<div class="page-header__site-info">';
+  // Do we need to show additional info?
+  $show_site_name   = theme_get_setting('toggle_name');
+  $show_site_slogan = theme_get_setting('toggle_slogan');
+  if ($show_site_name || $show_site_slogan) {
 
-  // Do we want to show a site name?
-  if (theme_get_setting('toggle_name')) {
-    $site_branding .= '<h1>' . filter_xss($variables['site_name']) . '</h1>';
-  }
-  // Do we want to show a site slogan?
-  if (theme_get_setting('toggle_slogan')) {
-    $site_branding .= '<h2>' . filter_xss($variables['site_slogan']) . '</h2>';
-  }
+    $site_branding .= '<div class="page-header__site-info">';
 
-  $site_branding .= '</div>';
+    // Do we want to show a site name?
+    if ($show_site_name) {
+      $site_branding .= '<h1>' . filter_xss($variables['site_name']) . '</h1>';
+    }
+    // Do we want to show a site slogan?
+    if ($show_site_slogan) {
+      $site_branding .= '<h2>' . filter_xss($variables['site_slogan']) . '</h2>';
+    }
+
+    $site_branding .= '</div>';
+
+  }
 
   $variables['site_branding'] = l($site_branding, '<front>', array('html' => TRUE));
 
