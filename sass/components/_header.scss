@@ -7,18 +7,34 @@ header[role='banner'] .page-header__logo a {
     border-bottom: none;
     background-color: inherit;
   }
+
+  img {
+    float: none;
+    margin-right: 0;
+    display: block;
+    margin: 0 auto;
+  }
 }
 
-.page-header__logo {
-  float: left;
-  max-width: 45%;
-}
-
-.region-header {
-  float: right;
-  max-width: 40%;
+@media screen and (min-width: 768px) {
+  header[role='banner'] .page-header__logo a img {
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+  }
 }
 
 .page-header .site-nav {
   clear: both;
+}
+
+header[role='banner'] .page-header__site-info {
+  padding-top: .4em;
+  h1 {
+    font-size: 1em;
+  }
+  h2 {
+    font-size: .8em;
+    color: $non-black;
+  }
 }
