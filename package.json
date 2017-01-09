@@ -32,7 +32,7 @@
   "homepage": "https://github.com/govCMS/ui-kit-base-theme#readme",
   "devDependencies": {
     "browser-sync": "^2.18.5",
-    "gov-au-ui-kit": "git+https://github.com/AusDTO/gov-au-ui-kit.git",
+    "gov-au-ui-kit": "ausdto/gov-au-ui-kit#develop",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-compile-handlebars": "^0.6.1",
