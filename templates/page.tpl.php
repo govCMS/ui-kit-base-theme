@@ -89,24 +89,15 @@ $sidebar  = render($page['sidebar']);
 </main>
 
 <footer role="contentinfo">
-    <div class="wrapper">
-      <section class="footer-top">
-        <nav>
-          <?php print render($page['footer_top']); ?>
-        </nav>
-      </section>
-      <section>
-        <div class="footer-logo"></div>
-        <div class="footer-links">
-          <nav>
-            <?php print render($page['footer']); ?>
-          </nav>
-        </div>
-      </section>
-    </div>
+  <div class="wrapper">
+    <section class="footer-top">
+      <?php print render($page['footer_top']); ?>
+    </section>
+    <section class="footer-bottom">
+      <?php print render($page['footer_bottom']); ?>
+    </section>
     <section class="page-bottom">
-    <div class="wrapper">
       <?php print render($page['bottom']); ?>
-    </div>
-  </section>
+    </section>
+  </div>
 </footer>
