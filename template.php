@@ -342,9 +342,11 @@ function _uikit_base_preprocess_region_header(&$variables) {
   // Do we want to show a logo?
   if (theme_get_setting('toggle_logo')) {
 
+    $logo = theme_get_setting('logo');
+
     // Attempt to get the width and height of the logo
     $max_height = theme_get_setting('logo_max_height');
-    list($width, $height) = getimagesize($variables['logo']);
+    list($width, $height) = getimagesize($logo);
 
     // If we're dealing with an SVG, the width and height will be null, so we set
     // a height and get the browser to pick up the width.
@@ -361,7 +363,7 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
     // Create the image using theme_image().
     $logo = theme('image', array(
-      'path'   => $variables['logo'],
+      'path'   => $logo,
       'alt'    => t('@site_name logo', array('@site_name' => $site_name)),
       'title'  => filter_xss($site_name),
       'width'  => $width,
