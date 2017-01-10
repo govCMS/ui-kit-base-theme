@@ -53,8 +53,6 @@
   <?php print render($title_suffix); ?>
 
   <div <?php print $content_attributes; ?>>
-    <nav>
-      <?php print $content ?>
-    </nav>
+    <?php print $content ?>
   </div>
 </div>

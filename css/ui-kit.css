@@ -4785,6 +4785,38 @@ Style guide: Typography.7 Callouts & warnings
   background-color: #def4f9;
   border-left: none; }
 
+footer .block__title {
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-top: 0; }
+
+footer .block__content h2, footer .block__content .display,
+footer .block__content h3,
+footer .block__content h4,
+footer .block__content h5,
+footer .block__content h6 {
+  line-height: 1.2;
+  margin-bottom: 0.4em;
+  margin-top: 0.8em; }
+
+footer .block__content h2, footer .block__content .display {
+  font-size: 1.375rem;
+  font-weight: 700; }
+
+footer .block__content h3 {
+  font-size: 1.25rem; }
+
+footer .block__content h4 {
+  font-size: 1.125rem; }
+
+footer .block__content h5 {
+  font-size: 1rem; }
+
+footer .block__content h6 {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 400; }
+
 footer section {
   display: table;
   width: 100%; }

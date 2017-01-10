@@ -76,11 +76,17 @@ function uikit_base_preprocess_page(&$variables) {
  * Implements THEME_preprocess_block().
  */
 function uikit_base_preprocess_block(&$variables) {
+
+  // Add some classes to the block title and content wrapper
+  $variables['title_attributes_array']['class'] = 'block__title';
+  $variables['content_attributes_array']['class'] = 'block__content content';
+
   // Drupal menu blocks, and Menu Block's blocks, share the same template file
   // to apply the <nav> element.
   if (in_array($variables['block']->module, array('menu', 'menu_block'))) {
     array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic');
   }
+
 }
 
 /**
