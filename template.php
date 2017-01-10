@@ -30,9 +30,6 @@ function uikit_base_preprocess_form_element(&$variables) {
  * Implements THEME_preprocess_node().
  */
 function uikit_base_preprocess_node(&$variables) {
-  // Apply the UI KIT list horizontal style to single node display by default.
-  $variables['classes_array'][] = 'list-horizontal';
-
   // Add UI KIT class to author and date information.
   $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on !date', array('!date' => '<time>' . $variables['date'] .'</time>', '!author' => $variables['name']));
 
