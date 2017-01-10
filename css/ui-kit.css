@@ -4719,10 +4719,10 @@ footer section {
   display: table;
   width: 100%; }
 
-footer .region.horizontal {
+footer .region--horizontal {
   display: table-row;
   width: 100%; }
-  footer .region.horizontal .block {
+  footer .region--horizontal .block {
     display: table-cell; }
 
 /*

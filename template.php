@@ -81,7 +81,7 @@ function uikit_base_preprocess_region(&$variables) {
 
   // Drop in the footer layout classes
   if (in_array($variables['region'], array('footer_top', 'footer_bottom'))) {
-    $variables['classes_array'][] = theme_get_setting($variables['region'] . '_layout');
+    $variables['classes_array'][] = 'region--' . theme_get_setting($variables['region'] . '_layout');
   }
 
 }
