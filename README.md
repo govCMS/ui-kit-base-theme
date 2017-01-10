@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This is a package that applies the Australian Digital Transformation Agency UI-kit (https://gov-au-ui-kit.apps.staging.digital.gov.au) to a base theme for govCMS. 
+This is a package that applies the Australian Digital Transformation Agency UI-kit (http://guides.service.gov.au/design-guide/) to a base theme for govCMS. 
 
 ### This package is two things:
 
