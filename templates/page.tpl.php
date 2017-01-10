@@ -17,10 +17,6 @@ $sidebar  = render($page['sidebar']);
   <section class="page-header">
     <div class="wrapper">
 
-      <div class="page-header__logo">
-        <?php print $site_branding; ?>
-      </div>
-
       <?php print render($page['header']); ?>
 
       <?php if ($navigation): ?>

@@ -55,8 +55,7 @@ function uikit_base_preprocess_page(&$variables) {
   }
   $variables['main_classes'] = implode(' ', $variables['main_classes']);
 
-  // Pre-process the header logo and site name
-  _uikit_base_preprocess_page_site_branding($variables);
+
 
 }
 
@@ -64,10 +63,17 @@ function uikit_base_preprocess_page(&$variables) {
  * Implements THEME_preprocess_region().
  */
 function uikit_base_preprocess_region(&$variables) {
+
+  // Add UI KIT nav menu class.
   if ($variables['region'] == 'sidebar') {
-    // Add UI KIT nav menu class.
     $variables['classes_array'][] = 'local-nav';
   }
+
+  // Pre-process the header region to combine block content and site branding
+  if ($variables['region'] == 'header') {
+    _uikit_base_preprocess_region_header($variables);
+  }
+
 }
 
 
@@ -326,7 +332,10 @@ function _uikit_base_process_local_tasks($children) {
  *
  * @see uikit_base_preprocess_page().
  */
-function _uikit_base_preprocess_page_site_branding(&$variables) {
+function _uikit_base_preprocess_region_header(&$variables) {
+
+  $site_name   = variable_get('site_name', '');
+  $site_slogan = variable_get('site_slogan', '');
 
   $site_branding = '';
 
@@ -353,8 +362,8 @@ function _uikit_base_preprocess_page_site_branding(&$variables) {
     // Create the image using theme_image().
     $logo = theme('image', array(
       'path'   => $variables['logo'],
-      'alt'    => t('@site_name logo', array('@site_name' => $variables['site_name'])),
-      'title'  => filter_xss($variables['site_name']),
+      'alt'    => t('@site_name logo', array('@site_name' => $site_name)),
+      'title'  => filter_xss($site_name),
       'width'  => $width,
       'height' => $height,
     ));
@@ -366,23 +375,31 @@ function _uikit_base_preprocess_page_site_branding(&$variables) {
   // Do we need to show additional info?
   $show_site_name   = theme_get_setting('toggle_name');
   $show_site_slogan = theme_get_setting('toggle_slogan');
-  if ($show_site_name || $show_site_slogan) {
+  if ($show_site_name || (!empty($site_slogan) && $show_site_slogan)) {
 
     $site_branding .= '<div class="page-header__site-info">';
 
     // Do we want to show a site name?
     if ($show_site_name) {
-      $site_branding .= '<h1>' . filter_xss($variables['site_name']) . '</h1>';
+      $site_branding .= '<h1>' . filter_xss($site_name) . '</h1>';
     }
     // Do we want to show a site slogan?
-    if ($show_site_slogan) {
-      $site_branding .= '<h2>' . filter_xss($variables['site_slogan']) . '</h2>';
+    if (!empty($site_slogan) && $show_site_slogan) {
+      $site_branding .= '<h2>' . filter_xss($site_slogan) . '</h2>';
     }
 
     $site_branding .= '</div>';
 
   }
 
-  $variables['site_branding'] = l($site_branding, '<front>', array('html' => TRUE));
+  $output = '';
+  $output .= '<div class="page-header__branding">';
+  $output .= $site_branding;
+  $output .= '</div>';
+  $output .= '<div class="page-header__content">';
+  $output .= $variables['content'];
+  $output .= '</div>';
+
+  $variables['content'] = $output;
 
 }
