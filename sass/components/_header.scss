@@ -1,4 +1,4 @@
-header[role='banner'] .page-header__logo a {
+.page-header__branding a {
   border-bottom: none;
   display: block;
 
@@ -7,49 +7,42 @@ header[role='banner'] .page-header__logo a {
     border-bottom: none;
     background-color: inherit;
   }
-
-  img {
-    margin-right: 0;
-    display: block;
-    margin: 0 auto;
-  }
 }
 
-@media screen and (min-width: 768px) {
+.page-header__branding img {
+  margin-right: 0;
+  display: block;
+  margin: 0 auto;
+  float: none;
+}
 
-  header[role='banner'] .page-header__logo {
-    display:inline-block;
-    float: left;
-    a img {
-      margin: 0 1em 1em 0;
-      display: inline;
-      float: left;
-    }
-
-    .page-header__site-info {
-      display: inline;
-    }
-  }
+.region-header {
+  display: table;
+  width: 100%;
 }
 
 .page-header .site-nav {
   clear: both;
 }
 
-header[role='banner'] .page-header__site-info {
+.page-header__branding {
   padding-top: .4em;
   h1 {
-    font-size: 1em;
+    font-size: 1.4em;
   }
   h2 {
-    font-size: .8em;
+    font-size: 1em;
     color: $non-black;
   }
 }
 
-header[role='banner'] form {
+.page-header__site-info {
+  text-align: center;
+}
+
+.page-header__content form {
   @include button-colours($button-bg-colour, $button-bg-colour--hover, $button-bg-colour--active, $button-text-colour, $button-bg-colour--disabled);
-  float: right;
+  float: none;
   margin-top: 1.6em;
 
   [type=submit] {
@@ -57,11 +50,48 @@ header[role='banner'] form {
   }
   [type=text] {
     border-right: 0px;
-    line-height: 1.8em;
+    line-height: 2.16em;
   }
 }
 
-header[role='banner'] form,
-header[role='banner'] form div {
+.page-header__content form,
+.page-header__content form div {
   display: inline-block;
+}
+
+.page-header__branding,
+.page-header__content {
+  display: block;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+
+  .page-header__content form {
+    float: right;
+
+    [type=text] {
+      line-height: 1.8em;
+    }
+  }
+
+  .page-header__branding img {
+    margin: 0 1em 1em 0;
+    float: left;
+  }
+
+  .page-header__branding,
+  .page-header__content {
+    display: table-cell;
+    text-align: left;
+  }
+
+  .page-header__content {
+    vertical-align: middle;
+  }
+
+  .page-header__site-info {
+    text-align: left;
+  }
+
 }
