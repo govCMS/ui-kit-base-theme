@@ -4,12 +4,14 @@ footer {
     width: 100%;
   }
 
-  .region--horizontal  {
-    display: table-row;
-    width: 100%;
+  @include media($tablet) {
+    .region--horizontal {
+      display: table-row;
+      width: 100%;
 
-    .block {
-      display: table-cell;
+      .block {
+        display: table-cell;
+      }
     }
   }
 }

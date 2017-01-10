@@ -4719,11 +4719,12 @@ footer section {
   display: table;
   width: 100%; }
 
-footer .region--horizontal {
-  display: table-row;
-  width: 100%; }
-  footer .region--horizontal .block {
-    display: table-cell; }
+@media screen and (min-width: 768px) {
+  footer .region--horizontal {
+    display: table-row;
+    width: 100%; }
+    footer .region--horizontal .block {
+      display: table-cell; } }
 
 footer .block__title {
   font-size: 1.5rem;
