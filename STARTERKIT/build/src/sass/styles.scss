@@ -1,0 +1,7 @@
+// This file should be processed using a SASS compiler, and will compile to /dist/css/styles.css
+
+// This file exists to permit override of UI kit-specific vars, such as paths to images
+@import "../../../../uikit_base/build/src/sass/ui-kit.scss";
+
+// Sub-theme prototype customisation
+@import "prototype";
