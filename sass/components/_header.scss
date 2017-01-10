@@ -9,7 +9,6 @@ header[role='banner'] .page-header__logo a {
   }
 
   img {
-    float: none;
     margin-right: 0;
     display: block;
     margin: 0 auto;
@@ -17,10 +16,19 @@ header[role='banner'] .page-header__logo a {
 }
 
 @media screen and (min-width: 768px) {
-  header[role='banner'] .page-header__logo a img {
+
+  header[role='banner'] .page-header__logo {
+    display:inline-block;
     float: left;
-    margin-right: 1em;
-    margin-bottom: 1em;
+    a img {
+      margin: 0 1em 1em 0;
+      display: inline;
+      float: left;
+    }
+
+    .page-header__site-info {
+      display: inline;
+    }
   }
 }
 
@@ -36,5 +44,18 @@ header[role='banner'] .page-header__site-info {
   h2 {
     font-size: .8em;
     color: $non-black;
+  }
+}
+
+header[role='banner'] form {
+  float: right;
+}
+
+header[role='banner'] form,
+header[role='banner'] form div {
+  display: inline-block;
+
+  input[type=submit] {
+    float: right;
   }
 }

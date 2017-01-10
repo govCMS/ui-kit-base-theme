@@ -4722,16 +4722,20 @@ header[role='banner'] .page-header__logo a {
     border-bottom: none;
     background-color: inherit; }
   header[role='banner'] .page-header__logo a img {
-    float: none;
     margin-right: 0;
     display: block;
     margin: 0 auto; }
 
 @media screen and (min-width: 768px) {
-  header[role='banner'] .page-header__logo a img {
-    float: left;
-    margin-right: 1em;
-    margin-bottom: 1em; } }
+  header[role='banner'] .page-header__logo {
+    display: inline-block;
+    float: left; }
+    header[role='banner'] .page-header__logo a img {
+      margin: 0 1em 1em 0;
+      display: inline;
+      float: left; }
+    header[role='banner'] .page-header__logo .page-header__site-info {
+      display: inline; } }
 
 .page-header .site-nav {
   clear: both; }
@@ -4747,6 +4751,16 @@ header[role='banner'] .page-header__site-info {
   header[role='banner'] .page-header__site-info h2, header[role='banner'] .page-header__site-info .display {
     font-size: .8em;
     color: #313131; }
+
+header[role='banner'] form {
+  float: right; }
+
+header[role='banner'] form,
+header[role='banner'] form div {
+  display: inline-block; }
+  header[role='banner'] form input[type=submit],
+  header[role='banner'] form div input[type=submit] {
+    float: right; }
 
 /*
 Callouts & warnings
