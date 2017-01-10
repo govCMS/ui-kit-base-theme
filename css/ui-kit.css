@@ -1621,7 +1621,7 @@ footer[role='contentinfo'] {
     footer[role='contentinfo'] [type='button']:hover,
     footer[role='contentinfo'] [type='button']:focus {
       background-color: #115361;
-      color: #fff; }
+      color: #115361; }
     footer[role='contentinfo'] button:active,
     footer[role='contentinfo'] .button:active,
     footer[role='contentinfo'] [role='button']:active,
@@ -3330,7 +3330,7 @@ footer[role='contentinfo'] {
       [class^='controls'][class$='--contrast'] [type='button']:hover,
       [class^='controls'][class$='--contrast'] [type='button']:focus {
         background-color: #fff;
-        color: #880e48; }
+        color: #fff; }
       [class^='controls'][class$='--contrast'] button:active,
       [class^='controls'][class$='--contrast'] .button:active,
       [class^='controls'][class$='--contrast'] [role='button']:active,
@@ -3503,7 +3503,7 @@ Style guide: Page header.01 Header
     .govau--header [type='button']:hover,
     .govau--header [type='button']:focus {
       background-color: #fff;
-      color: #043751; }
+      color: #fff; }
     .govau--header button:active,
     .govau--header .button:active,
     .govau--header [role='button']:active,
@@ -3639,7 +3639,7 @@ Style guide: Page header.01 Header
     .prerelease-govau--header [type='button']:hover,
     .prerelease-govau--header [type='button']:focus {
       background-color: #fff;
-      color: #043751; }
+      color: #fff; }
     .prerelease-govau--header button:active,
     .prerelease-govau--header .button:active,
     .prerelease-govau--header [role='button']:active,
@@ -4753,14 +4753,46 @@ header[role='banner'] .page-header__site-info {
     color: #313131; }
 
 header[role='banner'] form {
-  float: right; }
+  float: right;
+  margin-top: 1.6em; }
+  header[role='banner'] form button,
+  header[role='banner'] form .button,
+  header[role='banner'] form [role='button'],
+  header[role='banner'] form [type='submit'],
+  header[role='banner'] form [type='reset'],
+  header[role='banner'] form [type='button'] {
+    background-color: #18788d;
+    color: #fff;
+    border-color: #115361; }
+    header[role='banner'] form button:hover, header[role='banner'] form button:focus,
+    header[role='banner'] form .button:hover,
+    header[role='banner'] form .button:focus,
+    header[role='banner'] form [role='button']:hover,
+    header[role='banner'] form [role='button']:focus,
+    header[role='banner'] form [type='submit']:hover,
+    header[role='banner'] form [type='submit']:focus,
+    header[role='banner'] form [type='reset']:hover,
+    header[role='banner'] form [type='reset']:focus,
+    header[role='banner'] form [type='button']:hover,
+    header[role='banner'] form [type='button']:focus {
+      background-color: #115361;
+      color: #fff; }
+    header[role='banner'] form button:active,
+    header[role='banner'] form .button:active,
+    header[role='banner'] form [role='button']:active,
+    header[role='banner'] form [type='submit']:active,
+    header[role='banner'] form [type='reset']:active,
+    header[role='banner'] form [type='button']:active {
+      background-color: #146577; }
+  header[role='banner'] form [type=submit] {
+    float: right; }
+  header[role='banner'] form [type=text] {
+    border-right: 0px;
+    line-height: 1.8em; }
 
 header[role='banner'] form,
 header[role='banner'] form div {
   display: inline-block; }
-  header[role='banner'] form input[type=submit],
-  header[role='banner'] form div input[type=submit] {
-    float: right; }
 
 /*
 Callouts & warnings

@@ -48,14 +48,20 @@ header[role='banner'] .page-header__site-info {
 }
 
 header[role='banner'] form {
+  @include button-colours($button-bg-colour, $button-bg-colour--hover, $button-bg-colour--active, $button-text-colour, $button-bg-colour--disabled);
   float: right;
+  margin-top: 1.6em;
+
+  [type=submit] {
+    float: right;
+  }
+  [type=text] {
+    border-right: 0px;
+    line-height: 1.8em;
+  }
 }
 
 header[role='banner'] form,
 header[role='banner'] form div {
   display: inline-block;
-
-  input[type=submit] {
-    float: right;
-  }
 }
