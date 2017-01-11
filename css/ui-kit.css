@@ -4784,7 +4784,6 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
   .page-header__content form [type=submit] {
     float: right;
     position: relative;
-    content: "";
     background-image: url("../images/icons/search-navy.svg");
     background-size: 20px auto;
     background-repeat: no-repeat;
@@ -4792,7 +4791,7 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
   .page-header__content form [type=text] {
     border-right: 0;
     line-height: 2.16em;
-    width: 16em; }
+    width: 13em; }
 
 .page-header__content form,
 .page-header__content form div {
@@ -4822,9 +4821,7 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
 
 @media screen and (min-width: 75em) {
   .page-header__content form [type=text] {
-    width: 20em; }
-  .page-header__content form [type=submit] {
-    width: 6.35em; } }
+    width: 20em; } }
 
 /**
  * @file
