@@ -8,9 +8,21 @@
  */
 
 // Render region if there's content in theme.
-$navigation  = render($page['navigation']);
-$hero  = render($page['hero']);
-$sidebar  = render($page['sidebar']);
+$navigation    = render($page['navigation']);
+$hero          = render($page['hero']);
+$sidebar_left  = render($page['sidebar_left']);
+$sidebar_right = render($page['sidebar_right']);
+
+if ($sidebar_left && $sidebar_left) {
+  $main_classes .= ' page--sidebar-left-right';
+}
+elseif ($sidebar_left) {
+  $main_classes .= ' page--sidebar-left';
+}
+elseif ($sidebar_right) {
+  $main_classes .= ' page--sidebar-right';
+}
+
 ?>
 
 <header class="header" id="header" role="banner">
@@ -47,15 +59,14 @@ $sidebar  = render($page['sidebar']);
   </section>
 <?php endif; ?>
 
-
 <?php print $breadcrumb; ?>
 
 <main id="page" role="main" class="<?php print $main_classes; ?>">
 
-  <?php if ($sidebar): ?>
-    <aside class="sidebars sidebar" role="complementary">
-      <?php print $sidebar; ?>
-    </aside>
+  <?php if ($sidebar_left): ?>
+  <aside class="sidebar__left" role="complementary">
+    <?php print $sidebar_left; ?>
+  </aside>
   <?php endif; ?>
 
   <article id="content" class="content-main">
@@ -83,6 +94,12 @@ $sidebar  = render($page['sidebar']);
       </div>
     </div>
   </article>
+
+  <?php if ($sidebar_right): ?>
+  <aside class="sidebar__right" role="complementary">
+    <?php print $sidebar_right; ?>
+  </aside>
+  <?php endif; ?>
 
 </main>
 
