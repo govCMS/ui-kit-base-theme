@@ -37,6 +37,7 @@
 
 .page-header__site-info {
   text-align: center;
+  margin-top: 0;
 }
 
 .page-header__content form {
@@ -109,5 +110,9 @@
     [type=text] {
       width: 20em;
     }
+  }
+
+  .page-header__site-info {
+    margin-top: 1.5em;
   }
 }
