@@ -46,13 +46,17 @@
 
   [type=submit] {
     float: right;
-    width: 6.75em;
+    position: relative;
+    background-image: url("../images/icons/search-navy.svg");
+    background-size: 20px auto;
+    background-repeat: no-repeat;
+    background-position: center center;
   }
 
   [type=text] {
     border-right: 0;
     line-height: 2.16em;
-    width: 11.5em;
+    width: 16em;
   }
 }
 

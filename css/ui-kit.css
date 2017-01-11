@@ -4783,11 +4783,16 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
       background-color: #146577; }
   .page-header__content form [type=submit] {
     float: right;
-    width: 6.75em; }
+    position: relative;
+    content: "";
+    background-image: url("../images/icons/search-navy.svg");
+    background-size: 20px auto;
+    background-repeat: no-repeat;
+    background-position: center center; }
   .page-header__content form [type=text] {
     border-right: 0;
     line-height: 2.16em;
-    width: 11.5em; }
+    width: 16em; }
 
 .page-header__content form,
 .page-header__content form div {
