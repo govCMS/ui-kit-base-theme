@@ -4797,12 +4797,11 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
   display: block;
   text-align: center; }
 
-@media screen and (min-width: 75em) {
+@media screen and (min-width: 768px) {
   .page-header__content form {
     float: right; }
     .page-header__content form [type=text] {
-      line-height: 1.8em;
-      width: 20em; }
+      line-height: 1.8em; }
   .page-header__branding img {
     margin: 0 1em 1em 0;
     float: left; }
@@ -4814,6 +4813,10 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
     vertical-align: middle; }
   .page-header__site-info {
     text-align: left; } }
+
+@media screen and (min-width: 75em) {
+  .page-header__content form [type=text] {
+    width: 20em; } }
 
 /**
  * @file

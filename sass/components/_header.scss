@@ -65,14 +65,13 @@
   text-align: center;
 }
 
-@include media($desktop) {
+@include media($tablet) {
 
   .page-header__content form {
     float: right;
 
     [type=text] {
       line-height: 1.8em;
-      width: 20em;
     }
   }
 
@@ -95,4 +94,14 @@
     text-align: left;
   }
 
+}
+
+@include media($desktop) {
+
+  .page-header__content form {
+
+    [type=text] {
+      width: 20em;
+    }
+  }
 }
