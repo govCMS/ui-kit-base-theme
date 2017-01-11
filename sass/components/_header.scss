@@ -46,11 +46,13 @@
 
   [type=submit] {
     float: right;
+    width: 6.75em;
   }
+
   [type=text] {
     border-right: 0;
     line-height: 2.16em;
-    width: 12em;
+    width: 11.5em;
   }
 }
 
@@ -102,6 +104,10 @@
 
     [type=text] {
       width: 20em;
+    }
+
+    [type=submit] {
+      width: 6.35em;
     }
   }
 }
