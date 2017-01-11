@@ -8,6 +8,23 @@
  */
 
 
+/** Core hooks ****************************************************************/
+
+/**
+ * Implements THEME_form_alter().
+ */
+function uikit_base_form_alter(&$form, &$form_state, $form_id) {
+
+  // If this form is a search api form, we want to remove the size attribute
+  // on the text input, it makes styling difficult
+  if (strpos($form_id, 'search_api') !== FALSE) {
+    $search_api_form_id = $form['id']['#value'];
+    unset($form['keys_' . $search_api_form_id]['#size']);
+  }
+
+}
+
+
 /** Core pre-process functions ************************************************/
 
 /**
@@ -323,7 +340,8 @@ function uikit_base_status_messages($variables) {
   return $output;
 }
 
-/** Contrib Theme functions ***********************************************************/
+
+/** Contrib Theme functions ***************************************************/
 
 /**
  * Implement THEME_toc_filter().
@@ -337,6 +355,7 @@ function uikit_base_toc_filter($variables) {
   $output .= '</div>';
   return $output;
 }
+
 
 /** Helper functions **********************************************************/
 
