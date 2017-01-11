@@ -4204,21 +4204,12 @@ body {
 Headings
 
 Markup: templates/heading-styles.html
-<<<<<<< HEAD
 
 Style guide: Typography.2 Headings
 */
 /*
 Body copy
 
-=======
-
-Style guide: Typography.2 Headings
-*/
-/*
-Body copy
-
->>>>>>> master
 Markup: templates/body-styles.html
 
 Style guide: Typography.3 Body copy
@@ -4724,7 +4715,6 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
       width: 100%;
       border: none; }
 
-<<<<<<< HEAD
 .page-header__branding a {
   border-bottom: none;
   display: block; }
@@ -4795,7 +4785,8 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
     float: right; }
   .page-header__content form [type=text] {
     border-right: 0;
-    line-height: 2.16em; }
+    line-height: 2.16em;
+    width: 13em; }
 
 .page-header__content form,
 .page-header__content form div {
@@ -4810,7 +4801,8 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
   .page-header__content form {
     float: right; }
     .page-header__content form [type=text] {
-      line-height: 1.8em; }
+      line-height: 1.8em;
+      width: 20em; }
   .page-header__branding img {
     margin: 0 1em 1em 0;
     float: left; }
@@ -4823,24 +4815,6 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
   .page-header__site-info {
     text-align: left; } }
 
-/*
-Callouts & warnings
-
-There are 7 classes for drawing the user's attention:
-
-- `.callout`
-- `.callout--warning` for warnings
-- `.callout--error` for errors
-- `.callout--info` for information
-- `.callout--success` for success
-- `.callout-status` for status
-
-- `.callout--calendar-event` for dates.
-
-You can use these on paragraphs (`<p>`), or on a wrapping element, like a `<div>` or an `<aside>`.
-
-Markup: templates/callouts-examples.html
-=======
 /**
  * @file
  * Stylesheet for the Contextual module.
@@ -4850,28 +4824,15 @@ Markup: templates/callouts-examples.html
  */
 .js .nav-collapse {
   overflow: visible; }
->>>>>>> master
 
 html.js footer[role='contentinfo'] div.contextual-links-wrapper,
 html.js header[role='banner'] div.contextual-links-wrapper,
 html.js main div.contextual-links-wrapper {
   display: block; }
 
-<<<<<<< HEAD
-Style guide: Typography.7 Callouts & warnings
-*/
-.callout, [class^='callout--'],
-[class*=' callout--'], .callout--calendar-event, div.workbench-info-block {
-  margin: 1.6em 0.8em;
-  padding: 1.2em 1.2em 1.2em 1.6em;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 8px #bbbbbb;
-          box-shadow: 0 0 8px #bbbbbb; }
-=======
 @media screen and (min-width: 75em) {
   footer[role='contentinfo'] .footer-top nav div.contextual-links-wrapper ul.contextual-links {
     display: none; } }
->>>>>>> master
 
 footer[role='contentinfo'] a.contextual-links-trigger,
 header[role='banner'] a.contextual-links-trigger,
