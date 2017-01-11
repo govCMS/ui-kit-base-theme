@@ -20,6 +20,7 @@ function uikit_base_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'search_api') !== FALSE) {
     $search_api_form_id = $form['id']['#value'];
     unset($form['keys_' . $search_api_form_id]['#size']);
+    unset($form['submit_' . $search_api_form_id]['#value']);
   }
 
 }
