@@ -1,6 +1,5 @@
 // This file should be processed using SASS, and will compile to /css/styles.css
 @import "vars";
 @import "../ui-kit/assets/sass/ui-kit.scss";
-@import "components/header";
-@import "components/typography";
-@import "modules/workbench";
+@import "components/*";
+@import "modules/*";

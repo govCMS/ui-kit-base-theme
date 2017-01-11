@@ -1,0 +1,58 @@
+<!-- Header -->
+{{> head}}
+{{> skip-to}}
+<!--{{> global-navigation}}-->
+{{> header}}
+
+<!-- Hero -->
+{{> hero}}
+
+<!-- Breadcrumbs -->
+{{> breadcrumbs}}
+
+<!-- Main -->
+<main role="main">
+  <!-- Local navigation -->
+  {{> sidebar}}
+  <!-- Content -->
+  <article class="content-main" id="content">
+    {{> contents-links}}
+
+    <h2 id="anchor1">What is this prototype?</h2>
+    <p>This prototype is part of a govCMS sub-theme and exists as a playground for developing pages and layouts based on the base theme and UI-kit.</p>
+    <p>The package contains:
+      <ul>
+        <li>This prototype with associated tooling; and</li>
+        <li>An associated govCMS theme with similar tooling</li>
+      </ul>
+      </p>
+
+    <h2 id="anchor2">How to use it</h2>
+    <p>The theme/prototype package can be used to suit your workflow. however, a proposed workflow is:
+      <ol>
+        <li>Install it as a sub-theme within govCMS</li>
+        <li>Reference the <a href="https://gov-au-ui-kit.apps.staging.digital.gov.au">DTA Design Guide &amp; UI-kit</a> to discover the building blocks for prototyping.</li>
+        <li>Build, test and deploy prototypes within /STARTERKIT/build</li>
+        <li>Build, test and deploy the base theme within /STARTERKIT/*</li>
+      </ol>
+    </p>
+
+    <h2 id="anchor3">Base theme vs sub-theme</h2>
+    <p>This sub-theme/prototype relies upon the base theme (govCMS) and the UI-kit components within it.</p>
+    <p>The intent is to use:
+      <ul>
+        <li>the base theme for govCMS/UI-kit-only development/prototyping.</li>
+        <li>the sub-theme for customisation on top of the base theme without polluting it.</li>
+      </ul>
+    </p>
+    <p>More information about the sub-theme development is available in <strong>README-FIRST.txt</strong> in the theme root.</p>
+
+    <h2 id="anchor4">Boilerplate</h2>
+    <p>The UI-kit is not prescriptive with respect to boilerplating but instead provides modular components to permit easy site building.</p>
+    <p>Within this sub-theme prototype, you can boilerplate according your specific requirements.</p>
+  </article>
+</main>
+
+<!-- Content -->
+{{> footer}}
+{{> post-footer}}

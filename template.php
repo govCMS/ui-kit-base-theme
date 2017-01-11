@@ -30,9 +30,6 @@ function uikit_base_preprocess_form_element(&$variables) {
  * Implements THEME_preprocess_node().
  */
 function uikit_base_preprocess_node(&$variables) {
-  // Apply the UI KIT list horizontal style to single node display by default.
-  $variables['classes_array'][] = 'list-horizontal';
-
   // Add UI KIT class to author and date information.
   $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on !date', array('!date' => '<time>' . $variables['date'] .'</time>', '!author' => $variables['name']));
 
@@ -140,6 +137,35 @@ function uikit_base_menu_local_tasks(&$variables) {
   $output = _uikit_base_process_local_tasks($output);
 
   return $output;
+}
+
+/**
+ * Implements THEME_link().
+ */
+function uikit_base_link($variables) {
+  // Check link classes.
+  if (isset($variables['options']['attributes']['class'])) {
+    $classes = $variables['options']['attributes']['class'];
+
+    // Compose the class array if single string given.
+    if (!is_array($classes)) {
+      $classes = array($classes);
+    }
+
+    // The class pairs we need to add.
+    $class_pairs = array(
+      'active' => 'is-current',
+      'active-trail' => 'is-active',
+    );
+
+    // Add additional UI KIT classes.
+    $variables['options']['attributes']['class'] = _uikit_base_active_link($class_pairs, $classes);
+  }
+
+  // Default theme_link() function.
+  return '<a href="' . check_plain(url($variables['path'], $variables['options'])) . '"' .
+  drupal_attributes($variables['options']['attributes']) . '>' . ($variables['options']['html'] ?
+    $variables['text'] : check_plain($variables['text'])) . '</a>';
 }
 
 /**
@@ -297,6 +323,20 @@ function uikit_base_status_messages($variables) {
   return $output;
 }
 
+/** Contrib Theme functions ***********************************************************/
+
+/**
+ * Implement THEME_toc_filter().
+ */
+function uikit_base_toc_filter($variables) {
+  $output = '<a name="top" class="toc-filter-top"></a>';
+
+  // Add UI KIT content links class.
+  $output .= '<div class="index-links toc-filter toc-filter-' . $variables['type'] . '">';
+  $output .= '<div class="toc-filter-content">' . $variables['content'] . '</div>';
+  $output .= '</div>';
+  return $output;
+}
 
 /** Helper functions **********************************************************/
 
@@ -334,7 +374,7 @@ function _uikit_base_process_local_tasks($children) {
  */
 function _uikit_base_preprocess_region_header(&$variables) {
 
-  $site_name   = variable_get('site_name', '');
+  $site_name = variable_get('site_name', '');
   $site_slogan = variable_get('site_slogan', '');
 
   $site_branding = '';
@@ -356,17 +396,17 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
     // Bitmap images will give us values
     elseif ($height > $max_height) {
-      $ratio  = $width / $height;
+      $ratio = $width / $height;
       $height = $max_height;
-      $width  = round($height * $ratio);
+      $width = round($height * $ratio);
     }
 
     // Create the image using theme_image().
     $logo = theme('image', array(
-      'path'   => $logo,
-      'alt'    => t('@site_name logo', array('@site_name' => $site_name)),
-      'title'  => filter_xss($site_name),
-      'width'  => $width,
+      'path' => $logo,
+      'alt' => t('@site_name logo', array('@site_name' => $site_name)),
+      'title' => filter_xss($site_name),
+      'width' => $width,
       'height' => $height,
     ));
 
@@ -375,7 +415,7 @@ function _uikit_base_preprocess_region_header(&$variables) {
   }
 
   // Do we need to show additional info?
-  $show_site_name   = theme_get_setting('toggle_name');
+  $show_site_name = theme_get_setting('toggle_name');
   $show_site_slogan = theme_get_setting('toggle_slogan');
   if ($show_site_name || (!empty($site_slogan) && $show_site_slogan)) {
 
@@ -404,4 +444,25 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
   $variables['content'] = $output;
 
+}
+
+/*
+ * Helper function to add UI KIT link class to link.
+ * 
+ * @param $class_pairs
+ *   The pairs of Drupal class and UI KIT class.
+ *   
+ * @param $classes
+ *   Origin class array from Drupal.
+ * 
+ * @return array
+ *   Class array.
+ */
+function _uikit_base_active_link($class_pairs, $classes) {
+  foreach ($class_pairs as $needle => $additional_class) {
+    if (in_array($needle, $classes)) {
+      $classes[] = $additional_class;
+    }
+  }
+  return $classes;
 }

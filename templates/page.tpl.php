@@ -21,11 +21,9 @@ $sidebar  = render($page['sidebar']);
 
       <?php if ($navigation): ?>
         <div class="site-nav">
-          <div class="wrapper">
-            <nav class="site-nav__wrapper">
-              <?php print render($page['navigation']); ?>
-            </nav>
-          </div>
+          <nav class="site-nav__wrapper">
+            <?php print render($page['navigation']); ?>
+          </nav>
         </div>
       <?php endif; ?>
 
