@@ -4723,7 +4723,6 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
     background-color: inherit; }
 
 .page-header__branding img {
-  margin-right: 0;
   display: block;
   margin: 0 auto;
   float: none; }
@@ -4785,7 +4784,7 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
   .page-header__content form [type=submit] {
     float: right; }
   .page-header__content form [type=text] {
-    border-right: 0px;
+    border-right: 0;
     line-height: 2.16em; }
 
 .page-header__content form,
@@ -4797,7 +4796,7 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
   display: block;
   text-align: center; }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 75em) {
   .page-header__content form {
     float: right; }
     .page-header__content form [type=text] {

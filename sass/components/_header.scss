@@ -10,7 +10,6 @@
 }
 
 .page-header__branding img {
-  margin-right: 0;
   display: block;
   margin: 0 auto;
   float: none;
@@ -49,7 +48,7 @@
     float: right;
   }
   [type=text] {
-    border-right: 0px;
+    border-right: 0;
     line-height: 2.16em;
   }
 }
@@ -65,7 +64,7 @@
   text-align: center;
 }
 
-@media screen and (min-width: 768px) {
+@include media($desktop) {
 
   .page-header__content form {
     float: right;
