@@ -4803,6 +4803,9 @@ span.ext {
   -webkit-box-sizing: inherit;
           box-sizing: inherit; }
 
+.field-type-taxonomy-term-reference div {
+  display: inline-block; }
+
 div.toc-filter-content {
   border: none;
   background-color: inherit;
