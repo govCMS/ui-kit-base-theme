@@ -4801,8 +4801,7 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
   .page-header__content form {
     float: right; }
     .page-header__content form [type=text] {
-      line-height: 1.8em;
-      width: 13em; }
+      line-height: 1.8em; }
   .page-header__branding img {
     margin: 0 1em 1em 0;
     float: left; }
