@@ -13,7 +13,7 @@ $hero          = render($page['hero']);
 $sidebar_left  = render($page['sidebar_left']);
 $sidebar_right = render($page['sidebar_right']);
 
-if ($sidebar_left && $sidebar_left) {
+if ($sidebar_left && $sidebar_right) {
   $main_classes .= ' page--sidebar-left-right';
 }
 elseif ($sidebar_left) {

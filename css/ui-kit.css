@@ -4715,6 +4715,120 @@ article h1:first-of-type, article .hero .site-title:first-of-type, .hero article
       width: 100%;
       border: none; }
 
+@media screen and (min-width: 75em) {
+  .page--sidebar-left-right .sidebar__left,
+  .page--sidebar-left-right .sidebar__right {
+    float: left;
+    display: block;
+    margin-right: 2.04556%;
+    width: 23.46583%; }
+    .page--sidebar-left-right .sidebar__left:last-child,
+    .page--sidebar-left-right .sidebar__right:last-child {
+      margin-right: 0; } }
+
+@media screen and (min-width: 768px) {
+  .page--sidebar-left-right .sidebar__left,
+  .page--sidebar-left-right .sidebar__right {
+    float: left;
+    display: block;
+    margin-right: 2.74614%;
+    width: 22.9404%; }
+    .page--sidebar-left-right .sidebar__left:last-child,
+    .page--sidebar-left-right .sidebar__right:last-child {
+      margin-right: 0; } }
+
+.page--sidebar-left-right .content-main {
+  margin-left: 0;
+  margin-right: 0; }
+  @media screen and (min-width: 75em) {
+    .page--sidebar-left-right .content-main {
+      float: left;
+      display: block;
+      margin-right: 2.04556%;
+      width: 48.97722%; }
+      .page--sidebar-left-right .content-main:last-child {
+        margin-right: 0; } }
+  @media screen and (min-width: 768px) {
+    .page--sidebar-left-right .content-main {
+      float: left;
+      display: block;
+      margin-right: 2.74614%;
+      width: 48.62693%; }
+      .page--sidebar-left-right .content-main:last-child {
+        margin-right: 0; } }
+
+@media screen and (min-width: 75em) {
+  .page--sidebar-left .sidebar__left {
+    float: left;
+    display: block;
+    margin-right: 2.04556%;
+    width: 23.46583%; }
+    .page--sidebar-left .sidebar__left:last-child {
+      margin-right: 0; } }
+
+@media screen and (min-width: 768px) {
+  .page--sidebar-left .sidebar__left {
+    float: left;
+    display: block;
+    margin-right: 2.74614%;
+    width: 22.9404%; }
+    .page--sidebar-left .sidebar__left:last-child {
+      margin-right: 0; } }
+
+@media screen and (min-width: 75em) {
+  .page--sidebar-left .content-main {
+    float: left;
+    display: block;
+    margin-right: 2.04556%;
+    width: 74.48861%; }
+    .page--sidebar-left .content-main:last-child {
+      margin-right: 0; } }
+
+@media screen and (min-width: 768px) {
+  .page--sidebar-left .content-main {
+    float: left;
+    display: block;
+    margin-right: 2.74614%;
+    width: 74.31347%; }
+    .page--sidebar-left .content-main:last-child {
+      margin-right: 0; } }
+
+@media screen and (min-width: 75em) {
+  .page--sidebar-right .sidebar__right {
+    float: left;
+    display: block;
+    margin-right: 2.04556%;
+    width: 23.46583%; }
+    .page--sidebar-right .sidebar__right:last-child {
+      margin-right: 0; } }
+
+@media screen and (min-width: 768px) {
+  .page--sidebar-right .sidebar__right {
+    float: left;
+    display: block;
+    margin-right: 2.74614%;
+    width: 22.9404%; }
+    .page--sidebar-right .sidebar__right:last-child {
+      margin-right: 0; } }
+
+@media screen and (min-width: 75em) {
+  .page--sidebar-right .content-main {
+    float: left;
+    display: block;
+    margin-right: 2.04556%;
+    width: 74.48861%; }
+    .page--sidebar-right .content-main:last-child {
+      margin-right: 0; } }
+
+@media screen and (min-width: 768px) {
+  .page--sidebar-right .content-main {
+    float: left;
+    display: block;
+    margin-right: 2.74614%;
+    width: 74.31347%; }
+    .page--sidebar-right .content-main:last-child {
+      margin-right: 0; } }
+
 /**
  * @file
  * Stylesheet for the Contextual module.
