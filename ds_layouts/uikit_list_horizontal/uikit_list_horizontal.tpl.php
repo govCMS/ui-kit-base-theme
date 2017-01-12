@@ -26,7 +26,7 @@
   <?php endif; ?>
   <?php print $main; ?>
   <?php if (!empty($footer)): ?>
-  <footer class="tags">
+  <footer>
     <?php print $footer; ?>
   </footer>
   <?php endif; ?>
