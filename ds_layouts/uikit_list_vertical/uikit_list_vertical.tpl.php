@@ -1,9 +1,9 @@
 <?php
 /**
  * @file
- * Display Suite layout for the UI Kit horizontal list style.
+ * Display Suite layout for the UI Kit vertical list style.
  *
- * @see http://guides.service.gov.au/design-guide/components/list-styles/#horizontal-style
+ * @see http://guides.service.gov.au/design-guide/components/list-styles/#vertical-style
  */
 ?>
 
