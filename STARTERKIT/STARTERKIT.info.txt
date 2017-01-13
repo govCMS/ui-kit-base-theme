@@ -20,7 +20,8 @@ regions[hero]           = Hero
 regions[help]           = Help
 regions[content]        = Content
 regions[sidebar]        = Sidebar
-regions[footer]         = Footer
+regions[footer_top]     = Footer top
+regions[footer_bottom]  = Footer bottom
 regions[bottom]         = Page bottom
 
 ; The page_top and page_bottom regions are hidden, which means they will not
