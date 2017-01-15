@@ -13,6 +13,11 @@ stylesheets[all][] = css/ui-kit.css
 ; Add DTA UI kit.
 scripts[] = js/ui-kit.min.js
 
+; Add scripts
+scripts[] = js/init.js
+scripts[] = js/breakpoints.js
+
+; Regions
 regions[header]         = Header
 regions[navigation]     = Navigation bar
 regions[hero]           = Hero
