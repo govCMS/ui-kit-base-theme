@@ -1512,14 +1512,18 @@ body > main {
     body > main [type='button']:hover,
     body > main [type='button']:focus {
       background-color: #115361;
-      color: #fff; }
+      color: #fff;
+      outline: #fff solid 2px;
+      outline-offset: -4px; }
     body > main button:active,
     body > main .button:active,
     body > main [role='button']:active,
     body > main [type='submit']:active,
     body > main [type='reset']:active,
     body > main [type='button']:active {
-      background-color: #146577; }
+      background-color: #146577;
+      outline: #fff solid 2px;
+      outline-offset: -4px; }
 
 footer[role='contentinfo'] {
   color: #313131;
@@ -1621,14 +1625,18 @@ footer[role='contentinfo'] {
     footer[role='contentinfo'] [type='button']:hover,
     footer[role='contentinfo'] [type='button']:focus {
       background-color: #115361;
-      color: #fff; }
+      color: #fff;
+      outline: #fff solid 2px;
+      outline-offset: -4px; }
     footer[role='contentinfo'] button:active,
     footer[role='contentinfo'] .button:active,
     footer[role='contentinfo'] [role='button']:active,
     footer[role='contentinfo'] [type='submit']:active,
     footer[role='contentinfo'] [type='reset']:active,
     footer[role='contentinfo'] [type='button']:active {
-      background-color: #146577; }
+      background-color: #146577;
+      outline: #115361 solid 2px;
+      outline-offset: -4px; }
 
 /*
 List styles
@@ -3244,14 +3252,18 @@ footer[role='contentinfo'] {
     [class^='controls'] [type='button']:hover,
     [class^='controls'] [type='button']:focus {
       background-color: #fff;
-      color: #021620; }
+      color: #021620;
+      outline: #021620 solid 2px;
+      outline-offset: -4px; }
     [class^='controls'] button:active,
     [class^='controls'] .button:active,
     [class^='controls'] [role='button']:active,
     [class^='controls'] [type='submit']:active,
     [class^='controls'] [type='reset']:active,
     [class^='controls'] [type='button']:active {
-      background-color: #fff; }
+      background-color: #fff;
+      outline: #021620 solid 2px;
+      outline-offset: -4px; }
   [class^='controls'] section {
     float: left;
     display: block;
@@ -3330,14 +3342,18 @@ footer[role='contentinfo'] {
       [class^='controls'][class$='--contrast'] [type='button']:hover,
       [class^='controls'][class$='--contrast'] [type='button']:focus {
         background-color: #fff;
-        color: #880e48; }
+        color: #880e48;
+        outline: #880e48 solid 2px;
+        outline-offset: -4px; }
       [class^='controls'][class$='--contrast'] button:active,
       [class^='controls'][class$='--contrast'] .button:active,
       [class^='controls'][class$='--contrast'] [role='button']:active,
       [class^='controls'][class$='--contrast'] [type='submit']:active,
       [class^='controls'][class$='--contrast'] [type='reset']:active,
       [class^='controls'][class$='--contrast'] [type='button']:active {
-        background-color: #fff; }
+        background-color: #fff;
+        outline: #fff solid 2px;
+        outline-offset: -4px; }
     [class^='controls'][class$='--contrast'] [role='button']:hover,
     [class^='controls'][class$='--contrast'] [role='button']:focus {
       color: #880e48; }
@@ -3503,14 +3519,18 @@ Style guide: Page header.01 Header
     .govau--header [type='button']:hover,
     .govau--header [type='button']:focus {
       background-color: #fff;
-      color: #043751; }
+      color: #043751;
+      outline: #043751 solid 2px;
+      outline-offset: -4px; }
     .govau--header button:active,
     .govau--header .button:active,
     .govau--header [role='button']:active,
     .govau--header [type='submit']:active,
     .govau--header [type='reset']:active,
     .govau--header [type='button']:active {
-      background-color: #fff; }
+      background-color: #fff;
+      outline: #fff solid 2px;
+      outline-offset: -4px; }
   @media screen and (min-width: 768px) {
     .govau--header {
       padding-bottom: 1.2em; } }
@@ -3639,14 +3659,18 @@ Style guide: Page header.01 Header
     .prerelease-govau--header [type='button']:hover,
     .prerelease-govau--header [type='button']:focus {
       background-color: #fff;
-      color: #043751; }
+      color: #043751;
+      outline: #043751 solid 2px;
+      outline-offset: -4px; }
     .prerelease-govau--header button:active,
     .prerelease-govau--header .button:active,
     .prerelease-govau--header [role='button']:active,
     .prerelease-govau--header [type='submit']:active,
     .prerelease-govau--header [type='reset']:active,
     .prerelease-govau--header [type='button']:active {
-      background-color: #fff; }
+      background-color: #fff;
+      outline: #fff solid 2px;
+      outline-offset: -4px; }
   @media screen and (min-width: 768px) {
     .prerelease-govau--header {
       padding-bottom: 0; } }
@@ -4847,7 +4871,9 @@ span.ext {
           box-sizing: inherit; }
 
 .field-type-taxonomy-term-reference div {
-  display: inline-block; }
+  display: inline;
+  margin: 0 3px 3px 0;
+  white-space: nowrap; }
 
 div.toc-filter-content {
   border: none;
