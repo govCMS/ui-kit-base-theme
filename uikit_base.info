@@ -16,6 +16,7 @@ scripts[] = js/ui-kit.min.js
 ; Add scripts
 scripts[] = js/init.js
 scripts[] = js/breakpoints.js
+scripts[] = js/header_search.js
 
 ; Regions
 regions[header]         = Header
