@@ -21,6 +21,8 @@ regions[content]        = Content
 regions[sidebar_left]   = Sidebar left
 regions[sidebar_right]  = Sidebar right
 regions[footer]         = Footer
+regions[footer_top]     = Footer top
+regions[footer_bottom]  = Footer bottom
 regions[bottom]         = Page bottom
 
 ; The page_top and page_bottom regions are hidden, which means they will not
@@ -46,10 +48,9 @@ features[] = favicon
 features[] = main_menu
 features[] = secondary_menu
 
-
-
 ; Set the default values of settings on the theme-settings.php form.
-
+settings[footer_top_layout] = horizontal
+settings[footer_bottom_layout] = horizontal
 
 ; To make this sub-theme an admin theme with shortcut links next to titles,
 ; uncomment the line below.
