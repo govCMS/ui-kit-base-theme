@@ -1,118 +1,146 @@
-.page-header__branding a {
-  border-bottom: none;
-  display: block;
-
-  &:hover,
-  &:focus {
-    border-bottom: none;
-    background-color: inherit;
-  }
-}
-
-.page-header__branding img {
-  display: block;
-  margin: 0 auto;
-  float: none;
-}
-
-.region-header {
-  display: table;
-  width: 100%;
-}
-
 .page-header .site-nav {
   clear: both;
 }
 
-.page-header__branding {
-  padding-top: .4em;
-  h1 {
-    font-size: 1.4em;
-  }
-  h2 {
-    font-size: 1em;
-    color: $non-black;
+.region-header {
+  display: table;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.page-header__logo,
+.page-header__site-info,
+.page-header__content {
+  display: block;
+  text-align: center;
+}
+
+.page-header__logo {
+  img {
+    display: block;
+    margin: 0 auto;
   }
 }
 
 .page-header__site-info {
   text-align: center;
   margin-top: 0;
-}
 
-.page-header__content form {
-  @include button-colours($button-bg-colour, $button-bg-colour--hover, $button-bg-colour--active, $button-text-colour, $button-bg-colour--disabled);
-  float: none;
-  margin-top: 1.6em;
-
-  [type=submit] {
-    float: right;
-    position: relative;
-    background-image: url("../images/icons/search-navy.svg");
-    background-size: 20px auto;
-    background-repeat: no-repeat;
-    background-position: center center;
+  h1 {
+    font-size: 1.4em;
+    margin-bottom: 0;
+  }
+  h2 {
+    color: $non-black;
+    font-size: 1em;
+    margin-top: 1em;
   }
 
-  [type=text] {
-    border-right: 0;
-    line-height: 2.16em;
-    width: 13em;
-  }
-}
+  a {
+    border-bottom: none;
+    display: block;
 
-.page-header__content form,
-.page-header__content form div {
-  display: inline-block;
-}
-
-.page-header__branding,
-.page-header__content {
-  display: block;
-  text-align: center;
-}
-
-@include media($tablet) {
-
-  .page-header__content form {
-    float: right;
-
-    [type=text] {
-      line-height: 1.8em;
+    &:hover,
+    &:focus {
+      border-bottom: none;
+      background-color: inherit;
     }
   }
+}
 
-  .page-header__branding img {
-    margin: 0 1em 1em 0;
-    float: left;
+.page-header__content {
+  form,
+  form div {
+    display: inline-block;
   }
 
-  .page-header__branding,
+  form {
+    border: solid 2px #bbbbbb;
+    border-radius: 3px 0 0 3px;
+    float: none;
+    margin-top: 1.5em;
+
+    [type=text], [type=submit] {
+      border: none;
+      margin: 0;
+
+      &:hover {
+        background-color: #e1e7eb;
+      }
+    }
+
+    [type=text] {
+      background-color: #f0f3f5;
+      line-height: 2.4em;
+      width: 13em;
+
+      &:focus {
+        border-right: solid 2px #5bcbe3;
+      }
+    }
+
+    [type=submit] {
+      background: #f0f3f5 url("../images/icons/search-navy.svg") center center no-repeat;
+      background-size: 20px auto;
+      float: right;
+      position: relative;
+    }
+  }
+}
+
+
+@include media($tablet) {
+  .page-header__logo,
+  .page-header__site-info,
   .page-header__content {
     display: table-cell;
+    vertical-align: middle;
     text-align: left;
   }
 
-  .page-header__content {
-    vertical-align: middle;
+  .page-header__logo {
+    img {
+      margin-right: 1em;
+      float: left;
+    }
   }
 
   .page-header__site-info {
     text-align: left;
+
+    h1 {
+      margin: 0 0 .25em 0;
+    }
+
+    h2 {
+      margin: 0;
+    }
   }
 
+  .page-header__content form {
+    float: right;
+    margin: 0;
+
+    [type=text] {
+      line-height: 2em;
+    }
+  }
 }
 
 @include media($desktop) {
+  .page-header__site-info {
+    margin-top: 1.5em;
+  }
 
   .page-header__content form {
+    @include button-colours($button-bg-colour, $button-bg-colour--hover, $button-bg-colour--active, $button-text-colour, $button-bg-colour--disabled);
 
     [type=text] {
       width: 20em;
     }
-  }
 
-  .page-header__site-info {
-    margin-top: 1.5em;
+    [type=submit] {
+      background-image: none;
+    }
   }
 }

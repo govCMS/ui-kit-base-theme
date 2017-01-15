@@ -20,7 +20,7 @@ function uikit_base_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'search_api') !== FALSE) {
     $search_api_form_id = $form['id']['#value'];
     unset($form['keys_' . $search_api_form_id]['#size']);
-    unset($form['submit_' . $search_api_form_id]['#value']);
+    $form['#attributes']['class'] = 'search-form';
   }
 
 }
@@ -397,7 +397,7 @@ function _uikit_base_preprocess_region_header(&$variables) {
   $site_name = variable_get('site_name', '');
   $site_slogan = variable_get('site_slogan', '');
 
-  $site_branding = '';
+  $output = '';
 
   // Do we want to show a logo?
   if (theme_get_setting('toggle_logo')) {
@@ -430,7 +430,9 @@ function _uikit_base_preprocess_region_header(&$variables) {
       'height' => $height,
     ));
 
-    $site_branding .= $logo;
+    $output .= '<div class="page-header__logo">';
+    $output .= $logo;
+    $output .= '</div>';
 
   }
 
@@ -439,25 +441,21 @@ function _uikit_base_preprocess_region_header(&$variables) {
   $show_site_slogan = theme_get_setting('toggle_slogan');
   if ($show_site_name || (!empty($site_slogan) && $show_site_slogan)) {
 
-    $site_branding .= '<div class="page-header__site-info">';
+    $output .= '<div class="page-header__site-info">';
 
     // Do we want to show a site name?
     if ($show_site_name) {
-      $site_branding .= '<h1>' . filter_xss($site_name) . '</h1>';
+      $output .= '<h1>' . filter_xss($site_name) . '</h1>';
     }
     // Do we want to show a site slogan?
     if (!empty($site_slogan) && $show_site_slogan) {
-      $site_branding .= '<h2>' . filter_xss($site_slogan) . '</h2>';
+      $output .= '<h2>' . filter_xss($site_slogan) . '</h2>';
     }
 
-    $site_branding .= '</div>';
+    $output .= '</div>';
 
   }
 
-  $output = '';
-  $output .= '<div class="page-header__branding">';
-  $output .= $site_branding;
-  $output .= '</div>';
   $output .= '<div class="page-header__content">';
   $output .= $variables['content'];
   $output .= '</div>';
