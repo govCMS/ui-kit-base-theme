@@ -20,6 +20,7 @@ function uikit_base_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'search_api') !== FALSE) {
     $search_api_form_id = $form['id']['#value'];
     unset($form['keys_' . $search_api_form_id]['#size']);
+    $form['keys_' . $search_api_form_id]['#attributes']['placeholder'] = t('Search');
     $form['#attributes']['class'] = 'search-form';
   }
 
@@ -430,7 +431,9 @@ function _uikit_base_preprocess_region_header(&$variables) {
       'height' => $height,
     ));
 
-    $output .= '<div class="page-header__logo">';
+    // Inline styling to prevent SVG container from collapsing and making the
+    // logo smaller or distorting it.
+    $output .= '<div class="page-header__logo" style="min-width: ' . $width . 'px">';
     $output .= $logo;
     $output .= '</div>';
 

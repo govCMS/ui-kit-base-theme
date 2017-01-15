@@ -51,7 +51,8 @@
 .page-header__content {
   form,
   form div {
-    display: inline-block;
+    display: inline-flex;
+    white-space: nowrap;
   }
 
   form {
@@ -72,7 +73,7 @@
     [type=text] {
       background-color: #f0f3f5;
       line-height: 2.4em;
-      width: 13em;
+      width: 100%;
 
       &:focus {
         border-right: solid 2px #5bcbe3;
@@ -106,6 +107,7 @@
   }
 
   .page-header__site-info {
+    padding: 0 1em;
     text-align: left;
 
     h1 {
@@ -123,6 +125,7 @@
 
     [type=text] {
       line-height: 2em;
+      width: 10em;
     }
   }
 }
@@ -136,7 +139,7 @@
     @include button-colours($button-bg-colour, $button-bg-colour--hover, $button-bg-colour--active, $button-text-colour, $button-bg-colour--disabled);
 
     [type=text] {
-      width: 20em;
+      width: 15em;
     }
 
     [type=submit] {
