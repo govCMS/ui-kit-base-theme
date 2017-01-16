@@ -28,7 +28,34 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
       'left' => t('Left'),
       'right' => t('Right'),
     ),
-    '#default_value' => is_null(theme_get_setting('sidebar_position')) ? 'right' : theme_get_setting('sidebar_position'),
+    '#default_value' => theme_get_setting('sidebar_position'),
     '#description' => t('A single sidebar is available, it can be positioned to the left or right of the content area.'),
   );
+
+  // Footer layout
+  $options = array(
+    'horizontal' => t('Horizontal'),
+    'vertical' => t('Vertical'),
+  );
+
+  $form['footer_layout'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Footer content layout'),
+    '#description' => t('These settings control how the contents of the footer top and bottom regions are laid out.'),
+  );
+
+  $form['footer_layout']['footer_top_layout'] = array(
+    '#type' => 'radios',
+    '#title' => t('Footer top content layout'),
+    '#options' => $options,
+    '#default_value' => theme_get_setting('footer_top_layout'),
+  );
+
+  $form['footer_layout']['footer_bottom_layout'] = array(
+    '#type' => 'radios',
+    '#title' => t('Footer bottom content layout'),
+    '#options' => $options,
+    '#default_value' => theme_get_setting('footer_bottom_layout'),
+  );
+
 }
