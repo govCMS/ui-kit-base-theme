@@ -5110,10 +5110,12 @@ span.ext {
   -webkit-box-sizing: inherit;
           box-sizing: inherit; }
 
-.field-type-taxonomy-term-reference div {
-  display: inline;
-  margin: 0 3px 3px 0;
-  white-space: nowrap; }
+.field-type-taxonomy-term-reference {
+  margin-bottom: 1em; }
+  .field-type-taxonomy-term-reference div {
+    display: inline;
+    margin: 0 3px 3px 0;
+    white-space: nowrap; }
 
 div.toc-filter-content {
   border: none;
