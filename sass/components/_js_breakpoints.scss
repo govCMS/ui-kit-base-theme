@@ -1,0 +1,22 @@
+/**
+ * This file provides breakpoint information to JS
+ *
+ * https://www.lullabot.com/articles/importing-css-breakpoints-into-javascript
+ */
+
+body:before {
+  content: 'mobile';
+  display: none;
+}
+
+@include media($tablet) {
+  body:before {
+    content: 'tablet';
+  }
+}
+
+@include media($desktop) {
+  body:before {
+    content: 'desktop';
+  }
+}

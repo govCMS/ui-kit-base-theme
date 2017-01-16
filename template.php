@@ -8,6 +8,26 @@
  */
 
 
+/** Core hooks ****************************************************************/
+
+/**
+ * Implements THEME_form_alter().
+ */
+function uikit_base_form_alter(&$form, &$form_state, $form_id) {
+
+  // If this form is a search api form, we want to remove the size attribute
+  // on the text input, it makes styling difficult. We also update the
+  // placeholder and apply a class to thr form for targeting in JS.
+  if (strpos($form_id, 'search_api') !== FALSE) {
+    $search_api_form_id = $form['id']['#value'];
+    unset($form['keys_' . $search_api_form_id]['#size']);
+    $form['keys_' . $search_api_form_id]['#attributes']['placeholder'] = t('Search');
+    $form['#attributes']['class'] = 'search-form';
+  }
+
+}
+
+
 /** Core pre-process functions ************************************************/
 
 /**
@@ -43,6 +63,7 @@ function uikit_base_preprocess_node(&$variables) {
  * Implements THEME_preprocess_page().
  */
 function uikit_base_preprocess_page(&$variables) {
+
   // Get classes for <main> together
   $variables['main_classes'] = array('main');
   // Position sidebar based on theme settings
@@ -50,6 +71,9 @@ function uikit_base_preprocess_page(&$variables) {
     $variables['main_classes'][] = 'sidebar-has-controls';
   }
   $variables['main_classes'] = implode(' ', $variables['main_classes']);
+
+
+
 }
 
 /**
@@ -77,6 +101,11 @@ function uikit_base_preprocess_region(&$variables) {
   // Add UI KIT nav menu class
   if ($variables['region'] == 'sidebar') {
     $variables['classes_array'][] = 'local-nav';
+  }
+
+  // Pre-process the header region to combine block content and site branding
+  if ($variables['region'] == 'header') {
+    _uikit_base_preprocess_region_header($variables);
   }
 
   // Drop in the footer layout classes
@@ -218,28 +247,10 @@ function uikit_base_pager($variables) {
   }
   // End of generation loop preparation.
 
-  $li_first = theme('pager_first', array(
-    'text' => (isset($tags[0]) ? $tags[0] : t('« first')),
-    'element' => $element,
-    'parameters' => $parameters
-  ));
-  $li_previous = theme('pager_previous', array(
-    'text' => (isset($tags[1]) ? $tags[1] : t('‹ previous')),
-    'element' => $element,
-    'interval' => 1,
-    'parameters' => $parameters
-  ));
-  $li_next = theme('pager_next', array(
-    'text' => (isset($tags[3]) ? $tags[3] : t('next ›')),
-    'element' => $element,
-    'interval' => 1,
-    'parameters' => $parameters
-  ));
-  $li_last = theme('pager_last', array(
-    'text' => (isset($tags[4]) ? $tags[4] : t('last »')),
-    'element' => $element,
-    'parameters' => $parameters
-  ));
+  $li_first = theme('pager_first', array('text' => (isset($tags[0]) ? $tags[0] : t('« first')), 'element' => $element, 'parameters' => $parameters));
+  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('‹ previous')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('next ›')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('last »')), 'element' => $element, 'parameters' => $parameters));
 
   if ($pager_total[$element] > 1) {
     if ($li_first) {
@@ -268,12 +279,7 @@ function uikit_base_pager($variables) {
         if ($i < $pager_current) {
           $items[] = array(
             'class' => array('pager-item'),
-            'data' => theme('pager_previous', array(
-              'text' => $i,
-              'element' => $element,
-              'interval' => ($pager_current - $i),
-              'parameters' => $parameters
-            )),
+            'data' => theme('pager_previous', array('text' => $i, 'element' => $element, 'interval' => ($pager_current - $i), 'parameters' => $parameters)),
           );
         }
         if ($i == $pager_current) {
@@ -285,12 +291,7 @@ function uikit_base_pager($variables) {
         if ($i > $pager_current) {
           $items[] = array(
             'class' => array('pager-item'),
-            'data' => theme('pager_next', array(
-              'text' => $i,
-              'element' => $element,
-              'interval' => ($i - $pager_current),
-              'parameters' => $parameters
-            )),
+            'data' => theme('pager_next', array('text' => $i, 'element' => $element, 'interval' => ($i - $pager_current), 'parameters' => $parameters)),
           );
         }
       }
@@ -364,7 +365,8 @@ function uikit_base_status_messages($variables) {
   return $output;
 }
 
-/** Contrib Theme functions ***********************************************************/
+
+/** Contrib Theme functions ***************************************************/
 
 /**
  * Implement THEME_toc_filter().
@@ -378,6 +380,7 @@ function uikit_base_toc_filter($variables) {
   $output .= '</div>';
   return $output;
 }
+
 
 /** Helper functions **********************************************************/
 
@@ -397,6 +400,97 @@ function _uikit_base_process_local_tasks($children) {
 }
 
 /**
+ * Pre-process the logo for uikit_base_preprocess_page().
+ *
+ * Turn the logo from a URL into an image within a link, and also scale it so
+ * that it's no taller than specified in the theme settings.
+ *
+ * This may be useful to users who do not have the ability to adjust the image
+ * size. It also allows the use of svg images where the ability set the image
+ * size to a maximum height is useful.
+ *
+ * This can be overridden in CSS at various breakpoints if required for those
+ * users who want to customise the theme.
+ *
+ * @param array $variables
+ *
+ * @see uikit_base_preprocess_page().
+ */
+function _uikit_base_preprocess_region_header(&$variables) {
+
+  $site_name = variable_get('site_name', '');
+  $site_slogan = variable_get('site_slogan', '');
+
+  $output = '';
+
+  // Do we want to show a logo?
+  if (theme_get_setting('toggle_logo')) {
+
+    $logo = theme_get_setting('logo');
+
+    // Attempt to get the width and height of the logo
+    $max_height = theme_get_setting('logo_max_height');
+    list($width, $height) = getimagesize($logo);
+
+    // If we're dealing with an SVG, the width and height will be null, so we set
+    // a height and get the browser to pick up the width.
+    if (is_null($width) && is_null($height)) {
+      $height = $max_height;
+    }
+
+    // Bitmap images will give us values
+    elseif ($height > $max_height) {
+      $ratio = $width / $height;
+      $height = $max_height;
+      $width = round($height * $ratio);
+    }
+
+    // Create the image using theme_image().
+    $logo = theme('image', array(
+      'path' => $logo,
+      'alt' => t('@site_name logo', array('@site_name' => $site_name)),
+      'title' => filter_xss($site_name),
+      'width' => $width,
+      'height' => $height,
+    ));
+
+    // Inline styling to prevent SVG container from collapsing and making the
+    // logo smaller or distorting it.
+    $output .= '<div class="page-header__logo" style="min-width: ' . $width . 'px">';
+    $output .= $logo;
+    $output .= '</div>';
+
+  }
+
+  // Do we need to show additional info?
+  $show_site_name = theme_get_setting('toggle_name');
+  $show_site_slogan = theme_get_setting('toggle_slogan');
+  if ($show_site_name || (!empty($site_slogan) && $show_site_slogan)) {
+
+    $output .= '<div class="page-header__site-info">';
+
+    // Do we want to show a site name?
+    if ($show_site_name) {
+      $output .= '<h1>' . filter_xss($site_name) . '</h1>';
+    }
+    // Do we want to show a site slogan?
+    if (!empty($site_slogan) && $show_site_slogan) {
+      $output .= '<h2>' . filter_xss($site_slogan) . '</h2>';
+    }
+
+    $output .= '</div>';
+
+  }
+
+  $output .= '<div class="page-header__content">';
+  $output .= $variables['content'];
+  $output .= '</div>';
+
+  $variables['content'] = $output;
+
+}
+
+/*
  * Helper function to add UI KIT link class to link.
  * 
  * @param $class_pairs
@@ -414,6 +508,5 @@ function _uikit_base_active_link($class_pairs, $classes) {
       $classes[] = $additional_class;
     }
   }
-  
   return $classes;
 }

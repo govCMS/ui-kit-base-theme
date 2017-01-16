@@ -13,6 +13,12 @@ stylesheets[all][] = css/ui-kit.css
 ; Add DTA UI kit.
 scripts[] = js/ui-kit.min.js
 
+; Add scripts
+scripts[] = js/init.js
+scripts[] = js/breakpoints.js
+scripts[] = js/header_search.js
+
+; Regions
 regions[header]         = Header
 regions[navigation]     = Navigation bar
 regions[hero]           = Hero
@@ -48,6 +54,11 @@ features[] = main_menu
 features[] = secondary_menu
 
 ; Set the default values of settings on the theme-settings.php form.
+settings[logo_max_height] = 150
+settings[logo_path] = sites/all/themes/uikit_base/logo.svg
+settings[default_logo] = 0
+settings[sidebar_position] = right
+
 settings[footer_top_layout] = horizontal
 settings[footer_bottom_layout] = horizontal
 

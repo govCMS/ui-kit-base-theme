@@ -13,6 +13,16 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
     return;
   }
 
+  // The maximum height for the logo in the header
+  $form['logo']['logo_max_height'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Maximum height'),
+    '#default_value' => theme_get_setting('logo_max_height'),
+    '#field_suffix' => 'px',
+    '#size' => 5,
+    '#description' => t('Limit the height of the logo in the header, aspect ratio will be maintained.'),
+  );
+
   // UI KIT settings.
   $form['uikit_settings'] = array(
     '#type' => 'fieldset',
