@@ -4993,6 +4993,9 @@ body:before {
     .page--sidebar-right .content-main:last-child {
       margin-right: 0; } }
 
+[class^='breadcrumbs'] {
+  background-color: transparent; }
+
 footer .block__title {
   font-size: 1.5rem;
   line-height: 1;
