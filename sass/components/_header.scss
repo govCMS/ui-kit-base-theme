@@ -56,8 +56,6 @@
   }
 
   form {
-    border: solid 2px #bbbbbb;
-    border-radius: 3px 0 0 3px;
     float: none;
     margin-top: 1.5em;
 
@@ -72,12 +70,19 @@
 
     [type=text] {
       background-color: #f0f3f5;
-      line-height: 2.4em;
+      line-height: 2em;
       width: 100%;
+      border: 2px solid $light-grey;
+      border-right: none;
 
       &:focus {
-        border-right: solid 2px #5bcbe3;
+        border: 2px solid $light-aqua;
+        outline: none;
       }
+    }
+
+    [type=submit] {
+      border: 2px solid $light-grey;
     }
 
     [type=submit] {
@@ -124,7 +129,7 @@
     margin: 0;
 
     [type=text] {
-      line-height: 2em;
+      line-height: 1.8em;
       width: 10em;
     }
   }
@@ -144,6 +149,7 @@
 
     [type=submit] {
       background-image: none;
+      border: none;
     }
   }
 }

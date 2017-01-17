@@ -4773,8 +4773,6 @@ footer section {
   white-space: nowrap; }
 
 .page-header__content form {
-  border: solid 2px #bbbbbb;
-  border-radius: 3px 0 0 3px;
   float: none;
   margin-top: 1.5em; }
   .page-header__content form [type=text], .page-header__content form [type=submit] {
@@ -4784,10 +4782,15 @@ footer section {
       background-color: #e1e7eb; }
   .page-header__content form [type=text] {
     background-color: #f0f3f5;
-    line-height: 2.4em;
-    width: 100%; }
+    line-height: 2em;
+    width: 100%;
+    border: 2px solid #bbbbbb;
+    border-right: none; }
     .page-header__content form [type=text]:focus {
-      border-right: solid 2px #5bcbe3; }
+      border: 2px solid #5bcbe3;
+      outline: none; }
+  .page-header__content form [type=submit] {
+    border: 2px solid #bbbbbb; }
   .page-header__content form [type=submit] {
     background: #f0f3f5 url("../images/icons/search-navy.svg") center center no-repeat;
     background-size: 20px auto;
@@ -4819,7 +4822,7 @@ footer section {
     float: right;
     margin: 0; }
     .page-header__content form [type=text] {
-      line-height: 2em;
+      line-height: 1.8em;
       width: 10em; } }
 
 @media screen and (min-width: 75em) {
@@ -4857,7 +4860,8 @@ footer section {
   .page-header__content form [type=text] {
     width: 15em; }
   .page-header__content form [type=submit] {
-    background-image: none; } }
+    background-image: none;
+    border: none; } }
 
 /**
  * This file provides breakpoint information to JS
