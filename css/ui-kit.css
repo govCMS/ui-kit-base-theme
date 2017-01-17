@@ -5116,6 +5116,10 @@ span.ext {
     margin: 0 3px 3px 0;
     white-space: nowrap; }
 
+.back-to-index-link {
+  float: right;
+  font-size: 0.875rem; }
+
 div.workbench-info-block {
   padding-left: 1.2em;
   border-left-width: 0.4em;
