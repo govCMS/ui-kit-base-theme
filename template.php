@@ -372,13 +372,19 @@ function uikit_base_status_messages($variables) {
  * Implement THEME_toc_filter().
  */
 function uikit_base_toc_filter($variables) {
-  $output = '<a name="top" class="toc-filter-top"></a>';
-
-  // Add UI KIT content links class.
-  $output .= '<div class="index-links toc-filter toc-filter-' . $variables['type'] . '">';
-  $output .= '<div class="toc-filter-content">' . $variables['content'] . '</div>';
-  $output .= '</div>';
+  $output = '';
+  $output .= '<nav class="index-links">';
+  $output .= '<h2 id="index-links">' . t('Contents') . '</h2>';
+  $output .= $variables['content'];
+  $output .= '</nav>';
   return $output;
+}
+
+/**
+ * Implements THEME_toc_filter_back_to_top().
+ */
+function uikit_base_toc_filter_back_to_top($variables) {
+  return '<span class="back-to-index-link"><a href="#index-links">' . t('Back to contents ↑') . '</a></span>';
 }
 
 
