@@ -5117,12 +5117,6 @@ span.ext {
     margin: 0 3px 3px 0;
     white-space: nowrap; }
 
-div.toc-filter-content {
-  border: none;
-  background-color: inherit;
-  margin: 0px;
-  padding: 0px; }
-
 div.workbench-info-block {
   padding-left: 1.2em;
   border-left-width: 0.4em;
