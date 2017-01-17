@@ -115,18 +115,6 @@ function uikit_base_preprocess_region(&$variables) {
 
 }
 
-
-/** Contrib pre-process functions *********************************************/
-
-/**
- * Implements THEME_preprocess_views_view_table().
- */
-function uikit_base_preprocess_views_view_table(&$vars) {
-  // Add UI KIT table class to views table.
-  $vars['classes_array'][] = 'content-table';
-}
-
-
 /** Theme functions ***********************************************************/
 
 /**
@@ -492,13 +480,13 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
 /*
  * Helper function to add UI KIT link class to link.
- * 
+ *
  * @param $class_pairs
  *   The pairs of Drupal class and UI KIT class.
- *   
+ *
  * @param $classes
  *   Origin class array from Drupal.
- * 
+ *
  * @return array
  *   Class array.
  */
