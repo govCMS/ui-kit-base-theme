@@ -37,13 +37,12 @@
   }
 
   a {
-    border-bottom: none;
+    border-bottom: none !important;
     display: block;
 
     &:hover,
     &:focus {
-      border-bottom: none;
-      background-color: inherit;
+      background-color: transparent !important;
     }
   }
 }

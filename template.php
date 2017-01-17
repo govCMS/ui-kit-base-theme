@@ -463,7 +463,7 @@ function _uikit_base_preprocess_region_header(&$variables) {
     // Inline styling to prevent SVG container from collapsing and making the
     // logo smaller or distorting it.
     $output .= '<div class="page-header__logo" style="min-width: ' . $width . 'px">';
-    $output .= $logo;
+    $output .= l($logo, '<front>', array('html' => TRUE));
     $output .= '</div>';
 
   }
@@ -477,7 +477,7 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
     // Do we want to show a site name?
     if ($show_site_name) {
-      $output .= '<h1>' . filter_xss($site_name) . '</h1>';
+      $output .= '<h1>' . l($site_name, '<front>') . '</h1>';
     }
     // Do we want to show a site slogan?
     if (!empty($site_slogan) && $show_site_slogan) {
@@ -496,7 +496,7 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
 }
 
-/*
+/**
  * Helper function to add UI KIT link class to link.
  * 
  * @param $class_pairs

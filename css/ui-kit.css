@@ -4758,11 +4758,10 @@ footer section {
     font-size: 1em;
     margin-top: 1em; }
   .page-header__site-info a {
-    border-bottom: none;
+    border-bottom: none !important;
     display: block; }
     .page-header__site-info a:hover, .page-header__site-info a:focus {
-      border-bottom: none;
-      background-color: inherit; }
+      background-color: transparent !important; }
 
 .page-header__content form,
 .page-header__content form div {
