@@ -99,7 +99,7 @@ function uikit_base_preprocess_block(&$variables) {
 function uikit_base_preprocess_region(&$variables) {
 
   // Add UI KIT nav menu class
-  if ($variables['region'] == 'sidebar') {
+  if (in_array($variables['region'], array('sidebar_left', 'sidebar_right'))) {
     $variables['classes_array'][] = 'local-nav';
   }
 
@@ -492,13 +492,13 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
 /*
  * Helper function to add UI KIT link class to link.
- * 
+ *
  * @param $class_pairs
  *   The pairs of Drupal class and UI KIT class.
- *   
+ *
  * @param $classes
  *   Origin class array from Drupal.
- * 
+ *
  * @return array
  *   Class array.
  */
