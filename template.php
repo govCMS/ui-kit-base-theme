@@ -99,7 +99,7 @@ function uikit_base_preprocess_block(&$variables) {
 function uikit_base_preprocess_region(&$variables) {
 
   // Add UI KIT nav menu class
-  if ($variables['region'] == 'sidebar') {
+  if (in_array($variables['region'], array('sidebar_left', 'sidebar_right'))) {
     $variables['classes_array'][] = 'local-nav';
   }
 
