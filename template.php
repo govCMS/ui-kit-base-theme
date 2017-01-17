@@ -86,9 +86,15 @@ function uikit_base_preprocess_block(&$variables) {
   $variables['content_attributes_array']['class'] = 'block__content content';
 
   // Drupal menu blocks, and Menu Block's blocks, share the same template file
-  // to apply the <nav> element.
+  // to apply the <nav> element.  We also switch template file if the block is
+  // in a sidebar.
   if (in_array($variables['block']->module, array('menu', 'menu_block'))) {
-    array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic');
+    if (in_array($variables['block']->region, array('sidebar_left', 'sidebar_right'))) {
+      array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic_sidebar');
+    }
+    else {
+      array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic');
+    }
   }
 
 }
@@ -97,11 +103,6 @@ function uikit_base_preprocess_block(&$variables) {
  * Implements THEME_preprocess_region().
  */
 function uikit_base_preprocess_region(&$variables) {
-
-  // Add UI KIT nav menu class
-  if ($variables['region'] == 'sidebar') {
-    $variables['classes_array'][] = 'local-nav';
-  }
 
   // Pre-process the header region to combine block content and site branding
   if ($variables['region'] == 'header') {
