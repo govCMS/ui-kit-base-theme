@@ -4728,6 +4728,9 @@ footer section {
 .form-type-checkbox.form-error label:before {
   border-color: #c00; }
 
+form .form-type-checkbox input[type='checkbox'] + label {
+  margin-left: 0; }
+
 .page-header .site-nav {
   clear: both; }
 

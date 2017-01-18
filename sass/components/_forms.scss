@@ -1,3 +1,9 @@
 .form-type-checkbox.form-error label:before {
   border-color: $error-colour;
 }
+
+// This prevents single checkboxes that don't have a label from getting left
+// margin and sitting out from the gutter.
+form .form-type-checkbox input[type='checkbox'] + label {
+  margin-left: 0
+}
