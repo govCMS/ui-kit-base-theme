@@ -72,8 +72,6 @@ function uikit_base_preprocess_page(&$variables) {
   }
   $variables['main_classes'] = implode(' ', $variables['main_classes']);
 
-
-
 }
 
 /**
@@ -334,7 +332,7 @@ function uikit_base_status_messages($variables) {
 
   foreach (drupal_get_messages($display) as $type => $messages) {
     // Add UI KIT index-link class to the message div.
-    $output .= "<div class=\"messages $ui_kit_statuses[$type] index-links\">\n";
+    $output .= "<div class=\"messages $ui_kit_statuses[$type]\">\n";
     if (!empty($status_heading[$type])) {
       $output .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
     }
