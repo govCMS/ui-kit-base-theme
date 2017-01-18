@@ -4725,6 +4725,9 @@ footer section {
     footer .region--horizontal .block {
       display: table-cell; } }
 
+.form-type-checkbox.form-error label:before {
+  border-color: #c00; }
+
 .page-header .site-nav {
   clear: both; }
 
