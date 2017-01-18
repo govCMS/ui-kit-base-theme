@@ -113,6 +113,7 @@ function uikit_base_preprocess_region(&$variables) {
 
 }
 
+
 /** Theme functions ***********************************************************/
 
 /**
@@ -142,7 +143,7 @@ function uikit_base_breadcrumb($variables) {
 /**
  * Implements THEME_menu_local_tasks().
  */
-function uikit_base_menu_local_tasks(&$variables) {
+function uikit_base_menu_local_tasks($variables) {
   $output = '';
 
   // Add UI KIT class to the tabs.
@@ -349,6 +350,55 @@ function uikit_base_status_messages($variables) {
     $output .= "</div>\n";
   }
   return $output;
+}
+
+/**
+ * Implements THEME_form_element_label().
+ */
+function uikit_base_form_element_label($variables) {
+
+  $element = $variables['element'];
+  // This is also used in the installer, pre-database setup.
+  $t = get_t();
+
+  // If title and required marker are both empty, output no label.
+  if ((!isset($element['#title']) || $element['#title'] === '') && empty($element['#required'])) {
+    return '';
+  }
+
+  $title = filter_xss_admin($element['#title']);
+
+  // If the element is not required, add (optional) to the end of the label, but
+  // not for single checkboxes.
+  $required = '';
+  if ($element['#type'] != 'checkbox') {
+    $required = empty($element['#required']) ? '(optional)' : '';
+  }
+
+  // If the label ends with a period, we need to put (optional) before that
+  // period or it will look strange.
+  if ($required && substr($title, -1) == '.') {
+    $title =  substr($title, 0, -1);
+    $required .= '.';
+  }
+
+  $attributes = array();
+  // Style the label as class option to display inline with the element.
+  if ($element['#title_display'] == 'after') {
+    $attributes['class'] = 'option';
+  }
+  // Show label only to screen readers to avoid disruption in visual flows.
+  elseif ($element['#title_display'] == 'invisible') {
+    $attributes['class'] = 'element-invisible';
+  }
+
+  if (!empty($element['#id'])) {
+    $attributes['for'] = $element['#id'];
+  }
+
+  // The leading whitespace helps visually separate fields from inline labels.
+  return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !required', array('!title' => $title, '!required' => $required)) . "</label>\n";
+
 }
 
 
