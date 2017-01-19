@@ -5,7 +5,11 @@
   }
 
   header {
-    text-align: center;
+
+    img {
+      float: left;
+      margin-right: 1em;
+    }
 
     a {
       border: none;
