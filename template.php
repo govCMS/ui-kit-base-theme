@@ -440,27 +440,29 @@ function uikit_base_form_element($variables) {
   $prefix = isset($element['#field_prefix']) ? '<span class="field-prefix">' . $element['#field_prefix'] . '</span> ' : '';
   $suffix = isset($element['#field_suffix']) ? ' <span class="field-suffix">' . $element['#field_suffix'] . '</span>' : '';
 
+  $description = '';
+  if (!empty($element['#description'])) {
+    $id = !empty($element['#id']) ? ' id="hint-' . $element['#id'] . '"' : '';
+    $description = '<span class="hint" ' . $id . '>' . $element['#description'] . "</span>\n";
+  }
+
   switch ($element['#title_display']) {
     case 'before':
     case 'invisible':
       $output .= ' ' . theme('form_element_label', $variables);
-      $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
+      $output .= ' ' . $prefix . $description . $element['#children'] . $suffix . "\n";
       break;
 
     case 'after':
-      $output .= ' ' . $prefix . $element['#children'] . $suffix;
+      $output .= ' ' . $prefix . $description . $element['#children'] . $suffix;
       $output .= ' ' . theme('form_element_label', $variables) . "\n";
       break;
 
     case 'none':
     case 'attribute':
       // Output no label and no required marker, only the children.
-      $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
+      $output .= ' ' . $prefix . $description . $element['#children'] . $suffix . "\n";
       break;
-  }
-
-  if (!empty($element['#description'])) {
-    $output .= '<div class="description">' . $element['#description'] . "</div>\n";
   }
 
   $output .= "</div>\n";
