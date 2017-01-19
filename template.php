@@ -363,10 +363,10 @@ function uikit_base_form_element_label($variables) {
   $title = filter_xss_admin($element['#title']);
 
   // If the element is not required, add (optional) to the end of the label, but
-  // not for single checkboxes or single radios. We also need to deal with date
-  // elements that have multiple fields.
+  // not to elements that a are children of another element (like single radios
+  // in a radio group) and not for disabled fields.
   $optional_label = '';
-  if (empty($element['#required'])) {
+  if (empty($element['#required']) && empty($element['#disabled'])) {
 
     // Field it not required, so we'll start with the normal optional label.
     $optional_label = '(optional)';
