@@ -445,23 +445,51 @@ function uikit_base_form_element($variables) {
     $id = !empty($element['#id']) ? ' id="hint-' . $element['#id'] . '"' : '';
     $description = '<span class="hint" ' . $id . '>' . $element['#description'] . "</span>\n";
   }
+  $description_position = 'before';
+  if (in_array($element['#type'], array('radio', 'checkbox'))) {
+    $description_position = 'after';
+  }
 
   switch ($element['#title_display']) {
     case 'before':
     case 'invisible':
       $output .= ' ' . theme('form_element_label', $variables);
-      $output .= ' ' . $prefix . $description . $element['#children'] . $suffix . "\n";
+      $output .= ' ' . $prefix;
+      if ($description_position == 'before') {
+        $output .= $description;
+      }
+      $output .= $element['#children'];
+      if ($description_position == 'after') {
+        $output .= $description;
+      }
+      $output .= $suffix . "\n";
       break;
 
     case 'after':
-      $output .= ' ' . $prefix . $description . $element['#children'] . $suffix;
+      $output .= ' ' . $prefix;
+      if ($description_position == 'before') {
+        $output .= $description;
+      }
+      $output .= $element['#children'];
+      $output .= $suffix;
       $output .= ' ' . theme('form_element_label', $variables) . "\n";
+      if ($description_position == 'after') {
+        $output .= $description;
+      }
       break;
 
     case 'none':
     case 'attribute':
       // Output no label and no required marker, only the children.
-      $output .= ' ' . $prefix . $description . $element['#children'] . $suffix . "\n";
+      $output .= ' ' . $prefix;
+      if ($description_position == 'before') {
+        $output .= $description;
+      }
+      $output .= $element['#children'];
+      if ($description_position == 'after') {
+        $output .= $description;
+      }
+      $output .= $suffix . "\n";
       break;
   }
 
@@ -469,6 +497,32 @@ function uikit_base_form_element($variables) {
 
   return $output;
 
+}
+
+/**
+ * Implements THEME_fieldset().
+ */
+function uikit_base_fieldset($variables) {
+  $element = $variables['element'];
+  element_set_attributes($element, array('id'));
+  _form_set_class($element);
+
+  $output = '<fieldset' . drupal_attributes($element['#attributes']) . '>';
+  if (!empty($element['#title'])) {
+    // Always wrap fieldset legends in a SPAN for CSS positioning.
+    $output .= '<legend><span class="fieldset-legend">' . $element['#title'] . '</span></legend>';
+  }
+  $output .= '<div class="fieldset-wrapper">';
+  if (!empty($element['#description'])) {
+    $output .= '<div class="fieldset-description hint">' . $element['#description'] . '</div>';
+  }
+  $output .= $element['#children'];
+  if (isset($element['#value'])) {
+    $output .= $element['#value'];
+  }
+  $output .= '</div>';
+  $output .= "</fieldset>\n";
+  return $output;
 }
 
 

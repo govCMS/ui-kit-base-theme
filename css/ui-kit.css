@@ -4725,12 +4725,41 @@ footer section {
     footer .region--horizontal .block {
       display: table-cell; } }
 
+.form-item,
+.container-inline-date {
+  margin-bottom: 1.6em; }
+  .form-item::after,
+  .container-inline-date::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .form-item .form-item,
+  .container-inline-date .form-item {
+    margin-bottom: 0; }
+
+form fieldset {
+  border: solid 2px rgba(187, 187, 187, 0.5);
+  padding: 1em; }
+  form fieldset legend {
+    margin-bottom: 0;
+    padding: 0.5em; }
+  form fieldset .form-item:last-child {
+    margin-bottom: 0; }
+
+.container-inline-date .form-item .form-item label {
+  margin-top: 0.8em; }
+
 .form-type-checkbox.form-error label:before,
 .form-type-radio.form-error label:before {
   border-color: #c00; }
 
-form .form-type-checkbox input[type='checkbox'] + label {
+form .form-type-checkbox input[type='checkbox'] + label,
+form .form-type-radio input[type='radio'] + label {
   margin-left: 0; }
+
+.form-type-checkboxes .form-type-checkbox input[type='checkbox'] + label,
+.form-type-radios .form-type-radio input[type='radio'] + label {
+  margin-left: 0.8em; }
 
 .page-header .site-nav {
   clear: both; }
