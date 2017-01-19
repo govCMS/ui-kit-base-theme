@@ -363,17 +363,27 @@ function uikit_base_form_element_label($variables) {
   $title = filter_xss_admin($element['#title']);
 
   // If the element is not required, add (optional) to the end of the label, but
-  // not for single checkboxes or single radios
-  $required = '';
-  if (!in_array($element['#type'], array('checkbox', 'radio'))) {
-    $required = empty($element['#required']) ? '(optional)' : '';
-  }
+  // not for single checkboxes or single radios. We also need to deal with date
+  // elements that have multiple fields.
+  $optional_label = '';
+  if (empty($element['#required'])) {
 
-  // If the label ends with a period, we need to put (optional) before that
-  // period or it will look strange.
-  if ($required && substr($title, -1) == '.') {
-    $title =  substr($title, 0, -1);
-    $required .= '.';
+    // Field it not required, so we'll start with the normal optional label.
+    $optional_label = '(optional)';
+
+    // If this form element has multiple parents, then any label would be
+    // applied to the parent element so we don't apply it here.
+    if (count($element['#array_parents']) > 1) {
+      $optional_label = '';
+    }
+
+    // If the label ends with a period, we need to put (optional) before that
+    // period or it will look strange.
+    if (!empty($optional_label) && substr($title, -1) == '.') {
+      $title =  substr($title, 0, -1);
+      $optional_label .= '.';
+    }
+
   }
 
   $attributes = array();
@@ -391,7 +401,7 @@ function uikit_base_form_element_label($variables) {
   }
 
   // The leading whitespace helps visually separate fields from inline labels.
-  return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !required', array('!title' => $title, '!required' => $required)) . "</label>\n";
+  return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !optional', array('!title' => $title, '!optional' => $optional_label)) . "</label>\n";
 
 }
 
