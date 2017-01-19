@@ -4746,23 +4746,22 @@ footer section {
 .page-header__site-info {
   text-align: center;
   margin-top: 0; }
-  .page-header__site-info h1, .page-header__site-info .hero .site-title, .hero .page-header__site-info .site-title, .page-header__site-info
-  .hero-sml .site-title,
-  .hero-sml .page-header__site-info .site-title, .page-header__site-info
-  .hero-med .site-title,
-  .hero-med .page-header__site-info .site-title {
-    font-size: 1.4em;
-    margin-bottom: 0; }
-  .page-header__site-info h2, .page-header__site-info .display {
-    color: #313131;
-    font-size: 1em;
-    margin-top: 1em; }
   .page-header__site-info a {
     border-bottom: none;
     display: block; }
     .page-header__site-info a:hover, .page-header__site-info a:focus {
       border-bottom: none;
       background-color: inherit; }
+
+.page-header__site-title {
+  font-size: 1.4em;
+  margin-bottom: 0;
+  font-weight: 700; }
+
+.page-header__site_slogan {
+  color: #313131;
+  font-size: 1em;
+  margin-top: 1em; }
 
 .page-header__content form,
 .page-header__content form div {
