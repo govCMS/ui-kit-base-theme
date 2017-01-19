@@ -4725,7 +4725,8 @@ footer section {
     footer .region--horizontal .block {
       display: table-cell; } }
 
-.form-type-checkbox.form-error label:before {
+.form-type-checkbox.form-error label:before,
+.form-type-radio.form-error label:before {
   border-color: #c00; }
 
 form .form-type-checkbox input[type='checkbox'] + label {
