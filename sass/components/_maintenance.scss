@@ -1,0 +1,32 @@
+#maintenance-page {
+
+  .page-header {
+    padding: 1.6em 0;
+  }
+
+  header {
+    text-align: center;
+
+    a {
+      border: none;
+    }
+
+    h1 {
+      font-size: rem(28);
+    }
+
+    .site-slogan {
+      font-size: rem(16);
+    }
+  }
+
+  article {
+    float: none;
+    margin: 0 auto;
+  }
+
+  footer section {
+    border: none;
+  }
+
+}
