@@ -351,6 +351,7 @@ function uikit_base_status_messages($variables) {
 function uikit_base_form_element_label($variables) {
 
   $element = $variables['element'];
+
   // This is also used in the installer, pre-database setup.
   $t = get_t();
 
@@ -362,9 +363,9 @@ function uikit_base_form_element_label($variables) {
   $title = filter_xss_admin($element['#title']);
 
   // If the element is not required, add (optional) to the end of the label, but
-  // not for single checkboxes.
+  // not for single checkboxes or single radios
   $required = '';
-  if ($element['#type'] != 'checkbox') {
+  if (!in_array($element['#type'], array('checkbox', 'radio'))) {
     $required = empty($element['#required']) ? '(optional)' : '';
   }
 
