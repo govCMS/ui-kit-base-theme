@@ -459,11 +459,11 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
     // Do we want to show a site name?
     if ($show_site_name) {
-      $output .= '<h1>' . filter_xss($site_name) . '</h1>';
+      $output .= '<div class="page-header__site-title">' . filter_xss($site_name) . '</div>';
     }
     // Do we want to show a site slogan?
     if (!empty($site_slogan) && $show_site_slogan) {
-      $output .= '<h2>' . filter_xss($site_slogan) . '</h2>';
+      $output .= '<div class="page-header__site_slogan">' . filter_xss($site_slogan) . '</div>';
     }
 
     $output .= '</div>';

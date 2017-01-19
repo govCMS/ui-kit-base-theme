@@ -4810,14 +4810,10 @@ footer section {
   .page-header__site-info {
     padding: 0 1em;
     text-align: left; }
-    .page-header__site-info h1, .page-header__site-info .hero .site-title, .hero .page-header__site-info .site-title, .page-header__site-info
-    .hero-sml .site-title,
-    .hero-sml .page-header__site-info .site-title, .page-header__site-info
-    .hero-med .site-title,
-    .hero-med .page-header__site-info .site-title {
-      margin: 0 0 .25em 0; }
-    .page-header__site-info h2, .page-header__site-info .display {
-      margin: 0; }
+  .page-header__site-title {
+    margin: 0 0 .25em 0; }
+  .page-header__site_slogan {
+    margin: 0; }
   .page-header__content form {
     float: right;
     margin: 0; }
