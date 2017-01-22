@@ -49,7 +49,7 @@
               <?php print $header; ?>
             </div>
           <?php endif; ?>
-
+        </div>
       </div>
     </section>
   </header>

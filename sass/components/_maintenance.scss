@@ -2,6 +2,23 @@
 
   .page-header {
     padding: 1.6em 0;
+
+    @include media($desktop) {
+      padding: 1.6em 0 1.6em 1em;
+    }
+
+    .wrapper {
+      @include media($tablet) {
+        width: 65.75129%;
+        min-width: 65.75129%;
+      }
+
+      @include media($desktop) {
+        width: 61.73292%;
+        min-width: 61.73292%;
+      }
+
+    }
   }
 
   header {
