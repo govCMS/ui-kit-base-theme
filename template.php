@@ -79,6 +79,8 @@ function uikit_base_preprocess_page(&$variables) {
  */
 function uikit_base_preprocess_block(&$variables) {
 
+  $block = $variables['block'];
+
   // Add some classes to the block title and content wrapper
   $variables['title_attributes_array']['class'] = 'block__title';
   $variables['content_attributes_array']['class'] = 'block__content content';
@@ -86,7 +88,10 @@ function uikit_base_preprocess_block(&$variables) {
   // Drupal menu blocks, and Menu Block's blocks, share the same template file
   // to apply the <nav> element.  We also switch template file if the block is
   // in a sidebar.
-  if (in_array($variables['block']->module, array('menu', 'menu_block'))) {
+  if (
+    in_array($block->module, array('menu', 'menu_block'))
+    || ($block->module == 'system' && $block->delta == 'main-menu')
+  ) {
     if (in_array($variables['block']->region, array('sidebar_left', 'sidebar_right'))) {
       array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic_sidebar');
     }
