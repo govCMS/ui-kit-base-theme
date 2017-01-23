@@ -4990,6 +4990,44 @@ body:before {
     .page--sidebar-right .content-main:last-child {
       margin-right: 0; } }
 
+#maintenance-page .page-header {
+  padding: 1.6em 0; }
+  @media screen and (min-width: 75em) {
+    #maintenance-page .page-header {
+      padding: 1.6em 0 1.6em 1em; } }
+  @media screen and (min-width: 768px) {
+    #maintenance-page .page-header .wrapper {
+      width: 65.75129%;
+      min-width: 65.75129%; } }
+  @media screen and (min-width: 75em) {
+    #maintenance-page .page-header .wrapper {
+      width: 61.73292%;
+      min-width: 61.73292%; } }
+
+#maintenance-page header img {
+  float: left;
+  margin-right: 1em; }
+
+#maintenance-page header a {
+  border: none; }
+
+#maintenance-page header h1, #maintenance-page header .hero .site-title, .hero #maintenance-page header .site-title, #maintenance-page header
+.hero-sml .site-title,
+.hero-sml #maintenance-page header .site-title, #maintenance-page header
+.hero-med .site-title,
+.hero-med #maintenance-page header .site-title {
+  font-size: 1.75rem; }
+
+#maintenance-page header .site-slogan {
+  font-size: 1rem; }
+
+#maintenance-page article {
+  float: none;
+  margin: 0 auto; }
+
+#maintenance-page footer section {
+  border: none; }
+
 footer .block__title {
   font-size: 1.5rem;
   line-height: 1;

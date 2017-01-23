@@ -72,8 +72,6 @@ function uikit_base_preprocess_page(&$variables) {
   }
   $variables['main_classes'] = implode(' ', $variables['main_classes']);
 
-
-
 }
 
 /**
