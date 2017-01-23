@@ -4746,22 +4746,21 @@ footer section {
 .page-header__site-info {
   text-align: center;
   margin-top: 0; }
-  .page-header__site-info h1, .page-header__site-info .hero .site-title, .hero .page-header__site-info .site-title, .page-header__site-info
-  .hero-sml .site-title,
-  .hero-sml .page-header__site-info .site-title, .page-header__site-info
-  .hero-med .site-title,
-  .hero-med .page-header__site-info .site-title {
-    font-size: 1.4em;
-    margin-bottom: 0; }
-  .page-header__site-info h2, .page-header__site-info .display {
-    color: #313131;
-    font-size: 1em;
-    margin-top: 1em; }
   .page-header__site-info a {
     border-bottom: none !important;
     display: block; }
     .page-header__site-info a:hover, .page-header__site-info a:focus {
       background-color: transparent !important; }
+
+.page-header__site-title {
+  font-size: 1.4em;
+  margin-bottom: 0;
+  font-weight: 700; }
+
+.page-header__site_slogan {
+  color: #313131;
+  font-size: 1em;
+  margin-top: 1em; }
 
 .page-header__content form,
 .page-header__content form div {
@@ -4772,8 +4771,6 @@ footer section {
   white-space: nowrap; }
 
 .page-header__content form {
-  border: solid 2px #bbbbbb;
-  border-radius: 3px 0 0 3px;
   float: none;
   margin-top: 1.5em; }
   .page-header__content form [type=text], .page-header__content form [type=submit] {
@@ -4783,10 +4780,16 @@ footer section {
       background-color: #e1e7eb; }
   .page-header__content form [type=text] {
     background-color: #f0f3f5;
-    line-height: 2.4em;
-    width: 100%; }
+    line-height: 2em;
+    width: 100%;
+    border: 2px solid #bbbbbb;
+    border-right: none; }
     .page-header__content form [type=text]:focus {
-      border-right: solid 2px #5bcbe3; }
+      border: 2px solid #5bcbe3;
+      outline: none; }
+  .page-header__content form [type=submit] {
+    border: 2px solid #bbbbbb;
+    border-left: none; }
   .page-header__content form [type=submit] {
     background: #f0f3f5 url("../images/icons/search-navy.svg") center center no-repeat;
     background-size: 20px auto;
@@ -4806,19 +4809,15 @@ footer section {
   .page-header__site-info {
     padding: 0 1em;
     text-align: left; }
-    .page-header__site-info h1, .page-header__site-info .hero .site-title, .hero .page-header__site-info .site-title, .page-header__site-info
-    .hero-sml .site-title,
-    .hero-sml .page-header__site-info .site-title, .page-header__site-info
-    .hero-med .site-title,
-    .hero-med .page-header__site-info .site-title {
-      margin: 0 0 .25em 0; }
-    .page-header__site-info h2, .page-header__site-info .display {
-      margin: 0; }
+  .page-header__site-title {
+    margin: 0 0 .25em 0; }
+  .page-header__site_slogan {
+    margin: 0; }
   .page-header__content form {
     float: right;
     margin: 0; }
     .page-header__content form [type=text] {
-      line-height: 2em;
+      line-height: 1.8em;
       width: 10em; } }
 
 @media screen and (min-width: 75em) {
@@ -4856,7 +4855,8 @@ footer section {
   .page-header__content form [type=text] {
     width: 15em; }
   .page-header__content form [type=submit] {
-    background-image: none; } }
+    background-image: none;
+    border: none; } }
 
 /**
  * This file provides breakpoint information to JS
@@ -4992,6 +4992,44 @@ body:before {
     width: 74.31347%; }
     .page--sidebar-right .content-main:last-child {
       margin-right: 0; } }
+
+#maintenance-page .page-header {
+  padding: 1.6em 0; }
+  @media screen and (min-width: 75em) {
+    #maintenance-page .page-header {
+      padding: 1.6em 0 1.6em 1em; } }
+  @media screen and (min-width: 768px) {
+    #maintenance-page .page-header .wrapper {
+      width: 65.75129%;
+      min-width: 65.75129%; } }
+  @media screen and (min-width: 75em) {
+    #maintenance-page .page-header .wrapper {
+      width: 61.73292%;
+      min-width: 61.73292%; } }
+
+#maintenance-page header img {
+  float: left;
+  margin-right: 1em; }
+
+#maintenance-page header a {
+  border: none; }
+
+#maintenance-page header h1, #maintenance-page header .hero .site-title, .hero #maintenance-page header .site-title, #maintenance-page header
+.hero-sml .site-title,
+.hero-sml #maintenance-page header .site-title, #maintenance-page header
+.hero-med .site-title,
+.hero-med #maintenance-page header .site-title {
+  font-size: 1.75rem; }
+
+#maintenance-page header .site-slogan {
+  font-size: 1rem; }
+
+#maintenance-page article {
+  float: none;
+  margin: 0 auto; }
+
+#maintenance-page footer section {
+  border: none; }
 
 [class^='breadcrumbs'] {
   background-color: transparent; }

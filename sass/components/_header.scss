@@ -26,16 +26,6 @@
   text-align: center;
   margin-top: 0;
 
-  h1 {
-    font-size: 1.4em;
-    margin-bottom: 0;
-  }
-  h2 {
-    color: $non-black;
-    font-size: 1em;
-    margin-top: 1em;
-  }
-
   a {
     border-bottom: none !important;
     display: block;
@@ -47,6 +37,18 @@
   }
 }
 
+.page-header__site-title {
+  font-size: 1.4em;
+  margin-bottom: 0;
+  font-weight: $bold-font-weight;
+}
+
+.page-header__site_slogan {
+  color: $non-black;
+  font-size: 1em;
+  margin-top: 1em;
+}
+
 .page-header__content {
   form,
   form div {
@@ -55,8 +57,6 @@
   }
 
   form {
-    border: solid 2px #bbbbbb;
-    border-radius: 3px 0 0 3px;
     float: none;
     margin-top: 1.5em;
 
@@ -71,12 +71,20 @@
 
     [type=text] {
       background-color: #f0f3f5;
-      line-height: 2.4em;
+      line-height: 2em;
       width: 100%;
+      border: 2px solid $light-grey;
+      border-right: none;
 
       &:focus {
-        border-right: solid 2px #5bcbe3;
+        border: 2px solid $light-aqua;
+        outline: none;
       }
+    }
+
+    [type=submit] {
+      border: 2px solid $light-grey;
+      border-left: none;
     }
 
     [type=submit] {
@@ -108,14 +116,14 @@
   .page-header__site-info {
     padding: 0 1em;
     text-align: left;
+  }
 
-    h1 {
-      margin: 0 0 .25em 0;
-    }
+  .page-header__site-title {
+    margin: 0 0 .25em 0;
+  }
 
-    h2 {
-      margin: 0;
-    }
+  .page-header__site_slogan {
+    margin: 0;
   }
 
   .page-header__content form {
@@ -123,7 +131,7 @@
     margin: 0;
 
     [type=text] {
-      line-height: 2em;
+      line-height: 1.8em;
       width: 10em;
     }
   }
@@ -143,6 +151,7 @@
 
     [type=submit] {
       background-image: none;
+      border: none;
     }
   }
 }

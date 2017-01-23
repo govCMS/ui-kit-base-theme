@@ -63,5 +63,6 @@ settings[sidebar_position] = right
 settings[footer_top_layout] = horizontal
 settings[footer_bottom_layout] = horizontal
 
-; To make this sub-theme an admin theme with shortcut links next to titles,
-; uncomment the line below.
+; To add a Panels layout (which can also be used by Display Suite), uncomment
+; the line below and see the documentation at: https://drupal.org/node/495654
+plugins[panels][layouts] = layouts

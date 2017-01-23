@@ -72,8 +72,6 @@ function uikit_base_preprocess_page(&$variables) {
   }
   $variables['main_classes'] = implode(' ', $variables['main_classes']);
 
-
-
 }
 
 /**
@@ -115,18 +113,6 @@ function uikit_base_preprocess_region(&$variables) {
   }
 
 }
-
-
-/** Contrib pre-process functions *********************************************/
-
-/**
- * Implements THEME_preprocess_views_view_table().
- */
-function uikit_base_preprocess_views_view_table(&$vars) {
-  // Add UI KIT table class to views table.
-  $vars['classes_array'][] = 'content-table';
-}
-
 
 /** Theme functions ***********************************************************/
 
@@ -478,11 +464,11 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
     // Do we want to show a site name?
     if ($show_site_name) {
-      $output .= '<h1>' . l($site_name, '<front>') . '</h1>';
+      $output .= '<div class="page-header__site-title">' . l($site_name, '<front>') . '</div>';
     }
     // Do we want to show a site slogan?
     if (!empty($site_slogan) && $show_site_slogan) {
-      $output .= '<h2>' . filter_xss($site_slogan) . '</h2>';
+      $output .= '<div class="page-header__site_slogan">' . filter_xss($site_slogan) . '</div>';
     }
 
     $output .= '</div>';
@@ -499,13 +485,13 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
 /**
  * Helper function to add UI KIT link class to link.
- * 
+ *
  * @param $class_pairs
  *   The pairs of Drupal class and UI KIT class.
- *   
+ *
  * @param $classes
  *   Origin class array from Drupal.
- * 
+ *
  * @return array
  *   Class array.
  */
