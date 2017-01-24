@@ -21,7 +21,7 @@ function uikit_base_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'search_api') !== FALSE) {
     $search_api_form_id = $form['id']['#value'];
     unset($form['keys_' . $search_api_form_id]['#size']);
-    $form['keys_' . $search_api_form_id]['#attributes']['placeholder'] = t('Search');
+    unset($form['keys_' . $search_api_form_id]['#attributes']['placeholder']);
     $form['#attributes']['class'] = 'search-form';
   }
 

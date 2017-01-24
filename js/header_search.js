@@ -9,9 +9,8 @@
 
     attach: function(context, settings) {
 
-      // Stash the original button label and placeholder from Drupal
+      // Stash the original button label
       this.originalSearchButtonValue = $('header .search-form .form-submit').attr('value');
-      this.originalPlaceholderValue = $('header .search-form [type=text]').attr('placeholder');
 
       // Update the form on load and window resize.
       this.updateSearchForm();
@@ -29,26 +28,18 @@
      */
     updateSearchForm: function () {
       var button_label = '';
-      var placeholder  = this.originalPlaceholderValue;
 
       if (Drupal.settings.uiKitBaseTheme.breakpoint == 'desktop') {
         button_label  = this.originalSearchButtonValue;
-          placeholder = Drupal.t('Enter your keywords');
       }
 
       $('header .search-form .form-submit').attr('value', button_label);
-      $('header .search-form [type=text]').attr('placeholder', placeholder);
     },
 
     /**
      * Contains the original value of the search submit button
      */
-    originalSearchButtonValue: '',
-
-    /**
-     * Contains the original value of the search bar placeholder
-     */
-    originalPlaceholderValue: ''
+    originalSearchButtonValue: ''
 
   };
 
