@@ -31,6 +31,13 @@ function uikit_base_form_alter(&$form, &$form_state, $form_id) {
 /** Core pre-process functions ************************************************/
 
 /**
+ * Implements THEME_preprocess_html().
+ */
+ function uikit_base_preprocess_html(&$variables) {
+  drupal_add_css('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&subset=latin-ext', array('type' => 'external'));
+}
+
+/**
  * Implements THEME_preprocess_field().
  */
 function uikit_base_preprocess_field(&$variables) {
