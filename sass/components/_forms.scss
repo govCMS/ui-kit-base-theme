@@ -1,0 +1,55 @@
+.form-item,
+.container-inline-date {
+  @include clearfix;
+  margin-bottom: $base-spacing;
+
+  .form-item {
+    margin-bottom: 0;
+  }
+}
+
+form fieldset {
+  border: solid 2px $border-soft-colour;
+  padding: 1em;
+
+  legend {
+    margin-bottom: 0;
+    padding: 0.5em;
+  }
+
+  .form-item:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Date popup widget
+.container-inline-date {
+  .form-item .form-item label {
+    margin-top: $small-spacing;
+  }
+}
+
+// Current radio and checkbox implementation positions the form elements off the
+// screen and uses label:before to re-create the element.  This provides the
+// red error highlighting on the re-created element.  This implementation is
+// likely to be removed in UI Kit 2 at which point this can be removed.
+.form-type-checkbox.form-error,
+.form-type-radio.form-error {
+   label:before {
+    border-color: $error-colour;
+  }
+}
+
+// This prevents single radios and checkboxes that don't have a label from
+// getting left margin and sitting out from the gutter.
+form .form-type-checkbox input[type='checkbox'] + label,
+form .form-type-radio input[type='radio'] + label {
+  margin-left: 0;
+}
+
+// This adds the margin back in for single radios and checkboxes that are part
+// of a larger set.
+.form-type-checkboxes .form-type-checkbox input[type='checkbox'] + label,
+.form-type-radios .form-type-radio input[type='radio'] + label {
+  margin-left: 0.8em;
+}
