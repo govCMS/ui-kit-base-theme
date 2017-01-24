@@ -34,9 +34,8 @@ regions[bottom]         = Page bottom
 ; The page_top and page_bottom regions are hidden, which means they will not
 ; show up on the blocks administration page. But they are required in order for
 ; the html.tpl.php to work properly, so do not delete them.
-
-regions[page_top]       = Page top
-regions[page_bottom]    = Page bottom
+regions[page_top]    = Page top
+regions[page_bottom] = Page bottom
 
 ; Various page elements output by the theme can be toggled on and off. The
 ; "features" control which of these check boxes display on the
