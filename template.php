@@ -44,7 +44,7 @@ function uikit_base_preprocess_field(&$variables) {
  */
 function uikit_base_preprocess_node(&$variables) {
   // Add UI KIT class to author and date information.
-  $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on !date', array('!date' => '<time>' . $variables['date'] .'</time>', '!author' => $variables['name']));
+  $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on <time>!date</time>', array('!date' => $variables['date'], '!author' => $variables['name']));
 
   // Add UI KIT class to readmore link in teaser view mode.
   if (!empty($variables['content']['links']['node']['#links']['node-readmore'])) {
