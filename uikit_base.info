@@ -10,9 +10,8 @@ stylesheets[all][] = system.theme.css
 stylesheets[all][] = toc_filter.css
 stylesheets[all][] = workbench.block.css
 
+; Add UI Kit and theme styles and JS
 stylesheets[all][] = css/ui-kit.css
-
-; Add DTA UI kit.
 scripts[] = js/ui-kit.min.js
 
 ; Add scripts
