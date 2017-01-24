@@ -1,5 +1,5 @@
 $boostrap-grid-columns: 12;
-$boostrap-grid-gutter: $tiny-spacing;
+$boostrap-grid-gutter: $tiny-spacing !default;
 
 .row {
   @include row();
