@@ -1,6 +1,6 @@
 screenshot  = screenshot.png
-name        = UI KIT base theme
-description = govCMS base theme with DTA UI kit styles.
+name        = UI KIT
+description = Based on DTA's UI Kit (version 1) and Design Guide. Can be used as is or sub-themed.
 core        = 7.x
 
 ; Remove some styling that we don't want
