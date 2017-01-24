@@ -4816,7 +4816,7 @@ form .form-type-radio input[type='radio'] + label {
       background-color: #e1e7eb; }
   .page-header__content form [type=text] {
     background-color: #f0f3f5;
-    line-height: 2em;
+    line-height: 2.15em;
     width: 100%;
     border: 2px solid #bbbbbb;
     border-right: none; }
