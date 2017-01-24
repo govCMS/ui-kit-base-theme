@@ -40,13 +40,6 @@ function uikit_base_preprocess_field(&$variables) {
 }
 
 /**
- * Implements THEME_preprocess_form_element().
- */
-function uikit_base_preprocess_form_element(&$variables) {
-  $variables['element']['#children'] = str_replace('required error', 'required error invalid', $variables['element']['#children']);
-}
-
-/**
  * Implements THEME_preprocess_node().
  */
 function uikit_base_preprocess_node(&$variables) {
@@ -79,14 +72,25 @@ function uikit_base_preprocess_page(&$variables) {
  */
 function uikit_base_preprocess_block(&$variables) {
 
+  $block = $variables['block'];
+
   // Add some classes to the block title and content wrapper
   $variables['title_attributes_array']['class'] = 'block__title';
   $variables['content_attributes_array']['class'] = 'block__content content';
 
   // Drupal menu blocks, and Menu Block's blocks, share the same template file
-  // to apply the <nav> element.
-  if (in_array($variables['block']->module, array('menu', 'menu_block'))) {
-    array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic');
+  // to apply the <nav> element.  We also switch template file if the block is
+  // in a sidebar.
+  if (
+    in_array($block->module, array('menu', 'menu_block'))
+    || ($block->module == 'system' && $block->delta == 'main-menu')
+  ) {
+    if (in_array($variables['block']->region, array('sidebar_left', 'sidebar_right'))) {
+      array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic_sidebar');
+    }
+    else {
+      array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic');
+    }
   }
 
 }
@@ -95,11 +99,6 @@ function uikit_base_preprocess_block(&$variables) {
  * Implements THEME_preprocess_region().
  */
 function uikit_base_preprocess_region(&$variables) {
-
-  // Add UI KIT nav menu class
-  if ($variables['region'] == 'sidebar') {
-    $variables['classes_array'][] = 'local-nav';
-  }
 
   // Pre-process the header region to combine block content and site branding
   if ($variables['region'] == 'header') {
@@ -112,6 +111,7 @@ function uikit_base_preprocess_region(&$variables) {
   }
 
 }
+
 
 /** Theme functions ***********************************************************/
 
@@ -142,7 +142,7 @@ function uikit_base_breadcrumb($variables) {
 /**
  * Implements THEME_menu_local_tasks().
  */
-function uikit_base_menu_local_tasks(&$variables) {
+function uikit_base_menu_local_tasks($variables) {
   $output = '';
 
   // Add UI KIT class to the tabs.
@@ -332,7 +332,7 @@ function uikit_base_status_messages($variables) {
 
   foreach (drupal_get_messages($display) as $type => $messages) {
     // Add UI KIT index-link class to the message div.
-    $output .= "<div class=\"messages $ui_kit_statuses[$type] index-links\">\n";
+    $output .= "<div class=\"messages $ui_kit_statuses[$type]\">\n";
     if (!empty($status_heading[$type])) {
       $output .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
     }
@@ -351,6 +351,196 @@ function uikit_base_status_messages($variables) {
   return $output;
 }
 
+/**
+ * Implements THEME_form_element_label().
+ */
+function uikit_base_form_element_label($variables) {
+
+  $element = $variables['element'];
+
+  // This is also used in the installer, pre-database setup.
+  $t = get_t();
+
+  // If title and required marker are both empty, output no label.
+  if ((!isset($element['#title']) || $element['#title'] === '') && empty($element['#required'])) {
+    return '';
+  }
+
+  $title = filter_xss_admin($element['#title']);
+
+  // If the element is not required, add (optional) to the end of the label, but
+  // not to elements that a are children of another element (like single radios
+  // in a radio group) and not for disabled fields.
+  $optional_label = '';
+  if (empty($element['#required']) && empty($element['#disabled'])) {
+
+    // Field it not required, so we'll start with the normal optional label.
+    $optional_label = '(optional)';
+
+    // If this form element has multiple parents, then any label would be
+    // applied to the parent element so we don't apply it here.
+    if (count($element['#array_parents']) > 1) {
+      $optional_label = '';
+    }
+
+    // If the label ends with a period, we need to put (optional) before that
+    // period or it will look strange.
+    if (!empty($optional_label) && substr($title, -1) == '.') {
+      $title =  substr($title, 0, -1);
+      $optional_label .= '.';
+    }
+
+  }
+
+  $attributes = array();
+  // Style the label as class option to display inline with the element.
+  if ($element['#title_display'] == 'after') {
+    $attributes['class'] = 'option';
+  }
+  // Show label only to screen readers to avoid disruption in visual flows.
+  elseif ($element['#title_display'] == 'invisible') {
+    $attributes['class'] = 'element-invisible';
+  }
+
+  if (!empty($element['#id'])) {
+    $attributes['for'] = $element['#id'];
+  }
+
+  // The leading whitespace helps visually separate fields from inline labels.
+  return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !optional', array('!title' => $title, '!optional' => $optional_label)) . "</label>\n";
+
+}
+
+/**
+ * Implements THEME_form_element().
+ */
+function uikit_base_form_element($variables) {
+
+  $element = &$variables['element'];
+
+  // This function is invoked as theme wrapper, but the rendered form element
+  // may not necessarily have been processed by form_builder().
+  $element += array(
+    '#title_display' => 'before',
+  );
+
+  // Add element #id for #type 'item'.
+  if (isset($element['#markup']) && !empty($element['#id'])) {
+    $attributes['id'] = $element['#id'];
+  }
+  // Add element's #type and #name as class to aid with JS/CSS selectors.
+  $attributes['class'] = array('form-item');
+  if (!empty($element['#type'])) {
+    $attributes['class'][] = 'form-type-' . strtr($element['#type'], '_', '-');
+  }
+  if (!empty($element['#name'])) {
+    $attributes['class'][] = 'form-item-' . strtr($element['#name'], array(' ' => '-', '_' => '-', '[' => '-', ']' => ''));
+  }
+  // Add a class for disabled elements to facilitate cross-browser styling.
+  if (!empty($element['#attributes']['disabled'])) {
+    $attributes['class'][] = 'form-disabled';
+  }
+  // Add a class to the form wrapper if this element has attracted an error
+  if (strpos($element['#children'], 'error') !== FALSE) {
+    $attributes['class'][] = 'form-error';
+  }
+  $output = '<div' . drupal_attributes($attributes) . '>' . "\n";
+
+  // Add UI Kit error classes to the form element if it has attracted an error
+  $element['#children'] = str_replace('error', 'error invalid', $element['#children']);
+
+  // If #title is not set, we don't display any label or required marker.
+  if (!isset($element['#title'])) {
+    $element['#title_display'] = 'none';
+  }
+  $prefix = isset($element['#field_prefix']) ? '<span class="field-prefix">' . $element['#field_prefix'] . '</span> ' : '';
+  $suffix = isset($element['#field_suffix']) ? ' <span class="field-suffix">' . $element['#field_suffix'] . '</span>' : '';
+
+  $description = '';
+  if (!empty($element['#description'])) {
+    $id = !empty($element['#id']) ? ' id="hint-' . $element['#id'] . '"' : '';
+    $description = '<span class="hint" ' . $id . '>' . $element['#description'] . "</span>\n";
+  }
+  $description_position = 'before';
+  if (in_array($element['#type'], array('radio', 'checkbox'))) {
+    $description_position = 'after';
+  }
+
+  switch ($element['#title_display']) {
+    case 'before':
+    case 'invisible':
+      $output .= ' ' . theme('form_element_label', $variables);
+      $output .= ' ' . $prefix;
+      if ($description_position == 'before') {
+        $output .= $description;
+      }
+      $output .= $element['#children'];
+      if ($description_position == 'after') {
+        $output .= $description;
+      }
+      $output .= $suffix . "\n";
+      break;
+
+    case 'after':
+      $output .= ' ' . $prefix;
+      if ($description_position == 'before') {
+        $output .= $description;
+      }
+      $output .= $element['#children'];
+      $output .= $suffix;
+      $output .= ' ' . theme('form_element_label', $variables) . "\n";
+      if ($description_position == 'after') {
+        $output .= $description;
+      }
+      break;
+
+    case 'none':
+    case 'attribute':
+      // Output no label and no required marker, only the children.
+      $output .= ' ' . $prefix;
+      if ($description_position == 'before') {
+        $output .= $description;
+      }
+      $output .= $element['#children'];
+      if ($description_position == 'after') {
+        $output .= $description;
+      }
+      $output .= $suffix . "\n";
+      break;
+  }
+
+  $output .= "</div>\n";
+
+  return $output;
+
+}
+
+/**
+ * Implements THEME_fieldset().
+ */
+function uikit_base_fieldset($variables) {
+  $element = $variables['element'];
+  element_set_attributes($element, array('id'));
+  _form_set_class($element);
+
+  $output = '<fieldset' . drupal_attributes($element['#attributes']) . '>';
+  if (!empty($element['#title'])) {
+    // Always wrap fieldset legends in a SPAN for CSS positioning.
+    $output .= '<legend><span class="fieldset-legend">' . $element['#title'] . '</span></legend>';
+  }
+  $output .= '<div class="fieldset-wrapper">';
+  if (!empty($element['#description'])) {
+    $output .= '<div class="fieldset-description hint">' . $element['#description'] . '</div>';
+  }
+  $output .= $element['#children'];
+  if (isset($element['#value'])) {
+    $output .= $element['#value'];
+  }
+  $output .= '</div>';
+  $output .= "</fieldset>\n";
+  return $output;
+}
+
 
 /** Contrib Theme functions ***************************************************/
 
@@ -358,13 +548,19 @@ function uikit_base_status_messages($variables) {
  * Implement THEME_toc_filter().
  */
 function uikit_base_toc_filter($variables) {
-  $output = '<a name="top" class="toc-filter-top"></a>';
-
-  // Add UI KIT content links class.
-  $output .= '<div class="index-links toc-filter toc-filter-' . $variables['type'] . '">';
-  $output .= '<div class="toc-filter-content">' . $variables['content'] . '</div>';
-  $output .= '</div>';
+  $output = '';
+  $output .= '<nav class="index-links">';
+  $output .= '<h2 id="index-links">' . t('Contents') . '</h2>';
+  $output .= $variables['content'];
+  $output .= '</nav>';
   return $output;
+}
+
+/**
+ * Implements THEME_toc_filter_back_to_top().
+ */
+function uikit_base_toc_filter_back_to_top($variables) {
+  return '<span class="back-to-index-link"><a href="#index-links">' . t('Back to contents ↑') . '</a></span>';
 }
 
 
@@ -443,7 +639,7 @@ function _uikit_base_preprocess_region_header(&$variables) {
     // Inline styling to prevent SVG container from collapsing and making the
     // logo smaller or distorting it.
     $output .= '<div class="page-header__logo" style="min-width: ' . $width . 'px">';
-    $output .= $logo;
+    $output .= l($logo, '<front>', array('html' => TRUE));
     $output .= '</div>';
 
   }
@@ -457,11 +653,11 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
     // Do we want to show a site name?
     if ($show_site_name) {
-      $output .= '<h1>' . filter_xss($site_name) . '</h1>';
+      $output .= '<div class="page-header__site-title">' . l($site_name, '<front>') . '</div>';
     }
     // Do we want to show a site slogan?
     if (!empty($site_slogan) && $show_site_slogan) {
-      $output .= '<h2>' . filter_xss($site_slogan) . '</h2>';
+      $output .= '<div class="page-header__site_slogan">' . filter_xss($site_slogan) . '</div>';
     }
 
     $output .= '</div>';
@@ -476,7 +672,7 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
 }
 
-/*
+/**
  * Helper function to add UI KIT link class to link.
  *
  * @param $class_pairs

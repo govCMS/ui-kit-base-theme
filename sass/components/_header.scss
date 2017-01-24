@@ -26,26 +26,27 @@
   text-align: center;
   margin-top: 0;
 
-  h1 {
-    font-size: 1.4em;
-    margin-bottom: 0;
-  }
-  h2 {
-    color: $non-black;
-    font-size: 1em;
-    margin-top: 1em;
-  }
-
   a {
-    border-bottom: none;
+    border-bottom: none !important;
     display: block;
 
     &:hover,
     &:focus {
-      border-bottom: none;
-      background-color: inherit;
+      background-color: transparent !important;
     }
   }
+}
+
+.page-header__site-title {
+  font-size: 1.4em;
+  margin-bottom: 0;
+  font-weight: $bold-font-weight;
+}
+
+.page-header__site_slogan {
+  color: $non-black;
+  font-size: 1em;
+  margin-top: 1em;
 }
 
 .page-header__content {
@@ -115,14 +116,14 @@
   .page-header__site-info {
     padding: 0 1em;
     text-align: left;
+  }
 
-    h1 {
-      margin: 0 0 .25em 0;
-    }
+  .page-header__site-title {
+    margin: 0 0 .25em 0;
+  }
 
-    h2 {
-      margin: 0;
-    }
+  .page-header__site_slogan {
+    margin: 0;
   }
 
   .page-header__content form {
