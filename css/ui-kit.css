@@ -4783,11 +4783,10 @@ form .form-type-radio input[type='radio'] + label {
   text-align: center;
   margin-top: 0; }
   .page-header__site-info a {
-    border-bottom: none;
+    border-bottom: none !important;
     display: block; }
     .page-header__site-info a:hover, .page-header__site-info a:focus {
-      border-bottom: none;
-      background-color: inherit; }
+      background-color: transparent !important; }
 
 .page-header__site-title {
   font-size: 1.4em;
@@ -4911,6 +4910,10 @@ body:before {
 @media screen and (min-width: 75em) {
   body:before {
     content: 'desktop'; } }
+
+.sidebar__left,
+.sidebar__right {
+  padding-bottom: 1.6em; }
 
 @media screen and (min-width: 75em) {
   .page--sidebar-left-right .sidebar__left,
@@ -5069,6 +5072,9 @@ body:before {
   .messages > ul li:last-child {
     margin-bottom: 0; }
 
+[class^='breadcrumbs'] {
+  background-color: transparent; }
+
 footer .block__title {
   font-size: 1.5rem;
   line-height: 1;
@@ -5196,11 +5202,9 @@ span.ext {
     margin: 0 3px 3px 0;
     white-space: nowrap; }
 
-div.toc-filter-content {
-  border: none;
-  background-color: inherit;
-  margin: 0px;
-  padding: 0px; }
+.back-to-index-link {
+  float: right;
+  font-size: 0.875rem; }
 
 div.workbench-info-block {
   padding-left: 1.2em;

@@ -3,10 +3,11 @@ name        = UI KIT base theme
 description = govCMS base theme with DTA UI kit styles.
 core        = 7.x
 
-; First we remove the system's menu and message styling since Zen has its own.
+; Remove some styling that we don't want
 stylesheets[all][] = system.menus.css
 stylesheets[all][] = system.messages.css
 stylesheets[all][] = system.theme.css
+stylesheets[all][] = toc_filter.css
 stylesheets[all][] = workbench.block.css
 
 stylesheets[all][] = css/ui-kit.css

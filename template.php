@@ -72,14 +72,25 @@ function uikit_base_preprocess_page(&$variables) {
  */
 function uikit_base_preprocess_block(&$variables) {
 
+  $block = $variables['block'];
+
   // Add some classes to the block title and content wrapper
   $variables['title_attributes_array']['class'] = 'block__title';
   $variables['content_attributes_array']['class'] = 'block__content content';
 
   // Drupal menu blocks, and Menu Block's blocks, share the same template file
-  // to apply the <nav> element.
-  if (in_array($variables['block']->module, array('menu', 'menu_block'))) {
-    array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic');
+  // to apply the <nav> element.  We also switch template file if the block is
+  // in a sidebar.
+  if (
+    in_array($block->module, array('menu', 'menu_block'))
+    || ($block->module == 'system' && $block->delta == 'main-menu')
+  ) {
+    if (in_array($variables['block']->region, array('sidebar_left', 'sidebar_right'))) {
+      array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic_sidebar');
+    }
+    else {
+      array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic');
+    }
   }
 
 }
@@ -88,11 +99,6 @@ function uikit_base_preprocess_block(&$variables) {
  * Implements THEME_preprocess_region().
  */
 function uikit_base_preprocess_region(&$variables) {
-
-  // Add UI KIT nav menu class
-  if ($variables['region'] == 'sidebar') {
-    $variables['classes_array'][] = 'local-nav';
-  }
 
   // Pre-process the header region to combine block content and site branding
   if ($variables['region'] == 'header') {
@@ -542,13 +548,19 @@ function uikit_base_fieldset($variables) {
  * Implement THEME_toc_filter().
  */
 function uikit_base_toc_filter($variables) {
-  $output = '<a name="top" class="toc-filter-top"></a>';
-
-  // Add UI KIT content links class.
-  $output .= '<div class="index-links toc-filter toc-filter-' . $variables['type'] . '">';
-  $output .= '<div class="toc-filter-content">' . $variables['content'] . '</div>';
-  $output .= '</div>';
+  $output = '';
+  $output .= '<nav class="index-links">';
+  $output .= '<h2 id="index-links">' . t('Contents') . '</h2>';
+  $output .= $variables['content'];
+  $output .= '</nav>';
   return $output;
+}
+
+/**
+ * Implements THEME_toc_filter_back_to_top().
+ */
+function uikit_base_toc_filter_back_to_top($variables) {
+  return '<span class="back-to-index-link"><a href="#index-links">' . t('Back to contents ↑') . '</a></span>';
 }
 
 
@@ -627,7 +639,7 @@ function _uikit_base_preprocess_region_header(&$variables) {
     // Inline styling to prevent SVG container from collapsing and making the
     // logo smaller or distorting it.
     $output .= '<div class="page-header__logo" style="min-width: ' . $width . 'px">';
-    $output .= $logo;
+    $output .= l($logo, '<front>', array('html' => TRUE));
     $output .= '</div>';
 
   }
@@ -641,7 +653,7 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
     // Do we want to show a site name?
     if ($show_site_name) {
-      $output .= '<div class="page-header__site-title">' . filter_xss($site_name) . '</div>';
+      $output .= '<div class="page-header__site-title">' . l($site_name, '<front>') . '</div>';
     }
     // Do we want to show a site slogan?
     if (!empty($site_slogan) && $show_site_slogan) {
@@ -660,7 +672,7 @@ function _uikit_base_preprocess_region_header(&$variables) {
 
 }
 
-/*
+/**
  * Helper function to add UI KIT link class to link.
  *
  * @param $class_pairs

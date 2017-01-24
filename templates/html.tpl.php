@@ -53,9 +53,9 @@
   <?php print $scripts; ?>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
-  <div id="skip-link">
+  <nav id="skip-link" class="skip-to">
     <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
-  </div>
+  </nav>
   <?php print $page_top; ?>
   <?php print $page; ?>
   <?php print $page_bottom; ?>
