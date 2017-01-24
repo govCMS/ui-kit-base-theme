@@ -1,0 +1,42 @@
+$boostrap-grid-columns: 12;
+$boostrap-grid-gutter: $tiny-spacing !default;
+
+.row {
+  @include row();
+}
+
+$bootstrap-grids: (
+  // name, column-name, media-query
+  // the first media query is a hack so can set `grid-columns` with a !global
+  // @TODO: Turn this into a named map, if possible
+  ("feature", "xs", 0),
+  ("small", "sm", $mobile-minwidth),
+  ("medium", "md", $tablet-minwidth),
+  ("large", "lg", $desktop-minwidth)
+);
+
+@each $bootstrap-name, $bootstrap-col, $bootstrap-media in $bootstrap-grids {
+
+  /*
+   * Bootstrap grid - #{$bootstrap-name}
+  */
+  @media screen and (min-width: $bootstrap-media) {
+    $grid-columns: $boostrap-grid-columns !global;
+    @for $column-number from 1 through $boostrap-grid-columns {
+      .col-#{$bootstrap-col}-#{$column-number} {
+        @include span-columns($column-number of $boostrap-grid-columns);
+        @include pad(0 $boostrap-grid-gutter);
+        // @TODO: Tidy up the output of this, so it only outputs width
+      }
+    }
+  }
+
+  [class*="col-#{$bootstrap-col}"] {
+    &:first-child {
+      @include omega();
+      @include pad(0 $boostrap-grid-gutter 0 0);
+      // @TODO: There must be a better way than setting it to 0
+    }
+  }
+
+}
