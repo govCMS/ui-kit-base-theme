@@ -8,6 +8,7 @@ stylesheets[all][] = system.menus.css
 stylesheets[all][] = system.messages.css
 stylesheets[all][] = system.theme.css
 stylesheets[all][] = toc_filter.css
+stylesheets[all][] = workbench.block.css
 
 stylesheets[all][] = css/ui-kit.css
 
