@@ -135,7 +135,7 @@ function uikit_base_breadcrumb($variables) {
 
     // Process breadcrumb for UI KIT format.
     $breadcrumb_list = '<ul>';
-    foreach($breadcrumb as $link) {
+    foreach ($breadcrumb as $link) {
       $breadcrumb_list .= '<li>' . $link . '</li>';
     }
     $breadcrumb_list .= '</ul>';
