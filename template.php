@@ -602,9 +602,10 @@ function _uikit_base_process_local_tasks($children) {
  * users who want to customise the theme.
  *
  * @param string $header_content
- *   The content that should go in the header's content region
+ *   The content that should go in the header's content region.
  *
  * @return string
+ *   The header region content.
  *
  * @see uikit_base_preprocess_page().
  */
@@ -620,7 +621,7 @@ function _uikit_base_preprocess_region_header($header_content) {
 
     $logo = theme_get_setting('logo');
 
-    // Attempt to get the width and height of the logo
+    // Attempt to get the width and height of the logo.
     $max_height = theme_get_setting('logo_max_height');
     list($width, $height) = getimagesize($logo);
 
@@ -630,7 +631,7 @@ function _uikit_base_preprocess_region_header($header_content) {
       $height = $max_height;
     }
 
-    // Bitmap images will give us values
+    // Bitmap images will give us values.
     elseif ($height > $max_height) {
       $ratio = $width / $height;
       $height = $max_height;
