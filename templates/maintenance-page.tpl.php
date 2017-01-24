@@ -26,30 +26,7 @@
   <header class="header" id="header" role="banner">
     <section class="page-header">
       <div class="wrapper">
-
-        <?php if (!empty($logo)): ?>
-          <a href="<?php print $base_path; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-            <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-          </a>
-        <?php endif; ?>
-
-        <div id="name-and-slogan">
-          <?php if (!empty($site_name)): ?>
-            <h1>
-              <a href="<?php print $base_path ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-            </h1>
-          <?php endif; ?>
-
-          <?php if (!empty($site_slogan)): ?>
-            <div id="site-slogan"><?php print $site_slogan; ?></div>
-          <?php endif; ?>
-
-          <?php if (!empty($header)): ?>
-            <div id="header-region">
-              <?php print $header; ?>
-            </div>
-          <?php endif; ?>
-        </div>
+        <?php print render($header); ?>
       </div>
     </section>
   </header>

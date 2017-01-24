@@ -68,6 +68,13 @@ function uikit_base_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements THEME_preprocess_maintenance_page().
+ */
+function uikit_base_preprocess_maintenance_page(&$variables) {
+  $variables['header'] = _uikit_base_preprocess_region_header('');
+}
+
+/**
  * Implements THEME_preprocess_block().
  */
 function uikit_base_preprocess_block(&$variables) {
@@ -102,7 +109,7 @@ function uikit_base_preprocess_region(&$variables) {
 
   // Pre-process the header region to combine block content and site branding
   if ($variables['region'] == 'header') {
-    _uikit_base_preprocess_region_header($variables);
+    $variables['content'] = _uikit_base_preprocess_region_header($variables['content']);
   }
 
   // Drop in the footer layout classes
@@ -582,7 +589,7 @@ function _uikit_base_process_local_tasks($children) {
 }
 
 /**
- * Pre-process the logo for uikit_base_preprocess_page().
+ * Get's the header content together.
  *
  * Turn the logo from a URL into an image within a link, and also scale it so
  * that it's no taller than specified in the theme settings.
@@ -594,11 +601,14 @@ function _uikit_base_process_local_tasks($children) {
  * This can be overridden in CSS at various breakpoints if required for those
  * users who want to customise the theme.
  *
- * @param array $variables
+ * @param string $header_content
+ *   The content that should go in the header's content region
+ *
+ * @return string
  *
  * @see uikit_base_preprocess_page().
  */
-function _uikit_base_preprocess_region_header(&$variables) {
+function _uikit_base_preprocess_region_header($header_content) {
 
   $site_name = variable_get('site_name', '');
   $site_slogan = variable_get('site_slogan', '');
@@ -665,10 +675,10 @@ function _uikit_base_preprocess_region_header(&$variables) {
   }
 
   $output .= '<div class="page-header__content">';
-  $output .= $variables['content'];
+  $output .= $header_content;
   $output .= '</div>';
 
-  $variables['content'] = $output;
+  return $output;
 
 }
 
