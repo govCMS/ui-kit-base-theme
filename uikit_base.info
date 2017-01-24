@@ -52,8 +52,6 @@ features[] = favicon
 settings[logo_max_height] = 150
 settings[logo_path] = sites/all/themes/uikit_base/logo.svg
 settings[default_logo] = 0
-settings[sidebar_position] = right
-
 settings[footer_top_layout] = horizontal
 settings[footer_bottom_layout] = horizontal
 
