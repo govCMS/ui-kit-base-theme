@@ -4809,6 +4809,8 @@ form .form-type-radio input[type='radio'] + label {
 .page-header__content form {
   float: none;
   margin-top: 1.5em; }
+  .page-header__content form .form-item {
+    margin-bottom: 0; }
   .page-header__content form [type=text], .page-header__content form [type=submit] {
     border: none;
     margin: 0; }
