@@ -17,14 +17,24 @@
 $human_name   = '2 col bricks';
 $machine_name = 'uikit_2_col_bricks';
 
-$regions = array(
-  'top'           => array('name' => t('Top'),           'grid' => 'col-md-12'),
-  'top_left'      => array('name' => t('Top left'),      'grid' => 'col-md-6'),
-  'top_right'     => array('name' => t('Top right'),     'grid' => 'col-md-6'),
-  'middle'        => array('name' => t('Middle'),        'grid' => 'col-md-12'),
-  'bottom_left'   => array('name' => t('Bottom left'),   'grid' => 'col-md-6'),
-  'bottom_right'  => array('name' => t('Bottom right'),  'grid' => 'col-md-6'),
-  'bottom'        => array('name' => t('Bottom'),        'grid' => 'col-md-12'),
+$rows_cols = array(
+  array(
+    'top'           => array('name' => t('Top'),           'grid' => 'col-md-12'),
+  ),
+  array(
+    'top_left'      => array('name' => t('Top left'),      'grid' => 'col-md-6'),
+    'top_right'     => array('name' => t('Top right'),     'grid' => 'col-md-6'),
+  ),
+  array(
+    'middle'        => array('name' => t('Middle'),        'grid' => 'col-md-12'),
+  ),
+  array(
+    'bottom_left'   => array('name' => t('Bottom left'),   'grid' => 'col-md-6'),
+    'bottom_right'  => array('name' => t('Bottom right'),  'grid' => 'col-md-6'),
+  ),
+  array(
+    'bottom'        => array('name' => t('Bottom'),        'grid' => 'col-md-12'),
+  ),
 );
 
 /******************************************************************************/
@@ -36,4 +46,4 @@ if (!function_exists('_uikit_base_render_panel_layout')) {
   include_once(DRUPAL_ROOT . '/' . drupal_get_path('theme', 'uikit_base') . '/template.php');
 }
 
-$plugin = _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $regions);
+$plugin = _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $rows_cols);

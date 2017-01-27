@@ -18,10 +18,12 @@
 $human_name   = '3 col - 25% 50% 25%';
 $machine_name = 'uikit_3_col_25_50_25';
 
-$regions = array(
-  'left'   => array('name' => t('Left'),   'grid' => 'col-md-3'),
-  'middle' => array('name' => t('Middle'), 'grid' => 'col-md-6'),
-  'right'  => array('name' => t('Right'),  'grid' => 'col-md-3'),
+$rows_cols = array(
+  array(
+    'left'   => array('name' => t('Left'),   'grid' => 'col-md-3'),
+    'middle' => array('name' => t('Middle'), 'grid' => 'col-md-6'),
+    'right'  => array('name' => t('Right'),  'grid' => 'col-md-3'),
+  ),
 );
 
 /******************************************************************************/
@@ -33,4 +35,4 @@ if (!function_exists('_uikit_base_render_panel_layout')) {
   include_once(DRUPAL_ROOT . '/' . drupal_get_path('theme', 'uikit_base') . '/template.php');
 }
 
-$plugin = _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $regions);
+$plugin = _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $rows_cols);

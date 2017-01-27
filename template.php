@@ -723,7 +723,7 @@ function _uikit_base_active_link($class_pairs, $classes) {
  */
 function _uikit_base_render_panel_layout($variables) {
 
-  $attributes = array('class' => 'row layout__' . $variables['classes']);
+  $attributes = array('class' => 'layout__' . $variables['classes']);
   if (!empty($variables['css_id'])) {
     $attributes['id'] = $variables['css_id'];
   }
@@ -731,18 +731,26 @@ function _uikit_base_render_panel_layout($variables) {
   $output  = '';
   $output .= '<div' . drupal_attributes($attributes) . '>';
 
-  foreach ($variables['layout']['grid'] as $region => $grid) {
+  foreach ($variables['layout']['grid'] as $row) {
 
-    $attributes = array(
-      'class' => array(
-        'layout__region',
-        'layout__region--' . $region,
-        $grid,
-      ),
-    );
+    $output .= '  <div class="row">';
 
-    $output .= '  <div' . drupal_attributes($attributes) . '>';
-    $output .= $variables['content'][$region];
+    foreach ($row as $region => $grid) {
+
+      $attributes = array(
+        'class' => array(
+          'layout__region',
+          'layout__region--' . $region,
+          $grid,
+        ),
+      );
+
+      $output .= '    <div' . drupal_attributes($attributes) . '>';
+      $output .= $variables['content'][$region];
+      $output .= '    </div>';
+
+    }
+
     $output .= '  </div>';
 
   }
@@ -760,13 +768,13 @@ function _uikit_base_render_panel_layout($variables) {
  * @param string $machine_name
  *   The machine name of the layout
  *
- * @param array $regions
- *   The region definitions
+ * @param array $rows_cols
+ *   The region definitions in a nested array of rows and columns.
  *
  * @return array
  *   The Panels plugin definition
  */
-function _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $regions) {
+function _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $rows_cols) {
 
   $plugin = array(
     'title'     => $human_name,
@@ -777,9 +785,12 @@ function _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $reg
     'bootstrap' => array(),
   );
 
-  foreach ($regions as $key => $region) {
-    $plugin['regions'][$key] = $region['name'];
-    $plugin['grid'][$key]    = $region['grid'];
+  foreach ($rows_cols as $delta => $row) {
+    $plugin['grid'][$delta] = array();
+    foreach ($row as $key => $region) {
+      $plugin['regions'][$key]      = $region['name'];
+      $plugin['grid'][$delta][$key] = $region['grid'];
+    }
   }
 
   return $plugin;
