@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * Contains the theme's functions to manipulate Drupal's default markup.
+ * Contains the theme's functions to override markup.
  *
  * Complete documentation for this file is available online.
  * @see https://drupal.org/node/1728096
@@ -17,7 +18,7 @@ function uikit_base_form_alter(&$form, &$form_state, $form_id) {
 
   // If this form is a search api form, we want to remove the size attribute
   // on the text input, it makes styling difficult. We also update the
-  // placeholder and apply a class to thr form for targeting in JS.
+  // placeholder and apply a class to the form for targeting in JS.
   if (strpos($form_id, 'search_api') !== FALSE) {
     $search_api_form_id = $form['id']['#value'];
     unset($form['keys_' . $search_api_form_id]['#size']);
@@ -33,7 +34,7 @@ function uikit_base_form_alter(&$form, &$form_state, $form_id) {
 /**
  * Implements THEME_preprocess_html().
  */
- function uikit_base_preprocess_html(&$variables) {
+function uikit_base_preprocess_html(&$variables) {
   drupal_add_css('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&subset=latin-ext', array('type' => 'external'));
 }
 
@@ -60,25 +61,10 @@ function uikit_base_preprocess_node(&$variables) {
 }
 
 /**
- * Implements THEME_preprocess_page().
- */
-function uikit_base_preprocess_page(&$variables) {
-
-  // Get classes for <main> together
-  $variables['main_classes'] = array('main');
-  // Position sidebar based on theme settings
-  if (theme_get_setting('sidebar_position') == 'left') {
-    $variables['main_classes'][] = 'sidebar-has-controls';
-  }
-  $variables['main_classes'] = implode(' ', $variables['main_classes']);
-
-}
-
-/**
  * Implements THEME_preprocess_maintenance_page().
  */
 function uikit_base_preprocess_maintenance_page(&$variables) {
-  $variables['header'] = _uikit_base_preprocess_region_header('');
+  $variables['header'] = _uikit_base_preprocess_region_header();
 }
 
 /**
@@ -92,14 +78,14 @@ function uikit_base_preprocess_block(&$variables) {
   $variables['title_attributes_array']['class'] = 'block__title';
   $variables['content_attributes_array']['class'] = 'block__content content';
 
-  // Drupal menu blocks, and Menu Block's blocks, share the same template file
-  // to apply the <nav> element.  We also switch template file if the block is
-  // in a sidebar.
+  // Drupal menu blocks and the Menu Block module's blocks share the same
+  // template file to apply the <nav> element.  We also switch template file if
+  // the block is in a sidebar.
   if (
     in_array($block->module, array('menu', 'menu_block'))
     || ($block->module == 'system' && $block->delta == 'main-menu')
   ) {
-    if (in_array($variables['block']->region, array('sidebar_left', 'sidebar_right'))) {
+    if (in_array($block->region, array('sidebar_left', 'sidebar_right'))) {
       array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic_sidebar');
     }
     else {
@@ -434,9 +420,7 @@ function uikit_base_form_element($variables) {
 
   // This function is invoked as theme wrapper, but the rendered form element
   // may not necessarily have been processed by form_builder().
-  $element += array(
-    '#title_display' => 'before',
-  );
+  $element += array('#title_display' => 'before');
 
   // Add element #id for #type 'item'.
   if (isset($element['#markup']) && !empty($element['#id'])) {
@@ -590,9 +574,8 @@ function uikit_base_toc_filter_back_to_top($variables) {
  *   The processed link html.
  */
 function _uikit_base_process_local_tasks($children) {
-  $output = str_replace('class="active"', 'class="active is-current"', $children);
-
-  return $output;
+  krumo($children);
+  return str_replace('class="active"', 'class="active is-current"', $children);
 }
 
 /**
@@ -616,7 +599,7 @@ function _uikit_base_process_local_tasks($children) {
  *
  * @see uikit_base_preprocess_page().
  */
-function _uikit_base_preprocess_region_header($header_content) {
+function _uikit_base_preprocess_region_header($header_content = '') {
 
   $site_name = variable_get('site_name', '');
   $site_slogan = variable_get('site_slogan', '');
