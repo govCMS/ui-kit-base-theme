@@ -4,7 +4,6 @@
 }
 
 .page--sidebar-left-right {
-
   .sidebar__left,
   .sidebar__right {
     @include media($desktop) {
@@ -26,11 +25,9 @@
       @include span-columns(6 of 12);
     }
   }
-
 }
 
 .page--sidebar-left {
-
   .sidebar__left {
     @include media($desktop) {
       @include span-columns(4 of 16);
@@ -48,11 +45,9 @@
       @include span-columns(9 of 12);
     }
   }
-
 }
 
 .page--sidebar-right {
-
   .sidebar__right {
     @include media($desktop) {
       @include span-columns(4 of 16);
@@ -70,5 +65,4 @@
       @include span-columns(9 of 12);
     }
   }
-
 }
