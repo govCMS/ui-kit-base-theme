@@ -355,7 +355,6 @@ function uikit_base_status_messages($variables) {
  * Implements THEME_form_element_label().
  */
 function uikit_base_form_element_label($variables) {
-
   $element = $variables['element'];
 
   // This is also used in the installer, pre-database setup.
@@ -408,14 +407,12 @@ function uikit_base_form_element_label($variables) {
 
   // The leading whitespace helps visually separate fields from inline labels.
   return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !optional', array('!title' => $title, '!optional' => $optional_label)) . "</label>\n";
-
 }
 
 /**
  * Implements THEME_form_element().
  */
 function uikit_base_form_element($variables) {
-
   $element = &$variables['element'];
 
   // This function is invoked as theme wrapper, but the rendered form element
@@ -510,7 +507,6 @@ function uikit_base_form_element($variables) {
   $output .= "</div>\n";
 
   return $output;
-
 }
 
 /**
@@ -600,11 +596,9 @@ function _uikit_base_process_local_tasks($children) {
  * @see uikit_base_preprocess_page().
  */
 function _uikit_base_preprocess_region_header($header_content = '') {
-
-  $site_name = variable_get('site_name', '');
+  $site_name   = variable_get('site_name', '');
   $site_slogan = variable_get('site_slogan', '');
-
-  $output = '';
+  $output      = '';
 
   // Do we want to show a logo?
   if (theme_get_setting('toggle_logo')) {
@@ -623,17 +617,17 @@ function _uikit_base_preprocess_region_header($header_content = '') {
 
     // Bitmap images will give us values.
     elseif ($height > $max_height) {
-      $ratio = $width / $height;
+      $ratio  = $width / $height;
       $height = $max_height;
-      $width = round($height * $ratio);
+      $width  = round($height * $ratio);
     }
 
     // Create the image using theme_image().
     $logo = theme('image', array(
-      'path' => $logo,
-      'alt' => t('@site_name logo', array('@site_name' => $site_name)),
-      'title' => filter_xss($site_name),
-      'width' => $width,
+      'path'   => $logo,
+      'alt'    => t('@site_name logo', array('@site_name' => $site_name)),
+      'title'  => filter_xss($site_name),
+      'width'  => $width,
       'height' => $height,
     ));
 
@@ -646,7 +640,7 @@ function _uikit_base_preprocess_region_header($header_content = '') {
   }
 
   // Do we need to show additional info?
-  $show_site_name = theme_get_setting('toggle_name');
+  $show_site_name   = theme_get_setting('toggle_name');
   $show_site_slogan = theme_get_setting('toggle_slogan');
   if ($show_site_name || (!empty($site_slogan) && $show_site_slogan)) {
 
@@ -670,7 +664,6 @@ function _uikit_base_preprocess_region_header($header_content = '') {
   $output .= '</div>';
 
   return $output;
-
 }
 
 /**
@@ -706,7 +699,6 @@ function _uikit_base_active_link($class_pairs, $classes) {
  *   The panel markup
  */
 function _uikit_base_render_panel_layout($variables) {
-
   $attributes = array('class' => 'layout__' . $variables['classes']);
   if (!empty($variables['css_id'])) {
     $attributes['id'] = $variables['css_id'];
@@ -740,7 +732,6 @@ function _uikit_base_render_panel_layout($variables) {
   }
 
   return $output;
-
 }
 
 /**
@@ -759,7 +750,6 @@ function _uikit_base_render_panel_layout($variables) {
  *   The Panels plugin definition
  */
 function _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $rows_cols) {
-
   $plugin = array(
     'title'     => $human_name,
     'category'  => t('UI Kit'),
@@ -778,5 +768,4 @@ function _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $row
   }
 
   return $plugin;
-
 }
