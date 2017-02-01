@@ -693,3 +693,90 @@ function _uikit_base_active_link($class_pairs, $classes) {
   }
   return $classes;
 }
+
+/**
+ * Renders all of the grid based Panel layouts.
+ * 
+ * This function is called from the Panels layout's include files.
+ *
+ * @param array $variables
+ *   The $variables array made available in the layout template file.
+ *
+ * @return string
+ *   The panel markup
+ */
+function _uikit_base_render_panel_layout($variables) {
+
+  $attributes = array('class' => 'layout__' . $variables['classes']);
+  if (!empty($variables['css_id'])) {
+    $attributes['id'] = $variables['css_id'];
+  }
+
+  $output  = '';
+  $output .= '<div' . drupal_attributes($attributes) . '>';
+
+  foreach ($variables['layout']['grid'] as $row) {
+
+    $output .= '  <div class="row">';
+
+    foreach ($row as $region => $grid) {
+
+      $attributes = array(
+        'class' => array(
+          'layout__region',
+          'layout__region--' . $region,
+          $grid,
+        ),
+      );
+
+      $output .= '    <div' . drupal_attributes($attributes) . '>';
+      $output .= $variables['content'][$region];
+      $output .= '    </div>';
+
+    }
+
+    $output .= '  </div>';
+
+  }
+
+  return $output;
+
+}
+
+/**
+ * Prepares a panels layout plugin array.
+ *
+ * @param string $human_name
+ *   The human readable name of the layout
+ *
+ * @param string $machine_name
+ *   The machine name of the layout
+ *
+ * @param array $rows_cols
+ *   The region definitions in a nested array of rows and columns.
+ *
+ * @return array
+ *   The Panels plugin definition
+ */
+function _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $rows_cols) {
+
+  $plugin = array(
+    'title'     => $human_name,
+    'category'  => t('UI Kit'),
+    'icon'      => $machine_name . '.png',
+    'theme'     => $machine_name,
+    'regions'   => array(),
+    'bootstrap' => array(),
+  );
+
+  foreach ($rows_cols as $delta => $row) {
+    $plugin['grid'][$delta] = array();
+    foreach ($row as $key => $region) {
+      $plugin['regions'][$key]      = $region['name'];
+      $plugin['grid'][$delta][$key] = $region['grid'];
+    }
+  }
+
+  return $plugin;
+
+}
