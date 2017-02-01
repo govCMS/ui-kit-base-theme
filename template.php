@@ -574,8 +574,8 @@ function uikit_base_toc_filter_back_to_top($variables) {
  *   The processed link html.
  */
 function _uikit_base_process_local_tasks($children) {
-  krumo($children);
-  return str_replace('class="active"', 'class="active is-current"', $children);
+  preg_replace('/(?:class="[^"]*?\b)(active)\b/i', 'active is-current', $children);
+  return $children;
 }
 
 /**
