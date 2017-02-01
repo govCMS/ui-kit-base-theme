@@ -55,5 +55,4 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#options' => $options,
     '#default_value' => theme_get_setting('footer_bottom_layout'),
   );
-
 }
