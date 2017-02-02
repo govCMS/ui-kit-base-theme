@@ -30,18 +30,6 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#description' => t('Layout and component settings for UI KIT.'),
   );
 
-  // Select list for sidebar position.
-  $form['uikit_settings']['sidebar_position'] = array(
-    '#type' => 'select',
-    '#title' => t('Sidebar position'),
-    '#options' => array(
-      'left' => t('Left'),
-      'right' => t('Right'),
-    ),
-    '#default_value' => theme_get_setting('sidebar_position'),
-    '#description' => t('A single sidebar is available, it can be positioned to the left or right of the content area.'),
-  );
-
   // Footer layout
   $options = array(
     'horizontal' => t('Horizontal'),
@@ -67,5 +55,4 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#options' => $options,
     '#default_value' => theme_get_setting('footer_bottom_layout'),
   );
-
 }

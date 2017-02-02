@@ -7,32 +7,31 @@
  * Contextual links regions.
  */
 
- // @TODO - unfortunate but necessary. This might break other stuff and will need to be tested but it seems to be the only way to ensure the contextual container's height fits all the content :(
+// @TODO - unfortunate but necessary. This might break other stuff and will
+// need to be tested but it seems to be the only way to ensure the contextual
+// container's height fits all the content :(
 
- .js .nav-collapse {
-   overflow: visible;
- }
+.js .nav-collapse {
+  overflow: visible;
+}
 
 html.js footer[role='contentinfo'],
 html.js header[role='banner'],
 html.js main {
-
   div.contextual-links-wrapper {
     display: block;
   }
-
 }
 
-@media screen and (min-width: 75em) {
+@include media($tablet) {
   footer[role='contentinfo'] .footer-top nav div.contextual-links-wrapper ul.contextual-links {
     display: none;
   }
 }
 
- footer[role='contentinfo'],
- header[role='banner'],
- main {
-
+footer[role='contentinfo'],
+header[role='banner'],
+main {
   a.contextual-links-trigger {
     background: transparent url(/modules/contextual/images/gear-select.png) no-repeat 2px 0;
   }
@@ -48,12 +47,10 @@ html.js main {
     display: block;
   }
 
-  @media screen and (min-width: 768px) {
-
+  @include media($tablet) {
     .site-nav__wrapper .contextual-links li a {
       border-bottom: none;
     }
-
   }
 
   .site-nav__wrapper .contextual-links li a,
@@ -68,7 +65,5 @@ html.js main {
     &:focus {
       background-color: #bfdcee !important;
     }
-
   }
-
 }

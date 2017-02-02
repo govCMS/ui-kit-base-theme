@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * Contains the theme's functions to manipulate Drupal's default markup.
+ * Contains the theme's functions to override markup.
  *
  * Complete documentation for this file is available online.
  * @see https://drupal.org/node/1728096
@@ -17,7 +18,7 @@ function uikit_base_form_alter(&$form, &$form_state, $form_id) {
 
   // If this form is a search api form, we want to remove the size attribute
   // on the text input, it makes styling difficult. We also update the
-  // placeholder and apply a class to thr form for targeting in JS.
+  // placeholder and apply a class to the form for targeting in JS.
   if (strpos($form_id, 'search_api') !== FALSE) {
     $search_api_form_id = $form['id']['#value'];
     unset($form['keys_' . $search_api_form_id]['#size']);
@@ -33,7 +34,7 @@ function uikit_base_form_alter(&$form, &$form_state, $form_id) {
 /**
  * Implements THEME_preprocess_html().
  */
- function uikit_base_preprocess_html(&$variables) {
+function uikit_base_preprocess_html(&$variables) {
   drupal_add_css('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&subset=latin-ext', array('type' => 'external'));
 }
 
@@ -51,7 +52,7 @@ function uikit_base_preprocess_field(&$variables) {
  */
 function uikit_base_preprocess_node(&$variables) {
   // Add UI KIT class to author and date information.
-  $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on !date', array('!date' => '<time>' . $variables['date'] .'</time>', '!author' => $variables['name']));
+  $variables['submitted'] = '<div class="meta">' . t('Submitted by !author on <time>!date</time>', array('!date' => $variables['date'], '!author' => $variables['name']));
 
   // Add UI KIT class to readmore link in teaser view mode.
   if (!empty($variables['content']['links']['node']['#links']['node-readmore'])) {
@@ -60,25 +61,10 @@ function uikit_base_preprocess_node(&$variables) {
 }
 
 /**
- * Implements THEME_preprocess_page().
- */
-function uikit_base_preprocess_page(&$variables) {
-
-  // Get classes for <main> together
-  $variables['main_classes'] = array('main');
-  // Position sidebar based on theme settings
-  if (theme_get_setting('sidebar_position') == 'left') {
-    $variables['main_classes'][] = 'sidebar-has-controls';
-  }
-  $variables['main_classes'] = implode(' ', $variables['main_classes']);
-
-}
-
-/**
  * Implements THEME_preprocess_maintenance_page().
  */
 function uikit_base_preprocess_maintenance_page(&$variables) {
-  $variables['header'] = _uikit_base_preprocess_region_header('');
+  $variables['header'] = _uikit_base_preprocess_region_header();
 }
 
 /**
@@ -92,14 +78,14 @@ function uikit_base_preprocess_block(&$variables) {
   $variables['title_attributes_array']['class'] = 'block__title';
   $variables['content_attributes_array']['class'] = 'block__content content';
 
-  // Drupal menu blocks, and Menu Block's blocks, share the same template file
-  // to apply the <nav> element.  We also switch template file if the block is
-  // in a sidebar.
+  // Drupal menu blocks and the Menu Block module's blocks share the same
+  // template file to apply the <nav> element.  We also switch template file if
+  // the block is in a sidebar.
   if (
     in_array($block->module, array('menu', 'menu_block'))
     || ($block->module == 'system' && $block->delta == 'main-menu')
   ) {
-    if (in_array($variables['block']->region, array('sidebar_left', 'sidebar_right'))) {
+    if (in_array($block->region, array('sidebar_left', 'sidebar_right'))) {
       array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic_sidebar');
     }
     else {
@@ -142,7 +128,7 @@ function uikit_base_breadcrumb($variables) {
 
     // Process breadcrumb for UI KIT format.
     $breadcrumb_list = '<ul>';
-    foreach($breadcrumb as $link) {
+    foreach ($breadcrumb as $link) {
       $breadcrumb_list .= '<li>' . $link . '</li>';
     }
     $breadcrumb_list .= '</ul>';
@@ -369,7 +355,6 @@ function uikit_base_status_messages($variables) {
  * Implements THEME_form_element_label().
  */
 function uikit_base_form_element_label($variables) {
-
   $element = $variables['element'];
 
   // This is also used in the installer, pre-database setup.
@@ -422,21 +407,17 @@ function uikit_base_form_element_label($variables) {
 
   // The leading whitespace helps visually separate fields from inline labels.
   return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !optional', array('!title' => $title, '!optional' => $optional_label)) . "</label>\n";
-
 }
 
 /**
  * Implements THEME_form_element().
  */
 function uikit_base_form_element($variables) {
-
   $element = &$variables['element'];
 
   // This function is invoked as theme wrapper, but the rendered form element
   // may not necessarily have been processed by form_builder().
-  $element += array(
-    '#title_display' => 'before',
-  );
+  $element += array('#title_display' => 'before');
 
   // Add element #id for #type 'item'.
   if (isset($element['#markup']) && !empty($element['#id'])) {
@@ -526,7 +507,6 @@ function uikit_base_form_element($variables) {
   $output .= "</div>\n";
 
   return $output;
-
 }
 
 /**
@@ -590,9 +570,8 @@ function uikit_base_toc_filter_back_to_top($variables) {
  *   The processed link html.
  */
 function _uikit_base_process_local_tasks($children) {
-  $output = str_replace('class="active"', 'class="active is-current"', $children);
-
-  return $output;
+  preg_replace('/(?:class="[^"]*?\b)(active)\b/i', 'active is-current', $children);
+  return $children;
 }
 
 /**
@@ -609,25 +588,24 @@ function _uikit_base_process_local_tasks($children) {
  * users who want to customise the theme.
  *
  * @param string $header_content
- *   The content that should go in the header's content region
+ *   The content that should go in the header's content region.
  *
  * @return string
+ *   The header region content.
  *
  * @see uikit_base_preprocess_page().
  */
-function _uikit_base_preprocess_region_header($header_content) {
-
-  $site_name = variable_get('site_name', '');
+function _uikit_base_preprocess_region_header($header_content = '') {
+  $site_name   = variable_get('site_name', '');
   $site_slogan = variable_get('site_slogan', '');
-
-  $output = '';
+  $output      = '';
 
   // Do we want to show a logo?
   if (theme_get_setting('toggle_logo')) {
 
     $logo = theme_get_setting('logo');
 
-    // Attempt to get the width and height of the logo
+    // Attempt to get the width and height of the logo.
     $max_height = theme_get_setting('logo_max_height');
     list($width, $height) = getimagesize($logo);
 
@@ -637,19 +615,19 @@ function _uikit_base_preprocess_region_header($header_content) {
       $height = $max_height;
     }
 
-    // Bitmap images will give us values
+    // Bitmap images will give us values.
     elseif ($height > $max_height) {
-      $ratio = $width / $height;
+      $ratio  = $width / $height;
       $height = $max_height;
-      $width = round($height * $ratio);
+      $width  = round($height * $ratio);
     }
 
     // Create the image using theme_image().
     $logo = theme('image', array(
-      'path' => $logo,
-      'alt' => t('@site_name logo', array('@site_name' => $site_name)),
-      'title' => filter_xss($site_name),
-      'width' => $width,
+      'path'   => $logo,
+      'alt'    => t('@site_name logo', array('@site_name' => $site_name)),
+      'title'  => filter_xss($site_name),
+      'width'  => $width,
       'height' => $height,
     ));
 
@@ -662,7 +640,7 @@ function _uikit_base_preprocess_region_header($header_content) {
   }
 
   // Do we need to show additional info?
-  $show_site_name = theme_get_setting('toggle_name');
+  $show_site_name   = theme_get_setting('toggle_name');
   $show_site_slogan = theme_get_setting('toggle_slogan');
   if ($show_site_name || (!empty($site_slogan) && $show_site_slogan)) {
 
@@ -686,7 +664,6 @@ function _uikit_base_preprocess_region_header($header_content) {
   $output .= '</div>';
 
   return $output;
-
 }
 
 /**
@@ -722,7 +699,6 @@ function _uikit_base_active_link($class_pairs, $classes) {
  *   The panel markup
  */
 function _uikit_base_render_panel_layout($variables) {
-
   $attributes = array('class' => 'layout__' . $variables['classes']);
   if (!empty($variables['css_id'])) {
     $attributes['id'] = $variables['css_id'];
@@ -756,7 +732,6 @@ function _uikit_base_render_panel_layout($variables) {
   }
 
   return $output;
-
 }
 
 /**
@@ -775,7 +750,6 @@ function _uikit_base_render_panel_layout($variables) {
  *   The Panels plugin definition
  */
 function _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $rows_cols) {
-
   $plugin = array(
     'title'     => $human_name,
     'category'  => t('UI Kit'),
@@ -794,5 +768,4 @@ function _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $row
   }
 
   return $plugin;
-
 }

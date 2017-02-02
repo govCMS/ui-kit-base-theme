@@ -13,6 +13,7 @@ $hero          = render($page['hero']);
 $sidebar_left  = render($page['sidebar_left']);
 $sidebar_right = render($page['sidebar_right']);
 
+$main_classes = '';
 if ($sidebar_left && $sidebar_right) {
   $main_classes .= ' page--sidebar-left-right';
 }
@@ -70,19 +71,24 @@ elseif ($sidebar_right) {
         <a href="#skip-link" id="skip-content" class="element-invisible">Go to top of page</a>
 
         <a id="main-content"></a>
+
         <?php print render($title_prefix); ?>
         <?php if ($title): ?>
-          <h1 class="page__title title" id="page-title"><?php print $title; ?></h1>
+        <h1 class="page__title title" id="page-title"><?php print $title; ?></h1>
         <?php endif; ?>
         <?php print render($title_suffix); ?>
+
         <?php print $messages; ?>
         <?php print render($tabs); ?>
         <?php print render($page['help']); ?>
         <?php if ($action_links): ?>
-          <ul class="action-links"><?php print render($action_links); ?></ul>
+        <ul class="action-links"><?php print render($action_links); ?></ul>
         <?php endif; ?>
+
         <?php print render($page['content']); ?>
+
         <?php print $feed_icons; ?>
+
       </div>
     </div>
   </article>

@@ -1,6 +1,6 @@
 screenshot  = screenshot.png
-name        = UI KIT base theme
-description = govCMS base theme with DTA UI kit styles.
+name        = UI KIT
+description = Based on DTA's UI Kit (version 1) and Design Guide. Can be used as is or sub-themed.
 core        = 7.x
 
 ; Remove some styling that we don't want
@@ -10,9 +10,8 @@ stylesheets[all][] = system.theme.css
 stylesheets[all][] = toc_filter.css
 stylesheets[all][] = workbench.block.css
 
+; Add UI Kit and theme styles and JS
 stylesheets[all][] = css/ui-kit.css
-
-; Add DTA UI kit.
 scripts[] = js/ui-kit.min.js
 
 ; Add scripts
@@ -35,9 +34,8 @@ regions[bottom]         = Page bottom
 ; The page_top and page_bottom regions are hidden, which means they will not
 ; show up on the blocks administration page. But they are required in order for
 ; the html.tpl.php to work properly, so do not delete them.
-
-regions[page_top]       = Page top
-regions[page_bottom]    = Page bottom
+regions[page_top]    = Page top
+regions[page_bottom] = Page bottom
 
 ; Various page elements output by the theme can be toggled on and off. The
 ; "features" control which of these check boxes display on the
@@ -45,22 +43,15 @@ regions[page_bottom]    = Page bottom
 ; for elements not used by your sub-theme. To suppress a check box, omit the
 ; entry for it below. See the Drupal 7 Theme Guide for more info:
 ; https://drupal.org/node/171205#features
-
 features[] = logo
 features[] = name
 features[] = slogan
-features[] = node_user_picture
-features[] = comment_user_picture
 features[] = favicon
-features[] = main_menu
-features[] = secondary_menu
 
 ; Set the default values of settings on the theme-settings.php form.
 settings[logo_max_height] = 150
 settings[logo_path] = sites/all/themes/uikit_base/logo.svg
 settings[default_logo] = 0
-settings[sidebar_position] = right
-
 settings[footer_top_layout] = horizontal
 settings[footer_bottom_layout] = horizontal
 

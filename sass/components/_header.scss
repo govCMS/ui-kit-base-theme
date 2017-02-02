@@ -60,6 +60,10 @@
     float: none;
     margin-top: 1.5em;
 
+    .form-item {
+      margin-bottom: 0;
+    }
+
     [type=text], [type=submit] {
       border: none;
       margin: 0;
