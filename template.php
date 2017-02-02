@@ -746,13 +746,20 @@ function _uikit_base_render_panel_layout($variables) {
  * @param array $rows_cols
  *   The region definitions in a nested array of rows and columns.
  *
+ * @param string $category
+ *   The category this layout belongs to, defaults to 'UI Kit'.
+ *
  * @return array
  *   The Panels plugin definition
  */
-function _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $rows_cols) {
+function _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $rows_cols, $category = null) {
+  if (empty($category)) {
+    $category = t('UI Kit');
+  }
+
   $plugin = array(
     'title'     => $human_name,
-    'category'  => t('UI Kit'),
+    'category'  => $category,
     'icon'      => $machine_name . '.png',
     'theme'     => $machine_name,
     'regions'   => array(),
