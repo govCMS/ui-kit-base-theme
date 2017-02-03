@@ -61,6 +61,13 @@ function uikit_base_preprocess_node(&$variables) {
 }
 
 /**
+ * Implements THEME_preprocess_page().
+ */
+function uikit_base_preprocess_page(&$variables) {
+  $variables['page']['header'] = _uikit_base_preprocess_region_header($variables['page']['header']);
+}
+
+/**
  * Implements THEME_preprocess_maintenance_page().
  */
 function uikit_base_preprocess_maintenance_page(&$variables) {
@@ -99,17 +106,10 @@ function uikit_base_preprocess_block(&$variables) {
  * Implements THEME_preprocess_region().
  */
 function uikit_base_preprocess_region(&$variables) {
-
-  // Pre-process the header region to combine block content and site branding
-  if ($variables['region'] == 'header') {
-    $variables['content'] = _uikit_base_preprocess_region_header($variables['content']);
-  }
-
   // Drop in the footer layout classes
   if (in_array($variables['region'], array('footer_top', 'footer_bottom'))) {
     $variables['classes_array'][] = 'region--' . theme_get_setting($variables['region'] . '_layout');
   }
-
 }
 
 
@@ -660,7 +660,12 @@ function _uikit_base_preprocess_region_header($header_content = '') {
   }
 
   $output .= '<div class="page-header__content">';
-  $output .= $header_content;
+  if (is_array($header_content)) {
+    $output .= drupal_render($header_content);
+  }
+  else {
+    $output .= $header_content;
+  }
   $output .= '</div>';
 
   return $output;
@@ -689,7 +694,7 @@ function _uikit_base_active_link($class_pairs, $classes) {
 
 /**
  * Renders all of the grid based Panel layouts.
- * 
+ *
  * This function is called from the Panels layout's include files.
  *
  * @param array $variables
