@@ -642,22 +642,19 @@ function _uikit_base_preprocess_region_header($header_content = '') {
   // Do we need to show additional info?
   $show_site_name   = theme_get_setting('toggle_name');
   $show_site_slogan = theme_get_setting('toggle_slogan');
-  if ($show_site_name || (!empty($site_slogan) && $show_site_slogan)) {
 
-    $output .= '<div class="page-header__site-info">';
+  $output .= '<div class="page-header__site-info">';
 
-    // Do we want to show a site name?
-    if ($show_site_name) {
-      $output .= '<div class="page-header__site-title">' . l($site_name, '<front>') . '</div>';
-    }
-    // Do we want to show a site slogan?
-    if (!empty($site_slogan) && $show_site_slogan) {
-      $output .= '<div class="page-header__site_slogan">' . filter_xss($site_slogan) . '</div>';
-    }
-
-    $output .= '</div>';
-
+  // Do we want to show a site name?
+  if ($show_site_name) {
+    $output .= '<div class="page-header__site-title">' . l($site_name, '<front>') . '</div>';
   }
+  // Do we want to show a site slogan?
+  if (!empty($site_slogan) && $show_site_slogan) {
+    $output .= '<div class="page-header__site_slogan">' . filter_xss($site_slogan) . '</div>';
+  }
+
+  $output .= '</div>';
 
   $output .= '<div class="page-header__content">';
   if (is_array($header_content)) {
