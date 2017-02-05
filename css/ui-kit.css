@@ -5188,18 +5188,12 @@ form .form-type-radio input[type='radio'] + label {
 .form-type-radios .form-type-radio input[type='radio'] + label {
   margin-left: 0.8em; }
 
-.page-header .site-nav {
-  clear: both; }
-
-.region-header {
-  display: table;
-  margin-bottom: 1em;
-  width: 100%; }
+.page-header .wrapper {
+  padding-bottom: 2em; }
 
 .page-header__logo,
 .page-header__site-info,
 .page-header__content {
-  display: block;
   text-align: center; }
 
 .page-header__logo img {
@@ -5262,19 +5256,28 @@ form .form-type-radio input[type='radio'] + label {
     position: relative; }
 
 @media screen and (min-width: 768px) {
+  .page-header .wrapper {
+    padding-bottom: 1.6em;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
   .page-header__logo,
   .page-header__site-info,
   .page-header__content {
-    display: table-cell;
-    vertical-align: middle;
     text-align: left; }
   .page-header__logo img {
-    margin-right: 1em;
-    float: left; }
+    margin-right: 1em; }
   .page-header__site-info {
-    padding: 0 1em;
-    text-align: left;
-    width: 100%; }
+    padding: 0 1em; }
   .page-header__site-title {
     margin: 0 0 .25em 0; }
   .page-header__site_slogan {

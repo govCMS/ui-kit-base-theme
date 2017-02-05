@@ -49,7 +49,7 @@ features[] = slogan
 features[] = favicon
 
 ; Set the default values of settings on the theme-settings.php form.
-settings[logo_max_height] = 150
+settings[logo_max_width] = 150
 settings[logo_path] = sites/all/themes/uikit_base/logo.svg
 settings[default_logo] = 0
 settings[footer_top_layout] = horizontal
