@@ -18,7 +18,7 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
   // container is smaller than this, the logo will scale (mobile for example).
   $form['logo']['logo_max_width'] = array(
     '#type' => 'textfield',
-    '#title' => t('Minimum width'),
+    '#title' => t('Maximum width'),
     '#default_value' => theme_get_setting('logo_max_width'),
     '#field_suffix' => 'px',
     '#size' => 5,
