@@ -708,25 +708,53 @@ function _uikit_base_render_panel_layout($variables) {
 
   $output  = '';
   $output .= '<div' . drupal_attributes($attributes) . '>';
+  $output .= _uikit_base_render_panel_layout_build_grid($variables['layout']['grid'], $variables['content']);
+  $output .= '</div>';
 
-  foreach ($variables['layout']['grid'] as $row) {
+  return $output;
+}
+
+/**
+ * Builds Panel layout markup based on Bootstrap classes
+ *
+ * @see _uikit_base_render_panel_layout().
+ *
+ * @param array $grid
+ *
+ * @param array $content
+ *
+ * @return string
+ */
+function _uikit_base_render_panel_layout_build_grid($grid, $content) {
+  $output  = '';
+
+  foreach ($grid as $row => $columns) {
 
     $output .= '  <div class="row">';
 
-    foreach ($row as $region => $grid) {
+    foreach ($columns as $key => $data) {
 
-      $attributes = array(
-        'class' => array(
-          'layout__region',
-          'layout__region--' . $region,
-          $grid,
-        ),
-      );
+      // $data is an array of child rows/cols and grid info, $key is a delta
+      if (is_array($data)) {
+        $output .= '<div class="' . $data['grid'] . '">';
+        $output .= _uikit_base_render_panel_layout_build_grid($data['children'], $content);
+        $output .= '</div>';
+      }
 
-      $output .= '    <div' . drupal_attributes($attributes) . '>';
-      $output .= $variables['content'][$region];
-      $output .= '    </div>';
+      // $data is grid class, $key is the panel machine name
+      else {
+        $attributes = array(
+          'class' => array(
+            'layout__region',
+            'layout__region--' . $key,
+            $data,
+          ),
+        );
 
+        $output .= '    <div' . drupal_attributes($attributes) . '>';
+        $output .= $content[$key];
+        $output .= '    </div>';
+      }
     }
 
     $output .= '  </div>';
@@ -768,13 +796,59 @@ function _uikit_base_prepare_panel_layout_array($human_name, $machine_name, $row
     'bootstrap' => array(),
   );
 
+  $data = _uikit_base_prepare_panel_layout_array_extract_layout($rows_cols);
+
+  $plugin = array_merge($plugin, $data);
+
+  return $plugin;
+}
+
+/**
+ * Extracts the region and grid configuration from a nested Panels layout
+ * declaration.
+ *
+ * @see _uikit_base_prepare_panel_layout_array().
+ *
+ * @param array $rows_cols
+ *   An nested array of row and column data
+ *
+ * @return array
+ *   An array with two keys 'regions' and 'grid'.
+ */
+function _uikit_base_prepare_panel_layout_array_extract_layout($rows_cols) {
+
+  $retval = array(
+    'regions' => array(),
+    'grid'    => array(),
+  );
+
   foreach ($rows_cols as $delta => $row) {
-    $plugin['grid'][$delta] = array();
-    foreach ($row as $key => $region) {
-      $plugin['regions'][$key]      = $region['name'];
-      $plugin['grid'][$delta][$key] = $region['grid'];
+
+    $retval['grid'][$delta] = array();
+
+    foreach ($row as $key => $data) {
+
+      // If data contains a name key, this is a panel pane
+      if (!empty($data['name'])) {
+        $retval['regions'][$key] = $data['name'];
+      }
+
+      // If data contains a grid key, this is part of the grid
+      if (!empty($data['grid'])) {
+        $retval['grid'][$delta][$key] = $data['grid'];
+      }
+
+      // if data contains children, there is a sub-grid
+      if (!empty($data['children'])) {
+        $returned = _uikit_base_prepare_panel_layout_array_extract_layout($data['children']);
+        $retval['grid'][$delta][$key] = array(
+          'grid'     => $retval['grid'][$delta][$key],
+          'children' => array($returned['grid'][$delta]),
+        );
+        $retval['regions'] += $returned['regions'];
+      }
     }
   }
 
-  return $plugin;
+  return $retval;
 }
