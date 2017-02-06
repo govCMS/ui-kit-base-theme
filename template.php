@@ -617,7 +617,7 @@ function _uikit_base_preprocess_region_header($header_content = '') {
 
     // Bitmap images will give us values.
     elseif ($width > $max_width) {
-      $ratio  = $width / $height;
+      $ratio  = $height / $width;
       $width  = $max_width;
       $height = round($width * $ratio);
     }
