@@ -23,13 +23,6 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#description' => t('Limit the height of the logo in the header, aspect ratio will be maintained.'),
   );
 
-  // UI KIT settings.
-  $form['uikit_settings'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('UI KIT settings'),
-    '#description' => t('Layout and component settings for UI KIT.'),
-  );
-
   // Footer layout
   $options = array(
     'horizontal' => t('Horizontal'),
@@ -54,5 +47,12 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#title' => t('Footer bottom content layout'),
     '#options' => $options,
     '#default_value' => theme_get_setting('footer_bottom_layout'),
+  );
+
+  $form['full_width_pages'] = array(
+    '#type' => 'textarea',
+    '#title' => t('CSS selectors to set full width pages'),
+    '#default_value' => theme_get_setting('full_width_pages'),
+    '#description' => t('Any page that contains the above classes on the body element will be made full width. Enter one selector per line, without the ending comma or parenthesis.'),
   );
 }
