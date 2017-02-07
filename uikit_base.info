@@ -54,7 +54,7 @@ settings[logo_path] = sites/all/themes/uikit_base/logo.svg
 settings[default_logo] = 0
 settings[footer_top_layout] = horizontal
 settings[footer_bottom_layout] = horizontal
-settings[full_width_pages] = .no-sidebars.front
+settings[full_width_pages] = <front>
 
 ; To add a Panels layout (which can also be used by Display Suite), uncomment
 ; the line below and see the documentation at: https://drupal.org/node/495654

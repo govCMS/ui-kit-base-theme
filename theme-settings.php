@@ -51,8 +51,8 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
 
   $form['full_width_pages'] = array(
     '#type' => 'textarea',
-    '#title' => t('CSS selectors to set full width pages'),
+    '#title' => t('Full width pages'),
     '#default_value' => theme_get_setting('full_width_pages'),
-    '#description' => t('Any page that contains the above classes on the body element will be made full width. Enter one selector per line, without the ending comma or parenthesis.'),
+    '#description' => t('Enter a list of paths on which the main content area should take up 100% of available width.  Enter one path per line, wildcards are allowed.'),
   );
 }

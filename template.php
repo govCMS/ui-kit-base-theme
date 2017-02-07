@@ -37,17 +37,8 @@ function uikit_base_form_alter(&$form, &$form_state, $form_id) {
 function uikit_base_preprocess_html(&$variables) {
   drupal_add_css('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&subset=latin-ext', array('type' => 'external'));
 
-  // Add any extra body classes
-  $classes = _uikit_base_body_classes();
-  if (!empty($classes)) {
-    $variables['classes_array'] = array_unique(array_merge($variables['classes_array'], _uikit_base_body_classes()));
-  }
-
   // Add full width rules
-  $css = _uikit_base_full_width_styling();
-  if (!empty($css)) {
-    drupal_add_css($css, 'inline');
-  }
+  _uikit_base_full_width_styling($variables);
 }
 
 /**
@@ -70,15 +61,6 @@ function uikit_base_preprocess_node(&$variables) {
   if (!empty($variables['content']['links']['node']['#links']['node-readmore'])) {
     $variables['content']['links']['node']['#links']['node-readmore']['attributes']['class'] = 'see-more';
   }
-
-  // Add body classes
-  $classes = array(
-    'node',
-    'node--' . drupal_clean_css_identifier($variables['node']->type),
-    'node--' . $variables['view_mode'],
-    'node--' . $variables['node']->nid,
-  );
-  _uikit_base_body_classes($classes);
 }
 
 /**
@@ -130,26 +112,6 @@ function uikit_base_preprocess_region(&$variables) {
   // Drop in the footer layout classes
   if (in_array($variables['region'], array('footer_top', 'footer_bottom'))) {
     $variables['classes_array'][] = 'region--' . theme_get_setting($variables['region'] . '_layout');
-  }
-}
-
-
-/** Contrib pre-process functions *********************************************/
-
-/**
- * Implements THEME_preprocess_views_view().
- */
-function uikit_base_preprocess_views_view(&$vars) {
-  // Add body classes for views page displays
-  $view    = $vars['view'];
-  $display = $view->display[$vars['view']->current_display];
-  if ($display->display_plugin == 'page') {
-    $classes = array(
-      'view',
-      'view--' . drupal_clean_css_identifier($view->name),
-      'view--' . drupal_clean_css_identifier($display->id),
-    );
-    _uikit_base_body_classes($classes);
   }
 }
 
@@ -895,38 +857,15 @@ function _uikit_base_prepare_panel_layout_array_extract_layout($rows_cols) {
 }
 
 /**
- * Keeps a list of classes to be added to the body element.
+ * Adds a class to make .main-content full width on user specified paths.
  *
- * Changes to the body element can only be made in template_preprocess_html()
- * however at that point how the page was generated may be lost. This function
- * collects classes to be added to the body from other prepreocess functions.
+ * @param array $variables
  *
- * @param array $new_classes
- *
- * @return array
+ * @see uikit_base_preprocess_html().
  */
-function _uikit_base_body_classes($new_classes = array()) {
-  static $classes = array();
-  if (!empty($new_classes)) {
-    $classes = array_merge($new_classes, $classes);
+function _uikit_base_full_width_styling(&$variables) {
+  $paths = trim(theme_get_setting('full_width_pages'));
+  if (drupal_match_path(current_path(), $paths)) {
+    $variables['classes_array'][] = 'full-width-page';
   }
-  return $classes;
-}
-
-/**
- * Converts the full with partial CSS selectors in the theme settings into an
- * inline CSS rule.
- *
- * @return string
- */
-function _uikit_base_full_width_styling() {
-  $retval = '';
-  $selectors = trim(theme_get_setting('full_width_pages'));
-  if (!empty($selectors)) {
-    foreach (explode("\n", str_replace("\r", '', $selectors)) as $selector) {
-      $retval .= $selector . ' .content-main, ';
-    }
-    $retval = substr($retval, 0, -2) . ' { width: 100% !important }';
-  }
-  return $retval;
 }
