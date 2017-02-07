@@ -5257,7 +5257,8 @@ form .form-type-radio input[type='radio'] + label {
 
 @media screen and (min-width: 768px) {
   .page-header .wrapper {
-    padding-bottom: 1.6em;
+    padding-bottom: 0; }
+  .page-header__branding {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;

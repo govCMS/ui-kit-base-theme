@@ -96,7 +96,10 @@
 
 @include media($tablet) {
   .page-header .wrapper {
-    padding-bottom: 1.6em;
+    padding-bottom: 0;
+  }
+
+  .page-header__branding {
     display: flex;
     align-items: center;
     justify-content: space-between;
