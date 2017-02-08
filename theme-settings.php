@@ -25,13 +25,6 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#description' => t('The maximum width of the logo in the header, aspect ratio will be maintained.'),
   );
 
-  // UI KIT settings.
-  $form['uikit_settings'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('UI KIT settings'),
-    '#description' => t('Layout and component settings for UI KIT.'),
-  );
-
   // Footer layout
   $options = array(
     'horizontal' => t('Horizontal'),
@@ -56,5 +49,12 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#title' => t('Footer bottom content layout'),
     '#options' => $options,
     '#default_value' => theme_get_setting('footer_bottom_layout'),
+  );
+
+  $form['full_width_pages'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Full width pages'),
+    '#default_value' => theme_get_setting('full_width_pages'),
+    '#description' => t('Enter a list of paths on which the main content area should take up 100% of available width.  Enter one path per line, wildcards are allowed.'),
   );
 }

@@ -17,7 +17,7 @@ The Drupal theme and local prototype include the raw, uncompiled UI-kit providin
 
 If you find bugs in this theme, please report them in the [GitHub issue queue](https://github.com/govCMS/ui-kit-base-theme/issues/).
 
-If you feel that this theme is missing something, or if you implement something in your sub-theme that you feel would benefit other users, please [open a pull request](https://github.com/govCMS/ui-kit-base-theme/pulls).  
+If you feel that this theme is missing something, or if you implement something in your sub-theme that you feel would benefit other users, please [open a pull request](https://github.com/govCMS/ui-kit-base-theme/pulls).  All Pull Requests should be from and against the `develop` branch.  
 
 ## Install the prototype/theme build package
  

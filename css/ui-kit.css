@@ -5463,6 +5463,9 @@ body:before {
     .page--sidebar-right .content-main:last-child {
       margin-right: 0; } }
 
+.full-width-page .content-main {
+  width: 100% !important; }
+
 #maintenance-page header section {
   padding: 1.5em 0; }
 
