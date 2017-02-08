@@ -865,7 +865,10 @@ function _uikit_base_prepare_panel_layout_array_extract_layout($rows_cols) {
  */
 function _uikit_base_full_width_styling(&$variables) {
   $paths = trim(theme_get_setting('full_width_pages'));
-  if (drupal_match_path(current_path(), $paths)) {
+  if (
+    drupal_match_path(current_path(), $paths)
+    || drupal_match_path(drupal_get_path_alias(), $paths)
+  ) {
     $variables['classes_array'][] = 'full-width-page';
   }
 }
