@@ -1,17 +1,10 @@
-.page-header .site-nav {
-  clear: both;
-}
-
-.region-header {
-  display: table;
-  margin-bottom: 1em;
-  width: 100%;
+.page-header .wrapper {
+  padding-bottom: 2em;
 }
 
 .page-header__logo,
 .page-header__site-info,
 .page-header__content {
-  display: block;
   text-align: center;
 }
 
@@ -102,25 +95,30 @@
 
 
 @include media($tablet) {
+  .page-header .wrapper {
+    padding-bottom: 0;
+  }
+
+  .page-header__branding {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .page-header__logo,
   .page-header__site-info,
   .page-header__content {
-    display: table-cell;
-    vertical-align: middle;
     text-align: left;
   }
 
   .page-header__logo {
     img {
       margin-right: 1em;
-      float: left;
     }
   }
 
   .page-header__site-info {
     padding: 0 1em;
-    text-align: left;
-    width: 100%;
   }
 
   .page-header__site-title {

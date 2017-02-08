@@ -13,14 +13,16 @@ function uikit_base_form_system_theme_settings_alter(&$form, &$form_state, $form
     return;
   }
 
-  // The maximum height for the logo in the header
-  $form['logo']['logo_max_height'] = array(
+  // When using SVG logos, we need the user to set the maximum width for the
+  // logo so that it's not made too small by the other header elements. If the
+  // container is smaller than this, the logo will scale (mobile for example).
+  $form['logo']['logo_max_width'] = array(
     '#type' => 'textfield',
-    '#title' => t('Maximum height'),
-    '#default_value' => theme_get_setting('logo_max_height'),
+    '#title' => t('Maximum width'),
+    '#default_value' => theme_get_setting('logo_max_width'),
     '#field_suffix' => 'px',
     '#size' => 5,
-    '#description' => t('Limit the height of the logo in the header, aspect ratio will be maintained.'),
+    '#description' => t('The maximum width of the logo in the header, aspect ratio will be maintained.'),
   );
 
   // Footer layout

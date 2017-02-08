@@ -30,7 +30,9 @@ elseif ($sidebar_right) {
   <section class="page-header">
     <div class="wrapper">
 
-      <?php print render($page['header']); ?>
+      <div class="page-header__branding">
+        <?php print render($page['header']); ?>
+      </div>
 
       <?php if ($navigation): ?>
         <div class="site-nav">

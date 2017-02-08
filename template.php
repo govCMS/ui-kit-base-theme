@@ -609,20 +609,20 @@ function _uikit_base_preprocess_region_header($header_content = '') {
     $logo = theme_get_setting('logo');
 
     // Attempt to get the width and height of the logo.
-    $max_height = theme_get_setting('logo_max_height');
+    $max_width = theme_get_setting('logo_max_width');
     list($width, $height) = getimagesize($logo);
 
     // If we're dealing with an SVG, the width and height will be null, so we set
     // a height and get the browser to pick up the width.
     if (is_null($width) && is_null($height)) {
-      $height = $max_height;
+      $width = $max_width;
     }
 
     // Bitmap images will give us values.
-    elseif ($height > $max_height) {
-      $ratio  = $width / $height;
-      $height = $max_height;
-      $width  = round($height * $ratio);
+    elseif ($width > $max_width) {
+      $ratio  = $height / $width;
+      $width  = $max_width;
+      $height = round($width * $ratio);
     }
 
     // Create the image using theme_image().
@@ -636,7 +636,7 @@ function _uikit_base_preprocess_region_header($header_content = '') {
 
     // Inline styling to prevent SVG container from collapsing and making the
     // logo smaller or distorting it.
-    $output .= '<div class="page-header__logo" style="min-width: ' . $width . 'px">';
+    $output .= '<div class="page-header__logo">';
     $output .= l($logo, '<front>', array('html' => TRUE));
     $output .= '</div>';
 
