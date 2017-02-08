@@ -36,6 +36,9 @@ function uikit_base_form_alter(&$form, &$form_state, $form_id) {
  */
 function uikit_base_preprocess_html(&$variables) {
   drupal_add_css('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&subset=latin-ext', array('type' => 'external'));
+
+  // Add full width rules
+  _uikit_base_full_width_styling($variables);
 }
 
 /**
@@ -851,4 +854,21 @@ function _uikit_base_prepare_panel_layout_array_extract_layout($rows_cols) {
   }
 
   return $retval;
+}
+
+/**
+ * Adds a class to make .main-content full width on user specified paths.
+ *
+ * @param array $variables
+ *
+ * @see uikit_base_preprocess_html().
+ */
+function _uikit_base_full_width_styling(&$variables) {
+  $paths = trim(theme_get_setting('full_width_pages'));
+  if (
+    drupal_match_path(current_path(), $paths)
+    || drupal_match_path(drupal_get_path_alias(), $paths)
+  ) {
+    $variables['classes_array'][] = 'full-width-page';
+  }
 }
