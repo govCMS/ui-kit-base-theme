@@ -77,6 +77,7 @@ function uikit_base_preprocess_maintenance_page(&$variables) {
   $variables['header'] = _uikit_base_preprocess_region_header();
 }
 
+
 /**
  * Implements THEME_preprocess_block().
  */
@@ -86,7 +87,14 @@ function uikit_base_preprocess_block(&$variables) {
 
   // Add some classes to the block title and content wrapper
   $variables['title_attributes_array']['class'] = 'block__title';
-  $variables['content_attributes_array']['class'] = 'block__content content';
+  $variables['content_attributes_array']['class'] = array('block__content', 'content');
+
+  // Global footer links class
+  if($variables['block']->region == 'footer_bottom'){
+    $variables['content_attributes_array']['class'][] = 'footer-links';
+  }
+
+  $variables['content_attributes_array']['class'] = join(' ', $variables['content_attributes_array']['class']);
 
   // Drupal menu blocks and the Menu Block module's blocks share the same
   // template file to apply the <nav> element.  We also switch template file if
