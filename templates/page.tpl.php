@@ -105,9 +105,11 @@ elseif ($sidebar_right) {
 
 <footer role="contentinfo">
   <div class="wrapper">
-    <section class="footer-top">
-      <?php print render($page['footer_top']); ?>
-    </section>
+    <?php if($page['footer_top']): ?>
+      <section class="footer-top">
+        <?php print render($page['footer_top']); ?>
+      </section>
+    <?php endif; ?>
     <section class="footer-bottom">
       <div class="footer-logo">
         <img alt="Australian Government Coat of Arms" src="<?php print drupal_get_path('theme', 'uikit_base'); ?>/images/coat-of-arms.png">
