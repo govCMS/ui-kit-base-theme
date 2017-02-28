@@ -37,7 +37,7 @@ elseif ($sidebar_right) {
       <?php if ($navigation): ?>
         <div class="site-nav">
           <nav class="site-nav__wrapper">
-            <?php print render($page['navigation']); ?>
+            <?php print $navigation; ?>
           </nav>
         </div>
       <?php endif; ?>
@@ -49,7 +49,7 @@ elseif ($sidebar_right) {
 <?php if ($hero): ?>
   <section class="hero">
     <div class="wrapper">
-      <?php print render($page['hero']); ?>
+      <?php print $hero; ?>
     </div>
   </section>
 <?php endif; ?>
