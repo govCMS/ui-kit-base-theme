@@ -112,7 +112,7 @@ elseif ($sidebar_right) {
     <?php endif; ?>
     <section class="footer-bottom">
       <div class="footer-logo">
-        <img alt="Australian Government Coat of Arms" src="<?php print drupal_get_path('theme', 'uikit_base'); ?>/images/coat-of-arms.png">
+        <img alt="<?php print t('Australian Government Coat of Arms');?>" src="<?php print base_path() . drupal_get_path('theme', 'uikit_base'); ?>/images/coat-of-arms.png">
       </div>
       <?php print render($page['footer_bottom']); ?>
     </section>
