@@ -86,7 +86,15 @@ function uikit_base_preprocess_block(&$variables) {
 
   // Add some classes to the block title and content wrapper
   $variables['title_attributes_array']['class'] = 'block__title';
-  $variables['content_attributes_array']['class'] = 'block__content content';
+  $variables['content_attributes_array']['class'] = array('block__content', 'content');
+
+  // Global footer links class
+  if (
+    $variables['block']->region == 'footer_bottom'
+    && in_array($block->module, array('menu', 'menu_block'))
+  ) {
+    $variables['content_attributes_array']['class'][] = 'footer-links';
+  }
 
   // Drupal menu blocks and the Menu Block module's blocks share the same
   // template file to apply the <nav> element.  We also switch template file if
