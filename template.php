@@ -99,6 +99,7 @@ function uikit_base_preprocess_block(&$variables) {
       array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic_sidebar');
     }
     else {
+      array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic__' . $block->region);
       array_unshift($variables['theme_hook_suggestions'], 'block__menu_generic');
     }
   }
