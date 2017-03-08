@@ -8,10 +8,12 @@
  */
 
 // Render region if there's content in theme.
-$navigation    = render($page['navigation']);
-$hero          = render($page['hero']);
-$sidebar_left  = render($page['sidebar_left']);
-$sidebar_right = render($page['sidebar_right']);
+$navigation     = render($page['navigation']);
+$hero           = render($page['hero']);
+$sidebar_left   = render($page['sidebar_left']);
+$sidebar_right  = render($page['sidebar_right']);
+$content_before = render($page['content_before']);
+$content_after  = render($page['content_after']);
 
 $main_classes = '';
 if ($sidebar_left && $sidebar_right) {
@@ -74,6 +76,14 @@ elseif ($sidebar_right) {
 
         <a id="main-content"></a>
 
+        <?php if ($content_before): ?>
+          <section class="content-before">
+            <div class="wrapper">
+              <?php print $content_before; ?>
+            </div>
+          </section>
+        <?php endif; ?>
+
         <?php print render($title_prefix); ?>
         <?php if ($title): ?>
         <h1 class="page__title title" id="page-title"><?php print $title; ?></h1>
@@ -102,6 +112,14 @@ elseif ($sidebar_right) {
   <?php endif; ?>
 
 </main>
+
+<?php if ($content_after): ?>
+<section class="content-after">
+  <div class="wrapper">
+    <?php print $content_after; ?>
+  </div>
+</section>
+<?php endif; ?>
 
 <footer role="contentinfo">
   <div class="wrapper">
