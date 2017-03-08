@@ -37,11 +37,7 @@ elseif ($sidebar_right) {
       </div>
 
       <?php if ($navigation): ?>
-        <div class="site-nav">
-          <nav class="site-nav__wrapper">
-            <?php print $navigation; ?>
-          </nav>
-        </div>
+        <?php print $navigation; ?>
       <?php endif; ?>
 
     </div>
