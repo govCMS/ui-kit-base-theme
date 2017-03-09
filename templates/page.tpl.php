@@ -66,7 +66,7 @@ elseif ($sidebar_right) {
 
     <div id="main">
 
-      <div class="column">
+      <div id="content" class="column">
 
         <a href="#skip-link" id="skip-content" class="element-invisible">Go to top of page</a>
 
