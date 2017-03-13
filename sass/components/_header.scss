@@ -158,3 +158,9 @@
     }
   }
 }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .page-header__content form [type=text] {
+    margin-left: 1px;
+  }
+}
