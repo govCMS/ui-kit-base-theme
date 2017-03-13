@@ -5329,7 +5329,7 @@ form .form-type-radio input[type='radio'] + label {
     border: none; } }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  .page-header__content form [type=text] {
+  .page-header__content form [type=submit] {
     margin-left: -1px; } }
 
 /**
