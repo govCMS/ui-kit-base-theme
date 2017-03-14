@@ -158,3 +158,11 @@
     }
   }
 }
+
+//Because Safari can't count
+// See http://stackoverflow.com/questions/23624265/fixing-1px-bug-in-safari for bug details and fix
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .page-header__content form [type=submit] {
+    margin-left: -1px;
+  }
+}
