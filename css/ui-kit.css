@@ -5195,6 +5195,11 @@ form .form-type-radio input[type='radio'] + label {
 .page-header__site-info,
 .page-header__content {
   text-align: center; }
+  @media screen and (min-width: 75em) {
+    .page-header__logo,
+    .page-header__site-info,
+    .page-header__content {
+      float: left; } }
 
 .page-header__logo img {
   display: block;
@@ -5239,7 +5244,7 @@ form .form-type-radio input[type='radio'] + label {
       background-color: #e1e7eb; }
   .page-header__content form [type=text] {
     background-color: #f0f3f5;
-    line-height: 2.15em;
+    height: 3.2em;
     width: 100%;
     border: 2px solid #bbbbbb;
     border-right: none; }
@@ -5254,6 +5259,9 @@ form .form-type-radio input[type='radio'] + label {
     background-size: 20px auto;
     float: right;
     position: relative; }
+  @media screen and (min-width: 75em) {
+    .page-header__content form .form-type-textfield {
+      float: left; } }
 
 @media screen and (min-width: 768px) {
   .page-header .wrapper {
@@ -5287,8 +5295,8 @@ form .form-type-radio input[type='radio'] + label {
     float: right;
     margin: 0; }
     .page-header__content form [type=text] {
-      line-height: 1.8em;
-      width: 10em; } }
+      width: 10em;
+      height: 2.8em; } }
 
 @media screen and (min-width: 75em) {
   .page-header__site-info {
@@ -5488,6 +5496,9 @@ body:before {
 
 [class^='breadcrumbs'] {
   background-color: transparent; }
+
+.site-nav {
+  clear: both; }
 
 footer .block__title {
   font-size: 1.5rem;

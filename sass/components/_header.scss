@@ -6,6 +6,9 @@
 .page-header__site-info,
 .page-header__content {
   text-align: center;
+  @include media($desktop){
+    float: left;
+  }
 }
 
 .page-header__logo {
@@ -68,7 +71,7 @@
 
     [type=text] {
       background-color: #f0f3f5;
-      line-height: 2.15em;
+      height: 3.2em;
       width: 100%;
       border: 2px solid $light-grey;
       border-right: none;
@@ -90,6 +93,13 @@
       float: right;
       position: relative;
     }
+
+    @include media($desktop){
+      .form-type-textfield {
+        float: left;
+      }
+    }
+
   }
 }
 
@@ -134,8 +144,8 @@
     margin: 0;
 
     [type=text] {
-      line-height: 1.8em;
       width: 10em;
+      height: 2.8em;
     }
   }
 }
