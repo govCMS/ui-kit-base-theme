@@ -8,10 +8,12 @@
  */
 
 // Render region if there's content in theme.
-$navigation    = render($page['navigation']);
-$hero          = render($page['hero']);
-$sidebar_left  = render($page['sidebar_left']);
-$sidebar_right = render($page['sidebar_right']);
+$navigation     = render($page['navigation']);
+$hero           = render($page['hero']);
+$sidebar_left   = render($page['sidebar_left']);
+$sidebar_right  = render($page['sidebar_right']);
+$content_before = render($page['content_before']);
+$content_after  = render($page['content_after']);
 
 $main_classes = '';
 if ($sidebar_left && $sidebar_right) {
@@ -35,11 +37,7 @@ elseif ($sidebar_right) {
       </div>
 
       <?php if ($navigation): ?>
-        <div class="site-nav">
-          <nav class="site-nav__wrapper">
-            <?php print render($page['navigation']); ?>
-          </nav>
-        </div>
+        <?php print $navigation; ?>
       <?php endif; ?>
 
     </div>
@@ -49,7 +47,7 @@ elseif ($sidebar_right) {
 <?php if ($hero): ?>
   <section class="hero">
     <div class="wrapper">
-      <?php print render($page['hero']); ?>
+      <?php print $hero; ?>
     </div>
   </section>
 <?php endif; ?>
@@ -68,11 +66,19 @@ elseif ($sidebar_right) {
 
     <div id="main">
 
-      <div id="content" class="column">
+      <div class="column">
 
         <a href="#skip-link" id="skip-content" class="element-invisible">Go to top of page</a>
 
         <a id="main-content"></a>
+
+        <?php if ($content_before): ?>
+          <section class="content-before">
+            <div class="wrapper">
+              <?php print $content_before; ?>
+            </div>
+          </section>
+        <?php endif; ?>
 
         <?php print render($title_prefix); ?>
         <?php if ($title): ?>
@@ -103,12 +109,25 @@ elseif ($sidebar_right) {
 
 </main>
 
+<?php if ($content_after): ?>
+<section class="content-after">
+  <div class="wrapper">
+    <?php print $content_after; ?>
+  </div>
+</section>
+<?php endif; ?>
+
 <footer role="contentinfo">
   <div class="wrapper">
-    <section class="footer-top">
-      <?php print render($page['footer_top']); ?>
-    </section>
+    <?php if($page['footer_top']): ?>
+      <section class="footer-top">
+        <?php print render($page['footer_top']); ?>
+      </section>
+    <?php endif; ?>
     <section class="footer-bottom">
+      <div class="footer-logo">
+        <img alt="<?php print t('Australian Government Coat of Arms');?>" src="<?php print base_path() . drupal_get_path('theme', 'uikit_base'); ?>/images/coat-of-arms.png">
+      </div>
       <?php print render($page['footer_bottom']); ?>
     </section>
     <section class="page-bottom">
