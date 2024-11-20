@@ -1,4 +1,4 @@
-# UI Kit Drupal theme
+# UI Kit Drupal theme - ARCHIVED
 
 ## What is this?
 
